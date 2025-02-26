@@ -1,0 +1,15 @@
+{
+    "name": "Quiz to pieni\u0105dz",
+    "short_name": "Quiz to pieni\u0105dz",
+    "icons": [
+        {
+            "src": "/android-chrome-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#d6ceb7",
+    "background_color": "#d6ceb7",
+    "start_url": "https://www.quiz-to-pieniadz.pl/",
+    "display": "standalone"
+}
