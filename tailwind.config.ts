@@ -19,11 +19,11 @@ export default <Partial<Config>>{
           graybg: "#f7f5f5",
           grayborder: "#d7d7d7",
           btn:{
-            base: "#d696bc",
-            darker: "#803261",
+            base: "#111111",
+            darker: "#333333",
           },
           btn2:{
-            base: "#c8c3a1",
+            base: "#111111",
             darker: "#a9a38a",
           },
         },

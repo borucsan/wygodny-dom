@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <section class="content-main">
+
+        <section class="flex flex-col items-center justify-center py-10">
             <div class="max-w-[793px] w-full">
                 <div class="min-h-[90px]">
                     <TransitionFade :duration="{ enter: 200, leave: 0 }">
@@ -93,14 +93,7 @@
                 </div>
             </div>
         </section>
-        <section class="bg-footer py-8 px-10">
-            <p class="text-text1 font-barlow text-sm">
-                Grafika użyta na stronie pochodzi z legalnych źródeł i ma charakter wyłącznie ilustracyjny. Apple Inc. nie jest związane z organizatorem promocji ani nie wspiera i nie sponsoruje konkursu.
-                <br><br>
-                Aby wziąć udział w konkursie, należy spełnić kilka prostych warunków. Uczestnik powinien wypełnić formularz zgłoszeniowy, podając swoje dane osobowe, takie jak imię, adres e-mail datę urodzenia oraz telefon. Następnie należy odpowiedzieć na 3 pytania konkursowe, najszybsza osoba, która udzieli poprawnych odpowiedzi - wygrywa. Zwycięzca konkursu zostanie poinformowany o wygranej drogą telefoniczną. Każde kolejne zgłoszenie tego samego adresu e-mail powoduje nadpisanie poprzednich odpowiedzi. Konkurs skierowany jest wyłącznie do osób pełnoletnich. Nagrodą jest iPhone 16, a uczestnictwo w konkursie jest bezpłatne.
-            </p>
-        </section>
-    </div>
+
 </template>
 <script setup lang="ts">
 import { useVuelidate, type ValidationRuleWithoutParams } from '@vuelidate/core';

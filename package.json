@@ -38,6 +38,7 @@
     "nuxt-storage": "^1.2.2",
     "vue": "latest",
     "vue-imask": "^7.6.1",
+    "vue-timer-hook": "^1.0.84",
     "vue3-apexcharts": "^1.5.3"
   },
   "devDependencies": {

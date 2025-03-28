@@ -2,11 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-white font-poppins;
+}
+
 .answer {
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
-  @apply max-w-max flex gap-4 cursor-pointer text-xl transition-all md:hover:font-black duration-100;
+  @apply max-w-max gap-4 cursor-pointer text-xl transition-all md:hover:font-black duration-100;
 }
 .answer.correct {
   @apply text-correct;
@@ -29,11 +33,11 @@
   @apply bg-[#F7F7F5] border border-[#7B8DC7] rounded-lg  w-full px-5 md:px-8 pt-5 md:pt-8 pb-8 flex-col justify-center items-center;
 }
 .form-checkbox {
-  border-color: rgb(248, 243, 235) !important;
+  border-color: #66666659; 
   @apply cursor-pointer;
 }
 .form-checkbox:checked {
-  border-color: rgb(248, 243, 235) !important;
+  border-color: #66666659 !important;
   background-image: none;
   overflow: visible;
   position: relative;
@@ -46,15 +50,15 @@
   display: block;
   width: 25px;
   height: 19px;
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="19px"><path fill-rule="evenodd" stroke="rgb(248, 243, 235)" stroke-width="4px" stroke-linecap="butt" stroke-linejoin="miter" fill="none" d="M4.103,6.414 L10.360,12.189 L19.504,3.526 "/></svg>');
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="19px"><path fill-rule="evenodd" stroke="rgb(0, 0, 0)" stroke-width="4px" stroke-linecap="butt" stroke-linejoin="miter" fill="none" d="M4.103,6.414 L10.360,12.189 L19.504,3.526 "/></svg>');
   z-index: 2;
 }
 
 .pre-question {
-  @apply pb-8 font-barlow leading-7 text-lg px-3 md:px-7;
+  @apply pb-8 leading-7 text-xl px-3 md:px-7;
 }
 .post-question {
-  @apply pt-8 font-barlow leading-7 text-lg px-3 md:px-7;
+  @apply pt-8 leading-7 text-xl px-3 md:px-7;
 }
 
 
@@ -93,33 +97,26 @@ ol.custom-list > li:before {
 .in-row {
   @apply grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-1 sm:gap-4 md:gap-2;
 }
-.in-row li:last-child,
-li:nth-last-child(1):nth-child(odd) {
-  @apply col-span-2
-}
 .in-row2 {
   @apply grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-4;
 }
 .in-row3 {
   @apply grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-4;
 }
-.in-row3 li:nth-last-child(1):nth-child(odd) {
-  @apply col-span-1;
-}
-.in-row2 li:last-child,
-li:nth-last-child(1):nth-child(odd) {
-  @apply col-span-2
-}
 .in-col {
   @apply grid-cols-1 gap-1 md:gap-2;
 }
 
 .in-row-images {
-  @apply grid-cols-2 md:grid-cols-[repeat(4,_minmax(165px,_max-content))] gap-4 md:gap-2;
+  @apply grid grid-cols-2 md:grid-cols-[repeat(4,_minmax(180px,_max-content))] gap-4 md:gap-2 list-none justify-items-center;
+}
+
+.in-row-images .answer {
+ @apply text-center;
 }
 
 .in-row-images-3 {
-  @apply grid-cols-2 md:grid-cols-[repeat(3,_minmax(165px,_max-content))] gap-4 pb-20 md:pb-10 text-center;
+  @apply grid grid-cols-2 md:grid-cols-[repeat(3,_minmax(165px,_max-content))] gap-4 pb-20 md:pb-10 text-center;
 }
 
 .in-row-images .col2 {

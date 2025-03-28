@@ -1,74 +1,17 @@
 <template>
-    <div>
-        <section :class="['content-main', { '!justify-stretch': !completed }]">
-            <TransitionFade :duration="500">
-                <div class="max-w-[793px] w-full" v-if="show">
-                    <p class="pre-question" v-if="completed">
-                    </p>
+    <section class="flex flex-col items-center justify-center h-full">
+        <TransitionFade :duration="500">
 
-                    <div class="bg-content-paper">
+            <div class="flex flex-col items-center p-5">
+                <div class="text-center font-bold mb-5 text-xl">Dziękujemy serdecznie za udział
+                    w naszym
+                    konkursie! Mamy
+                    nadzieję, że&nbsp;zobaczymy się także w przyszłych edycjach.</div>
+            </div>
 
-                        <UForm v-if="!completed" ref="form" class="w-full md:p-8 p-4" :state="state"
-                               :validate="validateWithVuelidate"
-                               @submit="onSubmit">
-                            <div class="text-center mb-5 text-lg">Dziękujemy za potwierdzenie udziału w
-                                naszym
-                                konkursie!</div>
-                            <p class="font-barlow text-lg">
-                                TBD
-                            </p>
 
-                            <UFormGroup name="answer" class="mb-4" label=" ">
-                                <template #hint>
-                                    <p class="text-sm">{{ state.answer.length }} / {{ appConfig.answerMaxLength }}</p>
-                                </template>
-                                <template #default>
-                                    <UTextarea placeholder="Twoja odpowiedz" :maxlength="appConfig.answerMaxLength"
-                                    color="gray"
-                                               :rows="5" v-model="state.answer" resize autoresize />
-                                </template>
-                            </UFormGroup>
-                            <div class="flex justify-center md:col-span-2">
-                                <UButton type="submit" color="gray" :loading="loading">
-                                    Zatwierdź
-                                </UButton>
-                            </div>
-
-                        </UForm>
-                        <div v-else-if="completed" class="flex flex-col items-center p-5">
-                            <!-- <div class="text-center text-lg">
-                                Najwięcej dobrych odpowiedzi udzieliły te 3 województwa:
-                            </div>
-                            <div class="w-full max-w-[80%]">
-                                <ClientOnly>
-                                    <apexchart width="100%" height="200px" type="bar" ref="chart"
-                                               :options="chartOptions" :series="series">
-                                    </apexchart>
-                                </ClientOnly>
-                            </div>
-                            <div class="text-center mb-5 text-lg">
-                                Najwięcej dobrych odpowiedzi udzielili mieszkańcy:
-                            </div>
-
-                            <div class="bg-[#bab5a2] min-w-[85px] text-center py-1 rounded-sm mb-5">{{ data?.most ??
-                                "Miast" }}</div> -->
-                            <div class="text-center font-bold mb-5 text-lg">Dziękujemy serdecznie za udział
-                                w naszym
-                                konkursie! Mamy
-                                nadzieję, że&nbsp;zobaczymy się także w przyszłych edycjach.</div>
-                        </div>
-                    </div>
-                </div>
-            </TransitionFade>
-        </section>
-        <section class="bg-footer py-8 px-10">
-            <p class="text-text1 font-barlow text-sm">
-                Grafika użyta na stronie pochodzi z legalnych źródeł i ma charakter wyłącznie ilustracyjny. Apple Inc. nie jest związane z organizatorem promocji ani nie wspiera i nie sponsoruje konkursu.
-                <br><br>
-                Aby wziąć udział w konkursie, należy spełnić kilka prostych warunków. Uczestnik powinien wypełnić formularz zgłoszeniowy, podając swoje dane osobowe, takie jak imię, adres e-mail datę urodzenia oraz telefon. Następnie należy odpowiedzieć na 3 pytania konkursowe, najszybsza osoba, która udzieli poprawnych odpowiedzi - wygrywa. Zwycięzca konkursu zostanie poinformowany o wygranej drogą telefoniczną. Każde kolejne zgłoszenie tego samego adresu e-mail powoduje nadpisanie poprzednich odpowiedzi. Konkurs skierowany jest wyłącznie do osób pełnoletnich. Nagrodą jest iPhone 16, a uczestnictwo w konkursie jest bezpłatne.
-            </p>
-        </section>
-    </div>
+        </TransitionFade>
+    </section>
 </template>
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core';
@@ -238,7 +181,7 @@ onMounted(async () => {
         await navigateTo("/")
     }
 
-    if(route.query.actionId) {
+    if (route.query.actionId) {
         actionId.value = route.query.actionId as string;
     }
 
@@ -255,7 +198,7 @@ async function onSubmit() {
     try {
         loading.value = true;
         const data = {
-            prop33: state.value.answer.replace(/\s/gm," "),
+            prop33: state.value.answer.replace(/\s/gm, " "),
         };
         const postData = new FormData();
         postData.append("mtd", "upd");

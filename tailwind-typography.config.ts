@@ -4,6 +4,7 @@ export default <Partial<Config>>{
 	theme: {
 		extend: {
 			fontSize: {
+				'4xs': '.5rem', //8px
 				xxxs: '.625rem', //10px
 				xxs: '.75rem', //12px
 				xs: '.813rem', //13px
@@ -13,10 +14,13 @@ export default <Partial<Config>>{
 				lg: '1.125rem', // 18px
 				xl: '1.25rem', //20px
 				'2xl': '1.5rem', //24px
+				'3xl': '1.875rem', //30px
+				'4xl': '2.25rem', //36px
+				'5xl': '3rem', //48px
 			},
 			fontFamily: {
 				'barlow': ['Barlow'],
-				'caveat': ['Caveat']
+				'poppins': ['Poppins']
 			},
 		},
 	},

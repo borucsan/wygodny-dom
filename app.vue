@@ -1,23 +1,14 @@
 <template>
-  <main class="bg-[#f7f4f8] md:mx-2">
-    <div class="flex flex-col items-center max-w-[950px] w-full h-full mx-auto justify-between min-h-screen">
-      <header class="flex flex-col md:flex-row bg-bg w-full justify-between items-center px-5" v-if="route.name !== 'index'">
-        <a href="/" class="flex">
-          <img src="assets/images/5.png" />
-        </a>
-            <img src="assets/images/head2v2.png" />
-        
-      </header>
-      <NuxtPage class="flex flex-col flex-1" />
-      <footer
-              class="w-full flex flex-col gap-3 md:flex-row justify-between font-barlow text-xs bg-footer text-text1 px-2 md:px-10 py-2 border-t border-text1">
-        <ul class="flex justify-between md:justify-start md:gap-3 flex-1 md:flex-auto">
-          <a href="#" @click.prevent="modals.rules = true">Regulamin</a>
-          <a href="#" @click.prevent="modals.privacy = true" class="text-center">Polityka prywatności</a>
-          <a href="#" @click.prevent="modals.data = true" class="text-center">Zasady Przetwarzania Danych</a>
-        </ul>
-        <div class="col-span-2 flex justify-center">Serwis wykorzystuje pliki cookies. <a href="#"
-             @click.prevent="modals.privacy = true">Więcej</a></div>
+  <main class="from-[#FDE3E2] to-[#F6F8FA] bg-gradient-to-b px-2 grid grid-cols-1">
+    <div class="bg-[url('assets/images/bg.png')] max-w-screen-xl bg-no-repeat bg-right w-full h-screen mx-auto  col-start-1 row-start-1"></div>
+    <div class="flex flex-col md:flex-row justify-center gap-12 w-full max-w-screen-xl h-full mx-auto min-h-screen py-16 col-start-1 row-start-1 z-10">
+      <NuxtPage class="flex flex-col w-full max-w-[760px] bg-[#FFFFFF99] backdrop-blur-xl px-2 md:px-16 rounded-2xl" />
+      <footer class="flex-1 text-xxxs self-end pb-12">
+        <p class="text-black font-barlow text-xss">
+                Grafika użyta na stronie pochodzi z legalnych źródeł i ma charakter wyłącznie ilustracyjny. Apple Inc. nie jest związane z organizatorem promocji ani nie wspiera i nie sponsoruje konkursu.
+                <br><br>
+                Aby wziąć udział w konkursie, należy spełnić kilka prostych warunków. Uczestnik powinien wypełnić formularz zgłoszeniowy, podając swoje dane osobowe, takie jak imię, adres e-mail datę urodzenia oraz telefon. Następnie należy odpowiedzieć na 3 pytania konkursowe, najszybsza osoba, która udzieli poprawnych odpowiedzi - wygrywa. Zwycięzca konkursu zostanie poinformowany o wygranej drogą telefoniczną. Każde kolejne zgłoszenie tego samego adresu e-mail powoduje nadpisanie poprzednich odpowiedzi. Konkurs skierowany jest wyłącznie do osób pełnoletnich. Nagrodą jest iPhone 16, a uczestnictwo w konkursie jest bezpłatne.
+            </p>
       </footer>
     </div>
     <RulesModal />

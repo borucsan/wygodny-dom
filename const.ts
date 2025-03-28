@@ -1,3 +1,4 @@
+import { parse, sub } from "date-fns";
 import type { Question, RegistrationQuestion } from "./types";
 
 const months = new Array(12).fill(0).map((_, i) => {
@@ -10,167 +11,90 @@ export const appConfig = {
     answerMaxLength: 600
 }
 
-export const part1: {title: string, questions: Question[]} = {
-    "title": "Dokończ przysłowie i kliknij w poprawną odpowiedź:",
+export const quiz: { title: string, questions: Question[] } = {
+    "title": "",
     "questions": [
         {
             "id": 1,
-            "question": "Nie chwal dnia przed….",
+            "question": "Który z wymienionych systemów operacyjnych NIE jest używany w smartfonach?",
             "answers": [
                 {
                     "id": "A",
-                    "answer": "nocą",
+                    "answer": "Android",
                     "correct": false
                 },
                 {
                     "id": "B",
-                    "answer": "obiadem",
+                    "answer": "iOS",
                     "correct": false
                 },
                 {
                     "id": "C",
-                    "answer": "teściową",
+                    "answer": "Windows Phone",
                     "correct": false
                 },
                 {
                     "id": "D",
-                    "answer": "zachodem słońca",
+                    "answer": "Linux Mint",
                     "correct": true
                 }
             ]
         },
         {
             id: 2,
-            question: "Kto pod kim dołki kopie, (ten)...",
+            question: "Który przycisk na telefonie służy do zakończenia połączenia?",
             answers: [
                 {
                     id: "A",
-                    answer: "ma wykopane",
+                    answer: "Zielona słuchawka",
                     correct: false
                 },
                 {
                     id: "B",
-                    answer: "się narobił",  //"mały ma",
-                    correct: false
-                },
-                {
-                    id: "C",
-                    answer: "sam w nie wpada",
+                    answer: "Czerwona słuchawka",  //"mały ma",
                     correct: true
                 },
                 {
+                    id: "C",
+                    answer: "Przycisk głośności",
+                    correct: false
+                },
+                {
                     id: "D",
-                    answer: "zakopie",
+                    answer: "Przycisk aparatu",
                     correct: false
                 }
             ]
-    },
-    {
-        id: 3,
-        question: "Darowanemu koniowi…",
-        answers: [
-            {
-                id: "A",
-                answer: "robota się nie klei",
-                correct: false
-            },
-            {
-                id: "B",
-                answer: "pracy się dokłada",
-                correct: false
-            },
-            {
-                id: "C",
-                answer: "się w zęby nie zagląda",  //"należy się za darmo",
-                correct: true
-            },
-            {
-                id: "D",
-                answer: "zakłada się chomąto",
-                correct: false
-            }
-        ]
-    },
-    {
-        id: 4,
-        question: "Biada domowi, gdzie…",
-        answers: [
-            {
-                id: "A",
-                answer: "cielę rozkazuje wołowi",
-                correct: true
-            },
-            {
-                id: "B",
-                answer: "kałamarz pełniejszy od spiżarni", //"kobieta rządzi",
-                correct: false
-            },
-            {
-                id: "C",
-                answer: "wiatr hula po izbie",  //"mąż pijany",
-                correct: false
-            },
-            {
-                id: "D",
-                answer: "gdzie piec jest zimniejszy niż gościnność gospodarza",
-                correct: false
-            }
-        ]
-    },
-    {
-        id: 5,
-        question: "Nie ma ryby bez ości, a…",
-        answers: [
-            {
-                id: "A",
-                answer: "chleba bez soli",
-                correct: false
-            },
-            {
-                id: "B",
-                answer: "listu bez pieczęci",
-                correct: false
-            },
-            {
-                id: "C",
-                answer: "gry bez zasad",
-                correct: false
-            },
-            {
-                id: "D",
-                answer: "człowieka bez złości",
-                correct: true
-            }
-        ]
-    },
-    {
-        id: 6,
-        question: "Gdy pieniędzy wiele…",
-        answers: [
-            {
-                id: "A",
-                answer: "to i w bałaganie znajdziesz portfele",
-                correct: false
-            },
-            {
-                id: "B",
-                answer: "wokół przyjaciele",
-                correct: true
-            },
-            {
-                id: "C",
-                answer: "to kłopoty lżejsze niż pierze",
-                correct: false
-            },
-            {
-                id: "D",
-                answer: "sąsiad uśmiecha się szczerze",
-                correct: false
-            }
-        ]
-    }
+        },
+        {
+            id: 3,
+            question: "Co robimy, gdy telefon się rozładuje?",
+            answers: [
+                {
+                    id: "A",
+                    answer: "Wkładamy go do lodówki",
+                    correct: false
+                },
+                {
+                    id: "B",
+                    answer: "Podłączamy do ładowarki",
+                    correct: true
+                },
+                {
+                    id: "C",
+                    answer: "Potrząsamy nim mocno",  //"należy się za darmo",
+                    correct: false
+                },
+                {
+                    id: "D",
+                    answer: "Naciskamy wszystkie przyciski naraz",
+                    correct: false
+                }
+            ]
+        },
     ]
 }
+
 
 export const coRegistrationQuestions: RegistrationQuestion[] = [
     {
@@ -181,11 +105,34 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
         options: [...months, 'nie mam auta'],
         inisTrack: 'cpl_coreg_1_OC'
     },
+    {
+        type: "radio",
+        question: `Szukamy 500 osób do testowania najnowszych aparatów słuchowych!<br>
+Chcesz wziąć udział w bezpłatnych badaniach słuchu i wypróbować nowoczesny aparat słuchowy? (Liczba miejsc ograniczona).
+`,
+        prop: 'prop67',
+        filter: (consensts, user) => ['prop22', 'prop26', 'prop27'].every(c => {
+            const today = new Date();
+            const maxDate = sub(today, { years: 60 });
+            const date = parse(user.dob as string, 'dd-MM-yyyy', 12);
+            return consensts.includes(c) /* && date.toString() !== 'Invalid Date' && (isBefore(date, maxDate) || isEqual(date, maxDate)) */; }),
+        options: ['tak, chętnie', 'nie jestem zainteresowany/a'],
+    },
+    {
+        type: "radio",
+        question: `Co by Cię przekonało do zakupu pakietu medycznego?`,
+        prop: 'prop71',
+        filter: (consensts, user) => ['prop22', 'prop26', 'prop27'].every(c => {
+            const today = new Date();
+            const maxDate = sub(today, { years: 60 });
+            const date = parse(user.dob as string, 'dd-MM-yyyy', 12);
+            return consensts.includes(c) /* && date.toString() !== 'Invalid Date' && (isBefore(date, maxDate) || isEqual(date, maxDate)) */; }),
+        options: ['najniższa rynkowa cena', 'brak kolejek', 'pakiet zawierający teleporady oraz wizyty stacjonarne', 'nic by mnie nie przekonało'],
+    },
      {
         type: "radio",
         question: 'Czy kiedykolwiek brałeś/aś pożyczkę gotówkową lub kredyt konsumpcyjny?',
         prop: 'prop40',
-        class: 'in-row3',
         filter: (consensts) => true, // ['prop22', 'prop26', 'prop27'].every(c => consensts.includes(c)),
         options: ["tak, w złotówkach", "tak, w innej walucie", "nie"],
         inisTrack: 'cpl_profilowe_6_kredyt'
@@ -297,7 +244,6 @@ export const profileQuestions: RegistrationQuestion[] = [
         question: 'Jakie masz wykształcenie?',
         inisTrack: 'cpl_profilowe_4_wyksztalcenie',
         prop: 'prop38',
-        class: 'in-row2',
         filter: (consensts) => ['prop26', 'prop27'].every(c => !consensts.includes(c)),
         options: ["podstawowe", "gimnazjalne", "zasadnicze", "średnie", "wyższe"]
     },

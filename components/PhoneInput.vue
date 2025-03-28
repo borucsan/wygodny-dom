@@ -1,62 +1,76 @@
 <template>
     <UFormGroup label="Telefon" name="phone" required>
-        <USelectMenu
-                     v-if="phonePrefix"
-                     id="phone_prefix"
-                     v-model="phonePrefix"
-                     name="phone_prefix"
-                     class="absolute top-1 left-1 z-10 w-[66px]"
-                     selected-icon=""
-                     :trailing="false"
-                     size="xs"
-                     type="tel"
-                     value-attribute="id"
-                     @change="emit('blur')"
-                     :ui-menu="{
-                        option: {
-                            selected: 'pe-0'
-                        },
-                        color: {
-                            white: {
-                                outline: 'shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset !ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400',
+        <div class="flex w-full items-center gap-2">
+            <USelectMenu
+                         v-if="phonePrefix"
+                         id="phone_prefix"
+                         v-model="phonePrefix"
+                         name="phone_prefix"
+                         class="z-10 w-[80px]"
+                         selected-icon=""
+                         :trailing="false"
+                         size="md"
+                         variant="outline"
+                         type="tel"
+                         value-attribute="id"
+                         @change="emit('blur')"
+                         color="gray"
+                         :ui-menu="{
+                            background: '!bg-white dark:bg-gray-800',
+                            height: 'max-h-[100px] h-full',
+                            option: {
+                                selected: 'pe-0'
                             },
-                            gray: {
-                                outline: 'shadow-sm bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white ring-1 ring-inset !ring-gray-300 dark:ring-gray-700',
+                            color: {
+                                white: {
+                                    outline: 'shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset !ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400',
+                                },
+                                gray: {
+                                    outline: 'shadow-sm bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white ring-1 ring-inset !ring-gray-300 dark:ring-gray-700',
+                                },
                             },
-                        },
-                    }"
-                     :ui="{
-                        option: {
-                            selected: 'pe-0'
-                        },
-                        color: {
-                            white: {
-                                outline: 'shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400',
+                        }"
+                         :ui="{
+                            rounded: 'rounded-xl',
+
+                            option: {
+                                selected: 'pe-0'
                             },
-                            gray: {
-                                outline: 'shadow-sm bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white ring-1 ring-inset !ring-gray-300 dark:ring-gray-700',
+                            size: {
+                                md: 'h-[56px]',
                             },
-                        },
-                    }"
-                     color="gray"
-                     :options="[
-                        { label: '+48', id: '+48' },
-                        { label: '+49', id: '+49' },
-                        { label: '+44', id: '+44' },
-                        { label: '...', id: null }]" />
-        <UInput
-                placeholder="Wpisz swój nr telefonu"
-                @update:model-value="updInput"
-                :value="props.modelValue"
-                ref="phoneInput"
-                type="tel" title="phone"
-                :ui="{ padding: { sm: phonePrefix ? 'pl-[75px]' : '' } }"
-                @blur="emit('blur')"
-                data-testid="form-phone"
-                color="gray" />
+                            color: {
+                                white: {
+                                    outline: 'shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400',
+                                },
+                                gray: {
+                                    outline: 'shadow-sm bg-transparent dark:bg-gray-800 text-gray-900 dark:text-white ring-1 ring-inset !ring-gray-300 dark:ring-gray-700',
+                                },
+                            },
+                        }"
+                         :options="[
+                            { label: '+48', id: '+48' },
+                            { label: '+49', id: '+49' },
+                            { label: '+44', id: '+44' },
+                            { label: '...', id: null }]" />
+            <UInput
+                    placeholder="Wpisz swój nr telefonu"
+                    @update:model-value="updInput"
+                    :value="props.modelValue"
+                    ref="phoneInput"
+                    type="tel" title="phone"
+                    :ui="{ padding: { sm: phonePrefix ? 'pl-[75px]' : '' } }"
+                    @blur="emit('blur')"
+                    size="md"
+                    variant="outline"
+                    data-testid="form-phone"
+                    class="flex-1"
+                    color="gray" />
+        </div>
     </UFormGroup>
 </template>
 <script setup lang="ts">
+import type { size } from 'lodash-es';
 import { IMask } from 'vue-imask';
 
 
@@ -76,9 +90,9 @@ const mask = ref();
 const lastPrefix = ref(phonePrefix.value);
 
 watch(phonePrefix, (val) => {
-    if(val !== null) {
+    if (val !== null) {
         lastPrefix.value = val;
-    } else if(mask.value.masked.value !== '') { 
+    } else if (mask.value.masked.value !== '') {
         emit('update:modelValue', lastPrefix.value + mask.value.masked.value);
         mask.value.updateValue();
     }

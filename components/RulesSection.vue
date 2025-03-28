@@ -1,12 +1,13 @@
 <template>
-    <ol class="flex flex-col gap-4 list-decimal mb-4" type="1">
+    <a class="text-center" href="#" @click.prevent="showMore = !showMore">{{showMore ? 'Zwiń' :'Rozwiń'}}</a>
+    <ol class="flex flex-col gap-4 list-decimal mb-4 text-xxs mt-2" type="1">
         <!-- 1 -->
                 <li>Administratorem danych osobowych w związku z organizacją Konkursu, w rozumieniu rozporządzenia Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (ogólne rozporządzenie o ochronie danych) z dnia 27 kwietnia 2016 r. (Dz. Urz. UE. L Nr 119, str. 1), zwanego dalej RODO, jest Salelifter spółka z ograniczoną odpowiedzialnością z siedzibą w Rybniku (44-200) przy ul. Raciborskiej 35A, wpisana do rejestru przedsiębiorców Krajowego Rejestru Sądowego prowadzonego przez Sąd Rejonowy w Gliwicach, X Wydział Gospodarczy Krajowego Rejestru Sądowego pod numerem KRS: 0000472712, posiadająca NIP: 6423183413, REGON: 243306386, o kapitale zakładowym 56 150,00 złotych, zwana dalej Administratorem.</li>
                 
-    </ol>
+    </ol class="text-xxs">
             
             <TransitionExpand>
-                <ol v-if="showMore" class="flex flex-col gap-4 list-decimal mb-4" type="1" start="2">
+                <ol v-if="showMore" class="flex flex-col gap-4 list-decimal mb-4 text-xxs" type="1" start="2" >
                     <!-- 2 -->
                 <li>Administrator wyznaczył Inspektora Ochrony Danych, z którym można się kontaktować w sprawach ochrony
                     danych osobowych i realizacji praw za pośrednictwem e-mail: iod@salelifter.pl</li>
@@ -209,7 +210,7 @@
                     </li>
                 </ol>
             </TransitionExpand>
-            <a class="text-center" href="#" @click.prevent="showMore = !showMore">{{showMore ? 'Zwiń' :'Rozwiń dalej'}}</a>
+            
 </template>
 <script setup lang="ts">
 const showMore = ref(false);

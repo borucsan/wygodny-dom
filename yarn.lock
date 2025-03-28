@@ -8882,6 +8882,11 @@ vue-screen-utils@^1.0.0-beta.13:
   resolved "https://registry.npmjs.org/vue-screen-utils/-/vue-screen-utils-1.0.0-beta.13.tgz"
   integrity sha512-EJ/8TANKhFj+LefDuOvZykwMr3rrLFPLNb++lNBqPOpVigT2ActRg6icH9RFQVm4nHwlHIHSGm5OY/Clar9yIg==
 
+vue-timer-hook@^1.0.84:
+  version "1.0.84"
+  resolved "https://registry.yarnpkg.com/vue-timer-hook/-/vue-timer-hook-1.0.84.tgz#96acd9a74297bd003ffb6983a5c660bc8260cee4"
+  integrity sha512-OcHWYO8WD/XcGHdEqMkBI1Vj8m+OnXONrcmZvLcL3Gc6Js5LEs3UJ0eg1akVjNB0cXHishEmrmrhK7PZ+iULww==
+
 vue3-apexcharts@^1.5.3:
   version "1.5.3"
   resolved "https://registry.npmjs.org/vue3-apexcharts/-/vue3-apexcharts-1.5.3.tgz"

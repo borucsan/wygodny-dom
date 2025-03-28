@@ -113,10 +113,6 @@ function add()
     $group = strip_tags(htmlspecialchars($_POST['group']));
     $dob = strip_tags(htmlspecialchars($_POST['dob']));
     $consents = json_decode($_POST['consents'], true);
-    $answers = json_decode($_POST['answers'], true);
-    $correct = count(array_filter($answers, function ($answer) {
-        return $answer['correct'] === true;
-    }));
     $groupKey = null;
 
     $prop17 = strip_tags(htmlspecialchars($_POST['prop17']));
@@ -134,7 +130,6 @@ function add()
             $groupKey = 's_group_2';
         }
     }
-   
 
     if ($groupKey === null) {
         throw new Exception("Consents not accepted");
@@ -174,7 +169,6 @@ function add()
         $key = 's_' . str_replace('prop', 'property', $key);
         $data[$key] = $value ? 1 : 0;
     }
-    $data['s_property32'] = $correct;
     curl_setopt_array($curl, array(
         CURLOPT_URL => "https://system.inis.pl/acq.php",
         CURLOPT_RETURNTRANSFER => true,

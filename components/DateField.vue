@@ -6,6 +6,8 @@
             @update:model-value="updInput"
             :value="props.modelValue"
             color="gray"
+            size="md"
+            variant="outline"
             :ui="{ wrapper: 'w-full', }"
             inputmode="numeric"
             @blur="emit('blur')"

@@ -33,7 +33,7 @@ export default defineNuxtConfig({
     },
     families: [
       { name: 'Barlow', provider: 'google' },
-      { name: 'Caveat', provider: 'google', weights: [400, 500, 600, 700], styles: ['normal'] },
+      { name: 'Poppins', provider: 'google'},
     ]
   },
 
