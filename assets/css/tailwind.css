@@ -10,10 +10,46 @@ body {
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
-  @apply max-w-max gap-4 cursor-pointer text-xl transition-all md:hover:font-black duration-100;
+  @apply max-w-max gap-4 cursor-pointer text-base lg:text-xl transition-all hover:font-black duration-100;
 }
 .answer.correct {
   @apply text-correct;
+}
+
+.answer.coregister input+span {
+  align-content:center;
+  align-items:center;
+  display:flex;
+  justify-content:center;
+  position:relative
+}
+.answer.coregister:not(.answer-img) input+span:before {
+  border-radius:9999px;
+  display:block;
+  height:1rem;
+  margin-right:.5rem;
+  width:1rem;
+  --tw-bg-opacity:1;
+  background-color:rgb(215 215 215/var(--tw-bg-opacity));
+  --tw-content:"";
+  content:var(--tw-content)
+}
+.answer.coregister input:checked+span {
+  font-weight:900;
+  text-decoration-line:underline
+}
+.answer.coregister:not(.answer-img) input:checked+span:after {
+  border-radius:9999px;
+  display:block;
+  height:.5rem;
+  left:.25rem;
+  margin-right:.5rem;
+  position:absolute;
+  width:.5rem;
+  --tw-bg-opacity:1;
+  background-color:rgb(0 0 0/var(--tw-bg-opacity));
+  --tw-content:"";
+  content:var(--tw-content)
 }
 
 .answer.incorrect {

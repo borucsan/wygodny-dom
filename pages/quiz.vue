@@ -1,30 +1,38 @@
 <template>
     <section>
+        <div class="flex justify-end lg:hidden pt-6" v-if="show && step === 2"><img class=""
+                 src="/assets/images/phones2.png"></div>
         <TransitionFade :duration="{ enter: 500, leave: 200 }">
             <div class="flex justify-end pr-3 pt-5 text-xl font-medium" v-if="show && step === 2">
-                <span v-if="stopwatch.hours.value > 0">{{ stopwatch.hours }}:</span><span>{{ minutes  }}</span>:<span>{{ seconds }}</span>
+                <span v-if="stopwatch.hours.value > 0">{{ stopwatch.hours }}:</span><span>{{ minutes }}</span>:<span>{{
+                    seconds }}</span>:<span>{{ milliseconds }}</span>
             </div>
         </TransitionFade>
-            <TransitionFade :duration="{ enter: 500, leave: 200 }">
-            <div class="flex flex-col justify-center h-full" v-if="show && step === 1">
-                <h3 class="font-poppins text-xl -tracking-tighter mb-12"><strong>Za chwilę zobaczysz 3 pytania
-                        konkursowe.</strong><br />Wygrywają 3 najszybsze osoby spośród tych, z poprawnymi odpowiedziami.
-                </h3>
-                <UForm ref="form1"
-                       class="w-full max-w-[430px]"
-                       :state="state"
-                       @submit="start">
-                    <div class="flex justify-start">
-                        <UButton type="submit" color="black" size="md" data-testid="form-submit1">
-                            CZAS START!
-                        </UButton>
-                    </div>
-                </UForm>
+        <TransitionFade :duration="{ enter: 500, leave: 200 }">
+            <div class="flex flex-col justify-center h-full gap-4 pt-4" v-if="show && step === 1">
+                <div class="flex flex-col">
+                    <h3 class="font-poppins text-xl -tracking-tighter mb-12"><strong>Za chwilę zobaczysz 3 pytania
+                            konkursowe.</strong><br />Wygrywają 3 najszybsze osoby spośród tych, z poprawnymi
+                        odpowiedziami.
+                    </h3>
+                    <UForm ref="form1"
+                           class="w-full max-w-[430px]"
+                           :state="state"
+                           @submit="start">
+                        <div class="flex justify-start">
+                            <UButton type="submit" color="black" size="md" data-testid="form-submit1">
+                                CZAS START!
+                            </UButton>
+                        </div>
+                    </UForm>
+                </div>
+                <div class="flex lg:hidden"><img class="w-auto max-w-[277px]" src="/assets/images/phones.png"
+                         alt="Odbierz nagrodę"></div>
             </div>
-            <div v-else-if="show && step === 2" class="flex flex-col justify-center h-full">
+            <div v-else-if="show && step === 2" class="flex flex-col justify-center h-full pb-4">
                 <TransitionFade :duration="500" @after-leave="showNext()">
                     <form v-if="showQuestions" class="grid grid-cols-1 gap-2 text-lg">
-                        <div class="font-bold">{{ currentQuestion.question }}</div>
+                        <div class="font-bold text-md lg:text-base">{{ currentQuestion.question }}</div>
 
                         <label
                                v-for="a in currentQuestion.answers" :key="a.id"
@@ -43,6 +51,7 @@
                 </TransitionFade>
             </div>
         </TransitionFade>
+
     </section>
 </template>
 <script setup lang="ts">
@@ -63,6 +72,8 @@ const show = ref(true);
 const state = useUserData();
 const from = ref<number | undefined>(undefined);
 const to = ref<number | undefined>(undefined);
+const elapsed = ref<number | undefined>(undefined);
+const interval = ref<number | undefined>(undefined);
 const localKey = ref<string | undefined>();
 const user = useUserData();
 
@@ -70,19 +81,23 @@ const config = useRuntimeConfig();
 const options = { baseURL: config.public.apiBase };
 
 const seconds = computed(() => {
-    const s = stopwatch.seconds;
-    return (s.value >= 10 ? s.value.toString()[0] : '0') + (s.value >= 10 ? s.value.toString()[1] : s.value.toString())
+    const s = elapsed.value ? Math.floor((elapsed.value / 1000) % 60) : 0;
+    return (s >= 10 ? s.toString()[0] : '0') + (s >= 10 ? s.toString()[1] : s.toString())
 });
 
 
 const minutes = computed(() => {
-    const s = stopwatch.minutes;
-    return (s.value >= 10 ? s.value.toString()[0] : '0') + (s.value >= 10 ? s.value.toString()[1] : s.value.toString())
+    const s = elapsed.value ? Math.floor((elapsed.value / 1000 / 60) % 60) : 0;
+    return (s >= 10 ? s.toString()[0] : '0') + (s >= 10 ? s.toString()[1] : s.toString())
 });
 
+const milliseconds = computed(() => {
+    return (elapsed.value ? elapsed.value % 1000 : 0).toString().padStart(3, '0');
+});
 
 const totalSeconds = computed(() => {
-    return (stopwatch.hours.value * 3600) + (stopwatch.minutes.value * 60) + stopwatch.seconds.value;
+    const s = elapsed.value ? Math.floor((elapsed.value / 1000) % 60) : 0;
+    return s;
 });
 
 async function start() {
@@ -91,10 +106,21 @@ async function start() {
         show.value = true;
         step.value = 2;
         from.value = Date.now();
-        stopwatch.start();
+        //stopwatch.start();
+        useInis360([
+            {
+                actionId: actionId.value,
+                advId: 'ef9b1ff32314ba272bc3c9100d474386',
+                model: 'cpl_pytanie_01'
+            }
+        ]);
+
+        interval.value = setInterval(function () {
+            elapsed.value = Date.now() - from.value;
+        }, 100);
     }, 300);
 
-    
+
 }
 
 const currentQuestion = computed<Question>(() => {
@@ -117,12 +143,18 @@ const selectAnswer = (a: Answer, q: Question) => {
             currentIndex.value++;
             showQuestions.value = false;
         }, 750);
+        useInis360({
+            actionId: actionId.value,
+            advId: 'ef9b1ff32314ba272bc3c9100d474386',
+            model: `cpl_pytanie_0${currentIndex.value + 1}`
+        });
     } else {
-        stopwatch.pause();
-        to.value = Date.now();
+        clearInterval(interval.value);
+        elapsed.value = Date.now() - from.value;
+        user.value.time = `${minutes.value}:${seconds.value}:${milliseconds.value}`;
         setTimeout(async () => {
             await save({
-                prop33: `${stopwatch.hours.value}:${minutes.value}:${seconds.value}`,
+                prop33: user.value.time,
                 prop32: userAnswers.value.filter((a) => a.correct).length,
             });
             router.push("/finish");

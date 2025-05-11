@@ -1,14 +1,18 @@
 <template>
-  <main class="from-[#FDE3E2] to-[#F6F8FA] bg-gradient-to-b px-2 grid grid-cols-1">
-    <div class="bg-[url('assets/images/bg.png')] max-w-screen-xl bg-no-repeat bg-right w-full h-screen mx-auto  col-start-1 row-start-1"></div>
-    <div class="flex flex-col md:flex-row justify-center gap-12 w-full max-w-screen-xl h-full mx-auto min-h-screen py-16 col-start-1 row-start-1 z-10">
-      <NuxtPage class="flex flex-col w-full max-w-[760px] bg-[#FFFFFF99] backdrop-blur-xl px-2 md:px-16 rounded-2xl" />
-      <footer class="flex-1 text-xxxs self-end pb-12">
-        <p class="text-black font-barlow text-xss">
-                Grafika użyta na stronie pochodzi z legalnych źródeł i ma charakter wyłącznie ilustracyjny. Apple Inc. nie jest związane z organizatorem promocji ani nie wspiera i nie sponsoruje konkursu.
-                <br><br>
-                Aby wziąć udział w konkursie, należy spełnić kilka prostych warunków. Uczestnik powinien wypełnić formularz zgłoszeniowy, podając swoje dane osobowe, takie jak imię, adres e-mail datę urodzenia oraz telefon. Następnie należy odpowiedzieć na 3 pytania konkursowe, najszybsza osoba, która udzieli poprawnych odpowiedzi - wygrywa. Zwycięzca konkursu zostanie poinformowany o wygranej drogą telefoniczną. Każde kolejne zgłoszenie tego samego adresu e-mail powoduje nadpisanie poprzednich odpowiedzi. Konkurs skierowany jest wyłącznie do osób pełnoletnich. Nagrodą jest iPhone 16, a uczestnictwo w konkursie jest bezpłatne.
-            </p>
+  <main class="from-[#FDE3E2] to-[#F6F8FA] bg-gradient-to-b px-4 md:px-8 lg:px-2 grid grid-cols-1">
+    <div class="bg-[url('assets/images/bg.png')] max-w-screen-xl bg-no-repeat bg-right w-full h-screen mx-auto col-start-1 row-start-1 hidden lg:flex"></div>
+    <div class="flex flex-col lg:flex-row justify-center gap-12 w-full max-w-screen-xl h-full mx-auto min-h-screen py-4 md:py-8 lg:py-16 col-start-1 row-start-1 z-10">
+      <NuxtPage class="flex flex-col w-full lg:max-w-[760px] bg-[#FFFFFF99] backdrop-blur-xl px-6 lg:px-16 rounded-2xl" />
+      <footer class="flex-1 text-xxxs self-end pb-12 lg:pb-0">
+        <p class="text-black font-barlow text-xss mb-1"> Grafika użyta na stronie pochodzi z legalnych źródeł i ma charakter wyłącznie ilustracyjny. Apple Inc. nie jest związane z organizatorem promocji ani nie wspiera i nie sponsoruje konkursu. </p>
+        <p class="text-black font-barlow text-xss"> Aby wziąć udział w konkursie, należy spełnić kilka prostych warunków. Uczestnik powinien wypełnić formularz zgłoszeniowy, podając swoje dane osobowe, takie jak imię, adres e-mail datę urodzenia oraz telefon. Następnie należy odpowiedzieć na 3 pytania konkursowe, najszybsza osoba, która udzieli poprawnych odpowiedzi - wygrywa. Zwycięzca konkursu zostanie poinformowany o wygranej drogą telefoniczną. Każde kolejne zgłoszenie tego samego adresu e-mail powoduje nadpisanie poprzednich odpowiedzi. Konkurs skierowany jest wyłącznie do osób pełnoletnich. Nagrodą jest iPhone 16, a uczestnictwo w konkursie jest bezpłatne. </p>
+        <div class="flex flex-col lg:flex-row mt-1 font-barlow">
+          <ul class="flex gap-2 flex-1 md:flex-auto text-xxxs font-medium underline">
+              <a href="#"  @click.prevent="modals.rules = true">Regulamin</a>
+              <a href="#"  @click.prevent="modals.privacy = true" class="text-center">Polityka prywatności</a>
+              <a href="#"  @click.prevent="modals.data = true" class="text-center">Zasady Przetwarzania Danych</a>
+            </ul>
+            <div class="flex text-xxxs">Serwis wykorzystuje pliki cookies. <a @click.prevent="modals.privacy = true" href="#" class="font-medium underline">Więcej</a></div></div>
       </footer>
     </div>
     <RulesModal />
@@ -40,11 +44,11 @@ useHead({
   meta: [
     {
       name: "apple-mobile-web-app-title",
-      content: "Quiz to pieniądz",
+      content: "Odbierz nagrodę",
     },
     {
       name: "application-name",
-      content: "Quiz to pieniądz",
+      content: "Odbierz nagrodę",
     },
     {
       name: "msapplication-TileColor",
@@ -69,10 +73,10 @@ useHead({
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-52LFFJB4');
+})(window,document,'script','dataLayer','GTM-WPRP8LD7');
 `
     } : {},
-    useEnv().value === 'prod' ? {
+    useEnv().value === 'prod' && false ? {
       type: "text/javascript",
       innerHTML: ` (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -93,7 +97,7 @@ tags.async=!0,tags.src="https://inis.containers.piwik.pro/"+id+".js"+qPString,sc
 })(window, document, 'dataLayer', '04f96e0e-75b3-4bc5-9c67-8f516b24267e');
 `
     } : {},
-    useEnv().value === 'prod' ? {
+    useEnv().value === 'prod' && false ? {
       type: "text/javascript",
       tagPosition: 'bodyClose',
       innerHTML: `(function() {
@@ -116,7 +120,7 @@ tags.async=!0,tags.src="https://inis.containers.piwik.pro/"+id+".js"+qPString,sc
   ],
   noscript: [
     useEnv().value === 'prod' ? {
-      innerHTML: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52LFFJB4"
+      innerHTML: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPRP8LD7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe>
 `
     } : {}
@@ -125,7 +129,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 const actionId = useActionId();
 const cookie = useCookie('actionId', {
     maxAge: 5184000,
-    domain: "quiz-to-pieniadz.pl",
+    domain: "odbierz-nagrode.pl",
 });
 
 const route = useRoute();

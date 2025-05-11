@@ -1,30 +1,37 @@
 <template>
     <section>
+        <div class="flex justify-end lg:hidden pt-6 pb-3" v-if="show && step !== 1"><img class="" src="/assets/images/phones2.png"></div>
         <TransitionFade :duration="{ enter: 500, leave: 200 }">
-            <div v-if="show && step === 1">
+            <div class="flex flex-col gap-4" v-if="show && step === 1">
                 <div>
-                    <img src="/assets/images/head.svg" alt="Odbierz nagrodę" />
-                </div>
-                <h1 class="font-poppins text-5xl">Rozdajemy <strong>iPhone 16!</strong></h1>
-                <h3 class="font-poppins text-xl tracking-tighter mb-12">...za najszybsze, poprawne odpowiedzi
-                    konkursowe!</h3>
-                <UForm ref="form1"
-                       class="w-full max-w-[430px]"
-                       :state="state"
-                       @submit="start">
-                    <div class="flex justify-start">
-                        <UButton type="submit" color="black" size="md" :loading="loading" data-testid="form-submit1">
-                            Wchodzę do gry
-                        </UButton>
+                    <div class="pt-4 pb-8 lg:my-12 w-20 lg:w-[126px]">
+                        <img src="/assets/images/head.png" alt="Odbierz nagrodę" />
                     </div>
-                </UForm>
+                    <h1 class="font-poppins text-2xl lg:text-5xl">Rozdajemy <strong>iPhone 16!</strong></h1>
+                    <h3 class="font-poppins text-xl tracking-tighter mb-12">...za najszybsze, poprawne odpowiedzi
+                        konkursowe!</h3>
+                    <UForm ref="form1"
+                           class="w-full max-w-[430px]"
+                           :state="state"
+                           @submit="start">
+                        <div class="flex justify-start">
+                            <UButton type="submit" color="black" size="md" :loading="loading"
+                                     data-testid="form-submit1">
+                                Wchodzę do gry
+                            </UButton>
+                        </div>
+                    </UForm>
+                </div>
+                <div class="flex lg:hidden"><img class="w-auto max-w-[277px]"
+                         src="/assets/images/phones.png" alt=""></div>
             </div>
+            
             <UForm ref="form2"
-                   class=" pt-24 "
+                   class="lg:pt-24"
                    :state="state" :validate="validateWithVuelidate1"
                    @submit="onSubmit1" v-if="show && step === 2">
                 <div class="w-full max-w-[430px] flex flex-col gap-12 mb-8">
-                    <h2 class="text-2xl font-medium">Wypełnij formularz zgłoszeniowy</h2>
+                    <h2 class="text-base lg:text-2xl font-medium">Wypełnij formularz zgłoszeniowy</h2>
                     <UFormGroup label="Imię" name="firstName" required>
                         <UInput
                                 v-model="state.firstName" placeholder="Wpisz swoje imię" size="md" color="gray"
@@ -49,12 +56,12 @@
                 </div>
             </UForm>
             <UForm ref="form3"
-                   class=" pt-24 "
+                   class="lg:pt-24"
                    :state="state" :validate="validateWithVuelidate2"
                    @submit="onSubmit2" v-if="show && step === 3">
                 <div class="w-full max-w-[430px] flex flex-col gap-12 mb-8">
-                    <h2 class="text-2xl font-medium">Wypełnij formularz zgłoszeniowy</h2>
-                    <UFormGroup name="email" type="email" required class="mb-10">
+                    <h2 class="text-base lg:text-2xl font-medium">Wypełnij formularz zgłoszeniowy</h2>
+                    <UFormGroup name="email" type="email" required class="mb-10" label="E-mail">
                         <UInput data-testid="form-email" v-model="state.email"
                                 placeholder="Wprowadź adres e-mail" size="md" color="gray" variant="outline"
                                 @blur="blurEvents.email" />
@@ -67,14 +74,14 @@
                 </div>
             </UForm>
             <UForm ref="form4"
-                   class=" pt-24 "
+                   class="lg:pt-24"
                    :state="state" :validate="validateWithVuelidate3"
                    @submit="onSubmit3" v-if="show && step === 4">
                 <div class="w-full max-w-[430px] flex flex-col gap-12 mb-8">
-                    <h2 class="text-2xl font-medium">Wypełnij formularz zgłoszeniowy</h2>
+                    <h2 class="text-base lg:text-2xl font-medium">Wypełnij formularz zgłoszeniowy</h2>
                     <DateField v-model="state.dob" ref="birthdayInput" @blur="blurEvents.dob"
-                                       :disabled-dates="[{ start: maxDate, end: null }]" :max-date="maxDate"
-                                       :min-date="minDate" @update:modelValue="updDate" />
+                               :disabled-dates="[{ start: maxDate, end: null }]" :max-date="maxDate"
+                               :min-date="minDate" @update:modelValue="updDate" />
                 </div>
                 <div class="flex justify-start w-full max-w-[430px] mb-6">
                     <UButton type="submit" color="black" size="md" :loading="loading" data-testid="form-submit2">
@@ -83,11 +90,11 @@
                 </div>
             </UForm>
             <UForm ref="form5"
-                   class=" pt-24 "
+                   class="lg:pt-24"
                    :state="state" :validate="validateWithVuelidate2"
                    @submit="onSubmit" v-if="show && step === 5">
                 <div class="w-full max-w-[430px] flex flex-col gap-12 mb-8">
-                    <h2 class="text-2xl font-medium">Wypełnij formularz zgłoszeniowy</h2>
+                    <h2 class="text-base lg:text-2xl font-medium">Wypełnij formularz zgłoszeniowy</h2>
                     <PhoneInput v-model="state.phone" v-model:phone_prefix="state.phone_prefix"
                                 @blur="blurEvents.phone" />
                 </div>
@@ -510,6 +517,7 @@ onMounted(() => {
             model: 'suc_strona_glowna'
         }
     );
+    
 });
 
 </script>

@@ -1,13 +1,7 @@
 <template>
     <section class="flex flex-col items-center justify-center h-full">
         <TransitionFade :duration="500">
-
-            <div class="flex flex-col items-center p-5">
-                <div class="text-center font-bold mb-5 text-xl">Dziękujemy serdecznie za udział
-                    w naszym
-                    konkursie! Mamy
-                    nadzieję, że&nbsp;zobaczymy się także w przyszłych edycjach.</div>
-            </div>
+<div class="flex flex-col items-center p-5"><div class="text-center font-bold mb-5 text-xl">Dziękujemy za potwierdzenie udziału w konkursie.</div><div class="text-center font-bold mb-5 text-xl">Ze zwycięzcą konkursu skontaktujemy się telefonicznie po zakończeniu aktualnej edycji konkursu.</div></div>
 
 
         </TransitionFade>

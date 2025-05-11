@@ -12,7 +12,7 @@
                         </p>
                         <p class="pre-question text-center" v-else-if="completed && show">
                             <br>
-                            <span class=" text-2xl font-black text-center">Został tylko jeszcze jeden krok w naszej zabawie:</span>
+                            <span class=" text-xl text-center"><strong>BRAWO!</strong> Konkurs ukończony. Twój czas to {{user.time}}!</span>
                         </p>
 
                     </TransitionFade>
@@ -144,7 +144,7 @@ const esp = [
     {
         domains: ['op.pl', 'onet.pl', 'poczta.onet.pl', 'onet.eu', 'onet.com.pl', 'autograf.pl', 'buziaczek.pl', 'spoko.pl', 'poczta.onet.eu', 'amorki.pl', 'opoczta.pl'],
         img: '/img/onet.png',
-        link: 'https://poczta. onet.pl'
+        link: 'https://poczta.onet.pl'
     },
     {
         domains: ['o2.pl'],

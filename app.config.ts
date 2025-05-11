@@ -4,7 +4,7 @@ export default defineAppConfig({
             wrapper: 'md:min-h-[80px] py-1',
             label: {
                 wrapper: 'flex content-center items-center justify-between pl-4 pb-1 text-xxs',
-                base: 'font-barlow font-normal text-xl leading-[1.2] text-black dark:text-white',
+                base: 'font-barlow font-normal text-sm lg:text-xl leading-[1.2] text-black dark:text-white',
             },
             size: {
                 sm: 'text-xxs ',
@@ -19,7 +19,7 @@ export default defineAppConfig({
                 md: 'px-4 py-3',
             },
             size: {
-                md: 'text-[22px] min-w-[200px] text-center',
+                md: ' text-base lg:text-[22px] min-w-[100px] lg:min-w-[200px] text-center',
             },
             color: {
                 black: {
@@ -33,7 +33,7 @@ export default defineAppConfig({
             placeholder: 'placeholder-[#666666CC] leading-[1.2] text-black::placeholder ',
             size: {
                 sm: 'text-xxs',
-                md: 'h-[56px] w-full'
+                md: 'h-10 lg:h-[56px] w-full text-xxs lg:text-sm'
             },
             padding: {
                 sm: 'px-4 py-1.5',
@@ -83,7 +83,7 @@ export default defineAppConfig({
             },
             size: {
                 sm: 'text-xxs',
-                md: 'h-[56px] w-full'
+                md: 'h-10 lg:h-[56px] w-full text-xxs lg:text-sm'
             },
         },
         modal: {

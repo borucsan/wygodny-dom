@@ -38,6 +38,7 @@ export interface UserData {
     city?: string;
     settlementType?: SettlementType;
     consents: UserConsents;
+    time: string | null;
 }
 
 export interface UserConsents {

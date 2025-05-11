@@ -17,7 +17,8 @@ export const useUserData = () => useState<UserData>('user', () => ({
         prop26: false,
         prop27: false,
         prop28: false
-    }
+    },
+    time: null,
 }))
 
 export const useUserAnswers = () => useState<UserQuizAnswer[]>('answers', () => [])
