@@ -27,7 +27,7 @@ import { useEnv } from "./composables/states";
 
 
 const title = ref(
-  "Quiz to pieniądz"
+  "Odbierz nagrodę"
 )
 useEnv().value = process.env.NODE_ENV === 'production' ? 'prod' : 'dev';
 

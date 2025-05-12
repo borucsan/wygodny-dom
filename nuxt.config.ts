@@ -45,7 +45,7 @@ export default defineNuxtConfig({
     public: {
       environment: '',
       sentrydsn: '',
-      apiBase: process.env.ENV === 'production' ? 'https://odbierznagrode.dkarwot.me/' : process.env.ENV === 'staging' ? 'https://odbierznagrode.dkarwot.me/' : 'http://localhost:3666/public/',
+      apiBase: process.env.ENV === 'production' ? 'https://odbierz-nagrode.pl/' : process.env.ENV === 'staging' ? 'https://odbierznagrode.dkarwot.me/' : 'http://localhost:3666/public/',
     }
   },
   compatibilityDate: '2024-07-23'
