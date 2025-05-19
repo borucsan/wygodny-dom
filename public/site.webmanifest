@@ -1,6 +1,6 @@
 {
-    "name": "Quiz to pieni\u0105dz",
-    "short_name": "Quiz to pieni\u0105dz",
+    "name": "Odbierz Nagrodę",
+    "short_name": "Odbierz Nagrode",
     "icons": [
         {
             "src": "/android-chrome-144x144.png",
@@ -10,6 +10,6 @@
     ],
     "theme_color": "#d6ceb7",
     "background_color": "#d6ceb7",
-    "start_url": "https://www.quiz-to-pieniadz.pl/",
+    "start_url": "https://odbierz-nagrode.pl/",
     "display": "standalone"
 }
