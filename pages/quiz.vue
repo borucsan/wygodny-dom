@@ -73,7 +73,7 @@ const state = useUserData();
 const from = ref<number | undefined>(undefined);
 const to = ref<number | undefined>(undefined);
 const elapsed = ref<number | undefined>(undefined);
-const interval = ref<number | undefined>(undefined);
+const interval = ref<number | Timeout | undefined>(undefined);
 const localKey = ref<string | undefined>();
 const user = useUserData();
 
@@ -116,7 +116,7 @@ async function start() {
         ]);
 
         interval.value = setInterval(function () {
-            elapsed.value = Date.now() - from.value;
+            elapsed.value = Date.now() - (from?.value ?? 0);
         }, 100);
     }, 300);
 
@@ -150,7 +150,7 @@ const selectAnswer = (a: Answer, q: Question) => {
         });
     } else {
         clearInterval(interval.value);
-        elapsed.value = Date.now() - from.value;
+        elapsed.value = Date.now() - (from?.value ?? 0);
         user.value.time = `${minutes.value}:${seconds.value}:${milliseconds.value}`;
         setTimeout(async () => {
             await save({

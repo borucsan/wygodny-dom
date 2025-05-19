@@ -37,7 +37,7 @@
 
                 </div>
                 <div class="flex justify-center w-full my-12">
-                    <UButton type="button" color="black" size="md" @click="saveAndGoNextLazy(currentQuestion)">
+                    <UButton type="button" color="black" size="md" :disabled="selected" @click="saveAndGoNextLazy(currentQuestion)">
                         Dalej
                     </UButton>
                 </div>
