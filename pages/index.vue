@@ -490,7 +490,7 @@ async function onSubmit() {
             }
 
             useInis360(inisData);
-            await navigateTo("/continue");
+            await navigateTo("/lead_done");
             return "success";
 
         } else {

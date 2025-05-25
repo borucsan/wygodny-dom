@@ -101,7 +101,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
   },
   {
     type: "radio",
-    question: "Oferujemy bezpłatne szkolenia inwestycyjne:",
+    question: "Czy chcesz nauczyć się inwestować?",
     prop: "prop69",
     filter: () => true,
     options: ["tak, chcę porozmawiać ze specjalistą", "nie interesuje mnie ten temat"],

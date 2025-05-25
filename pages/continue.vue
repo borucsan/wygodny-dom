@@ -88,7 +88,7 @@ const saveAndGoNext = async (input?: Record<string, unknown>) => {
 
         } else {
             user.value.mkey = localKey.value;
-            await navigateTo('/lead_done')
+            await navigateTo('/quiz')
         }
     } finally {
         selected.value = false;

@@ -5,19 +5,13 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { mode: 'out-in' },
   },
-  modules: [
-    "@nuxt/fonts",
-    "@nuxt/eslint",
-    "@morev/vue-transitions/nuxt",
-    "@nuxt/ui",
-    "@samk-dev/nuxt-vcalendar",
-    '@vueuse/nuxt',
-    '@nuxt/scripts',
-    "@sentry/nuxt/module"
-  ],
+  modules: ["@nuxt/fonts", "@nuxt/eslint", "@morev/vue-transitions/nuxt", "@nuxt/ui", "@samk-dev/nuxt-vcalendar", '@vueuse/nuxt', '@nuxt/scripts', "@sentry/nuxt/module", 'nuxt-gtag'],
 
   colorMode: {
     preference: 'light'
+  },
+  gtag: {
+    id: 'G-X66CB01M7N'
   },
   eslint: {
     config: {
@@ -33,7 +27,7 @@ export default defineNuxtConfig({
     },
     families: [
       { name: 'Barlow', provider: 'google' },
-      { name: 'Poppins', provider: 'google'},
+      { name: 'Poppins', provider: 'google' },
     ]
   },
 
