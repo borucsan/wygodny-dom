@@ -73,7 +73,7 @@ const state = useUserData();
 const from = ref<number | undefined>(undefined);
 const to = ref<number | undefined>(undefined);
 const elapsed = ref<number | undefined>(undefined);
-const interval = ref<number | Timeout | undefined>(undefined);
+const interval = ref<number | ReturnType<typeof setInterval> | undefined>(undefined);
 const localKey = ref<string | undefined>();
 const user = useUserData();
 
@@ -107,14 +107,6 @@ async function start() {
         step.value = 2;
         from.value = Date.now();
         //stopwatch.start();
-        useInis360([
-            {
-                actionId: actionId.value,
-                advId: 'ef9b1ff32314ba272bc3c9100d474386',
-                model: 'cpl_pytanie_01'
-            }
-        ]);
-
         interval.value = setInterval(function () {
             elapsed.value = Date.now() - (from?.value ?? 0);
         }, 100);
@@ -146,7 +138,7 @@ const selectAnswer = (a: Answer, q: Question) => {
         useInis360({
             actionId: actionId.value,
             advId: 'ef9b1ff32314ba272bc3c9100d474386',
-            model: `cpl_pytanie_0${currentIndex.value + 1}`
+            model: `cpl_pytanie_0${currentIndex.value + 2}`
         });
     } else {
         clearInterval(interval.value);
@@ -192,6 +184,14 @@ onMounted(async () => {
     }
     localKey.value = user.value.mkey;
     user.value.mkey = undefined;
+
+    useInis360([
+        {
+            actionId: actionId.value,
+            advId: 'ef9b1ff32314ba272bc3c9100d474386',
+            model: 'cpl_pytanie_01'
+        }
+    ]);
 
     questions.value.questions.forEach((q) => {
         q.completed = false;

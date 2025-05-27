@@ -4,13 +4,8 @@
             <div class="max-w-[793px] w-full">
                 <div class="min-h-[90px]">
                     <TransitionFade :duration="{ enter: 200, leave: 0 }">
-                        <p class="pre-question text-center" v-if="!completed && show">
-                            <span class=" text-2xl font-black">Na koniec quizu wyświetlimy wyniki</span>, dowiesz się
-                            jak
-                            wypadł
-                            Twój region. Komu lepiej poszło? Mieszkańcom wsi czy miast?
-                        </p>
-                        <p class="pre-question text-center" v-else-if="completed && show">
+                        
+                        <p class="pre-question text-center" v-if="completed && show">
                             <br>
                             <span class=" text-xl text-center"><strong>BRAWO!</strong> Konkurs ukończony. Twój czas to {{user.time}}!</span>
                         </p>
@@ -19,63 +14,8 @@
                 </div>
                 <div :class="['bg-content-paper', { 'flex flex-col': completed && show }]">
                     <TransitionFade :duration="{ enter: 500, leave: 200 }">
-                        <UForm v-if="!completed && show" ref="form" class="w-full" :state="state"
-                               :validate="validateWithVuelidate"
-                               @submit="onSubmit">
-                            <div class="text-center mb-5 text-lg">Podziel się z nami informacją, jakie
-                                okolice zamieszkujesz?</div>
-                            <div
-                                 class="grid grid-cols-1 md:grid-cols-[repeat(2,_minmax(0,232px))] md:justify-center gap-x-6 md:gap-y-4">
-                                <UFormGroup label="Kod pocztowy" name="postalCode">
-                                    <UInput
-                                            type="text"
-                                            @update:model-value="updPostalInput"
-                                            :value="state.postalCode" placeholder="Wpisz swój kod pocztowy"
-                                            color="gray"
-                                            @blur="blurEvents.postalCode"
-                                            ref="postalInput" />
-                                </UFormGroup>
-                                <UFormGroup label="Miejscowość" name="city">
-                                    <UInput
-                                            type="text"
-                                            maxlength="90"
-                                            v-model="state.city"
-                                            ref="cityInput"
-                                            @blur="blurEvents.city"
-                                            placeholder="Wpisz swoją miejscowość" color="gray" />
-                                </UFormGroup>
-                                <div class="flex gap-4 justify-center md:col-span-2 my-4">
-                                    <UButton :class="['settlement-type', { selected: state.settlementType === SettlementType.CITY }]"
-                                             @click="state.settlementType = SettlementType.CITY" :ui="{
-                                                color: {
-                                                    gray: {
-                                                        solid: 'text-black font-normal bg-[#e4e0c5] hover:border-[#514D3D] hover:!text-white',
-                                                    },
-                                                }
-                                            }" type="button" color="gray">
-                                        Miasto
-                                    </UButton>
-                                    <UButton :class="['settlement-type', { selected: state.settlementType === SettlementType.VILLAGE }]"
-                                             @click="state.settlementType = SettlementType.VILLAGE" :ui="{
-                                                color: {
-                                                    gray: {
-                                                        solid: 'text-black font-normal bg-[#e4e0c5] hover:border-[#514D3D] hover:!text-white',
-                                                    },
-                                                }
-                                            }" type="button" color="gray">
-                                        Wieś
-                                    </UButton>
-                                </div>
-                                <div class="flex justify-center md:col-span-2">
-                                    <UButton type="submit" color="gray" :loading="loading">
-                                        Zatwierdź
-                                    </UButton>
-                                </div>
-                            </div>
-                        </UForm>
-
                         <div class="text-center mb-5 text-lg font-barlow h-full"
-                             v-else-if="completed && show">
+                             v-if="completed && show">
                             Na adres: <span class="underline">{{ user.email }}</span> wysłaliśmy Ci ostatnie zadanie konkursowe.<br>
                             Wejdź na swoją skrzynkę pocztową i Wygraj!
                             <div class="flex items-center justify-center">
@@ -158,31 +98,6 @@ const currentEsp = computed(() => {
 });
 
 const actionId = useActionId();
-const blurEvents = ref({
-    postalCode: (val: string) => {
-        if (state.value.postalCode) {
-            useInis360([
-                {
-                    actionId: actionId.value,
-                    advId: 'ef9b1ff32314ba272bc3c9100d474386',
-                    model: 'cpl_adres_kod',
-                },
-            ]);
-        }
-    },
-    city: (val: string) => {
-        state.value.city = capitalizeFirstLetter(state.value.city ?? '');
-        if (state.value.city) {
-            useInis360([
-                {
-                    actionId: actionId.value,
-                    advId: 'ef9b1ff32314ba272bc3c9100d474386',
-                    model: 'cpl_adres_miejscowosc',
-                },
-            ]);
-        }
-    },
-});
 
 const postalMask = ref();
 const cityMask = ref();
@@ -259,15 +174,13 @@ onMounted(async () => {
     }
     localKey.value = user.value.mkey;
     user.value.mkey = undefined;
-    const input = postalInput.value?.$el?.querySelector('input');
-    if (input) {
-        postalMask.value = IMask(input, {
-            mask: '00-000',
-        });
-        cityMask.value = IMask(cityInput.value?.$el?.querySelector('input'), {
-            mask: /^[a-zA-Z\u0080-\uFFFF]+[\s{1}[a-zA-Z\u0080-\uFFFF\d\-]{0,}]{0,}$/g,
-        });
-    }
+    useInis360([
+                    {
+                        actionId: actionId.value,
+                        advId: 'ef9b1ff32314ba272bc3c9100d474386',
+                        model: 'cpl_info_doubleoptin',
+                    },
+                ]);
 
 });
 

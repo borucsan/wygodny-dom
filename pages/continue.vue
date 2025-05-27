@@ -49,7 +49,7 @@
 </template>
 <script setup lang="ts">
 
-import type { ImageOption, RegistrationQuestion } from "~/types";
+import type { ImageOption, Question, RegistrationQuestion } from "~/types";
 import { coRegistrationQuestions, profileQuestions } from "../const";
 
 const config = useRuntimeConfig();
@@ -95,12 +95,22 @@ const saveAndGoNext = async (input?: Record<string, unknown>) => {
     }
 }
 
-const saveAndGoNextLazy = async (q) => {
+const saveAndGoNextLazy = async (q: any) => {
     selected.value = true;
     try {
+        if (currentQuestion.value.inisTrack) {
+            await useInis360([
+                {
+                    actionId: actionId.value,
+                    advId: 'ef9b1ff32314ba272bc3c9100d474386',
+                    model: currentQuestion.value.inisTrack
+                },
+            ]);
+        }
         const current = {
             [q.prop]: data.value[q.prop]
         };
+        
         await save(current);
         if (currentIndex.value < questions.value.length - 1) {
             currentIndex.value++;

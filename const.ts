@@ -70,7 +70,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
       // && date.toString() !== 'Invalid Date' && (isBefore(date, maxDate) || isEqual(date, maxDate))
     },
     options: ["tak, chętnie", "nie jestem zainteresowany/a"],
-    inisTrack: "cpl_coreg_3_aparaty",
+    inisTrack: "cpl_coreg_7_aparaty",
   },
   {
     type: "radio",
