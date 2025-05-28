@@ -3,10 +3,8 @@
         <TransitionFade :duration="500">
             <div class="flex flex-col items-center p-5">
                 <div class="text-center font-bold mb-5 text-xl">Dziękujemy za potwierdzenie udziału w konkursie.</div>
-                <div class="text-center font-bold mb-5 text-xl">Ze zwycięzcą konkursu skontaktujemy się telefonicznie po
-                    zakończeniu aktualnej edycji konkursu.</div>
                 <div class="text-center font-bold mb-1 text-xl">A już teraz, aby umilić oczekiwanie na rozwiązanie konkursu, zapraszamy do skorzystania z kodów rabatowych:</div>
-                <div class="text-center font-bold mb-1 text-xl"><a href="https://www.kody-rabaty-promocje.pl/" class="underline">KLIKNIJ TUTAJ</a> </div>
+                <div class="text-center font-bold mb-1 text-xl"><UButton color="black" size="md" to="https://www.kody-rabaty-promocje.pl/">KLIKNIJ TUTAJ</UButton> </div>
             </div>
 
 
