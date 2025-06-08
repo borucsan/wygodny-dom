@@ -12,8 +12,7 @@
             <div class="flex flex-col justify-center h-full gap-4 pt-4" v-if="show && step === 1">
                 <div class="flex flex-col">
                     <h3 class="font-poppins text-xl -tracking-tighter mb-12"><strong>Za chwilę zobaczysz 3 pytania
-                            konkursowe.</strong><br />Wygrywają 3 najszybsze osoby spośród tych, z poprawnymi
-                        odpowiedziami.
+                            konkursowe.</strong><br />Wygrywa najszybsza osoba spośród tych, z poprawnymi odpowiedziami.
                     </h3>
                     <UForm ref="form1"
                            class="w-full max-w-[430px]"
