@@ -8,7 +8,7 @@
                 <USelect v-if="currentQuestion.type === 'select'"
                          :value="(currentQuestion.options as string[]).indexOf(data[currentQuestion.prop])"
                          :model-value="(currentQuestion.options as string[]).indexOf(data[currentQuestion.prop])"
-                         @update:model-value="data[currentQuestion.prop] = currentQuestion.options[$event] as string"
+                         @update:model-value="handleSelectChange($event)"
                          :options="currentQuestion.options.map((opt, index) => ({ value: index, label: opt }))"
                          class="relative max-w-[250px] w-full self-center" />
                 <div v-if="currentQuestion.type === 'radio'" class="w-full">
@@ -21,6 +21,7 @@
                                 <img :src="(o as ImageOption)?.img" class="w-24 md:w-32" />
                                 <input class="hidden" type="radio" :name="currentQuestion.prop" :value="o"
                                        :disabled="selected"
+                                       @change="handleRadioChange(o)"
                                        v-model="data[currentQuestion.prop]">
                                 <span>{{ (o as ImageOption).label }}</span>
 
@@ -28,6 +29,7 @@
                             <label class="flex gap-4 cursor-pointer text-base hover:font-black" v-else>
                                 <input class="hidden" type="radio" :name="currentQuestion.prop" :value="o"
                                        :disabled="selected"
+                                       @change="handleRadioChange(o)"
                                        v-model="data[currentQuestion.prop]">
                                 <span class="text-left">{{ o }}</span>
                             </label>
@@ -63,15 +65,29 @@ const showQuestions = ref(true);
 const selected = ref(false);
 const localKey = ref<string | undefined>();
 const questions = ref<RegistrationQuestion[]>([]);
+const inisTrackedQuestions = ref<Set<number>>(new Set());
 const currentQuestion = computed(() => {
     return questions.value[currentIndex.value];
 });
 const actionId = useActionId();
 
-const saveAndGoNext = async (input?: Record<string, unknown>) => {
-    selected.value = true;
-    try {
-        if (currentQuestion.value.inisTrack) {
+const handleSelectChange = async (selectedIndex: number) => {
+    data.value[currentQuestion.value.prop] = currentQuestion.value.options[selectedIndex] as string;
+    await triggerInisIfNeeded();
+}
+
+const handleRadioChange = async (value: any) => {
+    await triggerInisIfNeeded();
+}
+
+const triggerInisIfNeeded = async () => {
+    if (currentQuestion.value.inisTrack && 
+        !inisTrackedQuestions.value.has(currentIndex.value) && 
+        data.value[currentQuestion.value.prop]) {
+        
+        inisTrackedQuestions.value.add(currentIndex.value);
+        
+        try {
             await useInis360([
                 {
                     actionId: actionId.value,
@@ -79,7 +95,15 @@ const saveAndGoNext = async (input?: Record<string, unknown>) => {
                     model: currentQuestion.value.inisTrack
                 },
             ]);
+        } catch (error) {
+            console.error('Inis360 tracking error:', error);
         }
+    }
+}
+
+const saveAndGoNext = async (input?: Record<string, unknown>) => {
+    selected.value = true;
+    try {
         const current = input ? input : data.value;
         await save(current);
         if (currentIndex.value < questions.value.length - 1) {
@@ -98,15 +122,6 @@ const saveAndGoNext = async (input?: Record<string, unknown>) => {
 const saveAndGoNextLazy = async (q: any) => {
     selected.value = true;
     try {
-        if (currentQuestion.value.inisTrack) {
-            await useInis360([
-                {
-                    actionId: actionId.value,
-                    advId: 'ef9b1ff32314ba272bc3c9100d474386',
-                    model: currentQuestion.value.inisTrack
-                },
-            ]);
-        }
         const current = {
             [q.prop]: data.value[q.prop]
         };
