@@ -93,6 +93,13 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
   },
   {
     type: "radio",
+    question: "Chcesz płacić niższe rachunki za prąd w swoim domu? Sprawdź na jakie dotacje do fotowoltaiki możesz liczyć.",
+    prop: "prop74",
+    filter: () => true,
+    options: ["nie jestem zainteresowany/a", "jestem zainteresowany poznaniem oferty"],
+  },
+  {
+    type: "radio",
     question: "Czy kiedykolwiek brałeś/aś pożyczkę gotówkową lub kredyt konsumpcyjny?",
     prop: "prop40",
     filter: () => true,
