@@ -1,5 +1,5 @@
 import { parse, sub } from "date-fns";
-import type { Question, RegistrationQuestion } from "./types";
+import type { Question, RegistrationQuestion, IconOption } from "./types";
 
 // Generate full month names
 const months = Array.from({ length: 12 }, (_, i) => {
@@ -96,7 +96,10 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question: "Chcesz płacić niższe rachunki za prąd w swoim domu? Sprawdź na jakie dotacje do fotowoltaiki możesz liczyć.",
     prop: "prop74",
     filter: () => true,
-    options: ["nie jestem zainteresowany/a", "jestem zainteresowany poznaniem oferty"],
+    options: [
+      { label: "nie jestem zainteresowany/a" },
+      { label: "jestem zainteresowany/a poznaniem oferty", icon: "📞", iconPosition: "before" }
+    ] as IconOption[],
   },
   {
     type: "radio",

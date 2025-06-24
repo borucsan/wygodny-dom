@@ -58,12 +58,18 @@ export interface ImageOption {
     class?: string;
 }
 
+export interface IconOption {
+    label: string;
+    icon?: string;
+    iconPosition?: 'before' | 'after';
+}
+
 export interface RegistrationQuestion {
     prop: string
     type: 'select' | 'radio'
     class?: string
     question: string,
     filter: ((consents: string[], user: UserData) => boolean),
-    options: string[] | ImageOption[],
+    options: string[] | ImageOption[] | IconOption[],
     inisTrack?: string
 }
