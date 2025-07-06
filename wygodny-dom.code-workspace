@@ -5,6 +5,6 @@
         },
     ],
     "settings": {
-        "npm.packageManager": "npm",
+        "npm.packageManager": "yarn",
     }
 }

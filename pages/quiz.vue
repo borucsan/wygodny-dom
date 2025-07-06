@@ -11,8 +11,8 @@
         <TransitionFade :duration="{ enter: 500, leave: 200 }">
             <div class="flex flex-col justify-center h-full gap-4 pt-4" v-if="show && step === 1">
                 <div class="flex flex-col">
-                    <h3 class="font-poppins text-xl -tracking-tighter mb-12"><strong>Za chwilę zobaczysz 3 pytania
-                            konkursowe.</strong><br />Wygrywa najszybsza osoba spośród tych, z poprawnymi odpowiedziami.
+                    <h3 class="font-poppins text-xl -tracking-tighter mb-12"><strong>Za chwilę zobaczysz 3&nbsp;pytania
+                            konkursowe.</strong><br />Wygrywa 10&nbsp;najszybszych osób spośród tych, z&nbsp;poprawnymi odpowiedziami.
                     </h3>
                     <UForm ref="form1"
                            class="w-full max-w-[430px]"
