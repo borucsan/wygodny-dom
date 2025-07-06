@@ -118,6 +118,22 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     inisTrack: "cpl_coreg_5_inwestycje",
   },
   {
+    type: "radio",
+    question: 'Czy chcesz pobrać aplikację ułatwiającą codzienne zarabianie na małe przyjemności?',
+    prop: 'prop76',
+    filter: (consensts) => true, // ['prop22', 'prop26', 'prop27'].every(c => consensts.includes(c)),
+    options: ["TAK - chcę spróbować i zarobić", "NIE - rezygnuję z korzyści"],
+    onAnswer: async (answer) => {
+      if (answer === "TAK - chcę spróbować i zarobić") {
+        window.open('https://app.polecamprodukt.pl/?utm_medium=konkurs&utm_source=odbierznagrode&utm_campaign=salelifter', '_blank', 'noopener');
+      }
+    },
+    image: {
+      src: '/img/image17.png',
+      class: 'w-48 h-auto'
+    }
+  },
+  {
     type: "select",
     question: "Kiedy kończy Ci się ubezpieczenie OC samochodu?",
     prop: "prop65",

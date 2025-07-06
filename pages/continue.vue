@@ -5,6 +5,12 @@
         <TransitionFade :duration="500" @after-leave="showQuestions = true">
             <form class="h-full flex flex-col flex-wrap pt-8 md:pt-24" v-if="showQuestions && currentQuestion">
                 <div class="mb-5 text-md lg:text-xl font-bold px-10" v-html="currentQuestion.question"></div>
+                
+                <!-- Add question image -->
+                <div v-if="currentQuestion.image" class="flex justify-center mb-5">
+                    <img :src="currentQuestion.image.src" :class="currentQuestion.image.class || 'w-48 h-auto'" :alt="currentQuestion.question">
+                </div>
+
                 <USelect v-if="currentQuestion.type === 'select'"
                          :value="getSelectValue()"
                          :model-value="getSelectValue()"
@@ -175,7 +181,7 @@ const saveAndGoNext = async (input?: Record<string, unknown>) => {
     }
 }
 
-const saveAndGoNextLazy = async (q: any) => {
+const saveAndGoNextLazy = async (q: RegistrationQuestion) => {
     selected.value = true;
     try {
         const current = {
@@ -183,10 +189,15 @@ const saveAndGoNextLazy = async (q: any) => {
         };
         
         await save(current);
+
+        // Execute onAnswer callback if it exists
+        if (q.onAnswer && data.value[q.prop]) {
+            await q.onAnswer(data.value[q.prop]);
+        }
+
         if (currentIndex.value < questions.value.length - 1) {
             currentIndex.value++;
             showQuestions.value = false;
-
         } else {
             user.value.mkey = localKey.value;
             await navigateTo('/quiz')

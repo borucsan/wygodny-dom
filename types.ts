@@ -71,5 +71,10 @@ export interface RegistrationQuestion {
     question: string,
     filter: ((consents: string[], user: UserData) => boolean),
     options: string[] | ImageOption[] | IconOption[],
-    inisTrack?: string
+    inisTrack?: string,
+    onAnswer?: (answer: string) => Promise<void>,
+    image?: {
+        src: string,
+        class?: string
+    }
 }
