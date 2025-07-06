@@ -39,7 +39,7 @@ export default defineNuxtConfig({
     public: {
       environment: '',
       sentrydsn: '',
-      apiBase: process.env.ENV === 'production' ? 'https://odbierz-nagrode.pl/' : process.env.ENV === 'staging' ? 'https://odbierznagrode.dkarwot.me/' : 'http://localhost:3666/public/',
+      apiBase: process.env.ENV === 'production' ? 'https://wygodny-dom.pl/' : process.env.ENV === 'staging' ? 'https://wygodny-dom.dkarwot.me/' : 'http://localhost:3666/public/',
     }
   },
   compatibilityDate: '2024-07-23'

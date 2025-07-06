@@ -23,7 +23,7 @@ export default defineAppConfig({
             },
             color: {
                 black: {
-                    solid: 'shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-white dark:text-gray-200 bg-btn-base disabled:!bg-btn-base hover:bg-btn-darker disabled:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700/50 dark:disabled:bg-gray-800 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400',
+                    solid: 'shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-white dark:text-gray-200 bg-[rgba(70,202,202,1)] disabled:!bg-[rgba(70,202,202,0.7)] hover:bg-[rgba(70,202,202,0.8)] disabled:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700/50 dark:disabled:bg-gray-800 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400',
                 },
             }
         },
