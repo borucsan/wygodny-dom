@@ -1,12 +1,13 @@
 <template>
-  <main class="from-[#FDE3E2] to-[#F6F8FA] bg-gradient-to-b px-4 md:px-8 lg:px-2 grid grid-cols-1">
-    <div class="bg-[url('assets/images/bg.png')] max-w-screen-xl bg-no-repeat bg-[right_top_30%] w-full h-screen mx-auto col-start-1 row-start-1 hidden lg:flex"></div>
+  <main class="custom-gradient px-4 md:px-8 lg:px-2 grid grid-cols-1">
+    <div class="max-w-screen-xl bg-no-repeat bg-right-top w-full h-screen mx-auto col-start-1 row-start-1 hidden lg:flex">
+      <img src="/assets/images/bg.png" alt="Background" class="absolute right-0 top-16" />
+    </div>
     <div class="flex flex-col lg:flex-row justify-center gap-12 w-full max-w-screen-xl h-full mx-auto min-h-screen py-4 md:py-8 lg:py-16 col-start-1 row-start-1 z-10">
       <NuxtPage class="flex flex-col w-full lg:max-w-[760px] bg-[#FFFFFF99] backdrop-blur-xl px-6 lg:px-16 rounded-2xl" />
       <footer class="flex-1 text-xxxs self-end pb-12 lg:pb-0">
-        <p class="text-black font-barlow text-xss mb-1"> Grafika użyta na stronie pochodzi z legalnych źródeł i ma charakter wyłącznie ilustracyjny. Apple Inc. nie jest związane z organizatorem promocji ani nie wspiera i nie sponsoruje konkursu. </p>
-        <p class="text-black font-barlow text-xss"> Aby wziąć udział w konkursie, należy spełnić kilka prostych warunków. Uczestnik powinien wypełnić formularz zgłoszeniowy, podając swoje dane osobowe, takie jak imię, adres e-mail datę urodzenia oraz telefon. Następnie należy odpowiedzieć na 3 pytania konkursowe, najszybsza osoba, która udzieli poprawnych odpowiedzi - wygrywa. Zwycięzca konkursu zostanie poinformowany o wygranej drogą telefoniczną. Każde kolejne zgłoszenie tego samego adresu e-mail powoduje nadpisanie poprzednich odpowiedzi. Konkurs skierowany jest wyłącznie do osób pełnoletnich. Nagrodą jest iPhone 16, a uczestnictwo w konkursie jest bezpłatne. </p>
-        <div class="flex flex-col gap-1 mt-1 font-barlow">
+        <p class="text-black font-barlow text-xss mb-1"> Grafika użyta na stronie pochodzi z legalnych źródeł i ma charakter wyłącznie poglądowy. Nagrodą jest Frytkownica beztłuszczowa PHILIPS Essential Ovi XL HD9270/90 Air Fryer. Dla 10 użytkowników, którzy odpowiedzą poprawnie, w najkrótszym czasie, na 3 pytania konkursowe. Marka Philips nie jest związane z organizatorem promocji ani nie wspiera i nie sponsoruje konkursu.<br>Aby wziąć udział w konkursie, należy spełnić kilka prostych warunków. Uczestnik powinien wypełnić formularz zgłoszeniowy, podając swoje dane osobowe, takie jak imię, adres e-mail, datę urodzenia oraz telefon. Zwycięzcy konkursu zostaną poinformowani o wygranej drogą telefoniczną. Każde kolejne zgłoszenie tego samego adresu e-mail powoduje nadpisanie poprzednich odpowiedzi. Konkurs skierowany jest wyłącznie do osób pełnoletnich. Uczestnictwo w konkursie jest bezpłatne.</p>
+        <div class="flex flex-col lg:flex-row mt-1 font-barlow">
           <ul class="flex gap-2 flex-1 md:flex-auto text-xxxs font-medium underline">
               <a href="#"  @click.prevent="modals.rules = true">Regulamin</a>
               <a href="#"  @click.prevent="modals.privacy = true" class="text-center">Polityka prywatności</a>
@@ -139,3 +140,9 @@ const route = useRoute();
 actionId.value = cookie.value || Date.now().toString();
 
 </script>
+
+<style>
+.custom-gradient {
+  background: linear-gradient(247.07deg, #46CACA -8.7%, #9EE1E2 25.58%, #CAEDEE 65.42%, #F6F8FA 96.18%);
+}
+</style>

@@ -40,7 +40,7 @@ jobs:
       env:
         HOST: ${{ env.REMOTE_HOST }}
         PORT: ${{ env.REMOTE_PORT }}
-        KEY: ${{ secrets.DEPLOY_PI_KEY }}
+        KEY: ${{ secrets.DEPLOYER_KEY }}
         USER: ${{ env.USER }}
         VERBOSE: true
         TARGET: "${{ env.TARGET }}"

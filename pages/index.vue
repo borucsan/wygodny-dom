@@ -5,11 +5,10 @@
             <div class="flex flex-col gap-4" v-if="show && step === 1">
                 <div>
                     <div class="pt-4 pb-8 lg:my-12 w-20 lg:w-[126px]">
-                        <img src="/assets/images/head.png" alt="Odbierz nagrodę" />
+                        <img src="/assets/images/head.svg" alt="Odbierz nagrodę" />
                     </div>
-                    <h1 class="font-poppins text-2xl lg:text-5xl">Rozdajemy <strong>iPhone 16!</strong></h1>
-                    <h3 class="font-poppins text-xl tracking-tighter mb-12">...za najszybsze, poprawne odpowiedzi
-                        konkursowe!</h3>
+                    <h1 class="font-poppins text-xl lg:text-4xl">Rozdajemy aż <strong>10 x Air Fryer</strong>!</h1>
+                    <h3 class="font-poppins text-lg tracking-tighter mb-12">...za najszybsze, poprawne odpowiedzi konkursowe!</h3>
                     <UForm ref="form1"
                            class="w-full max-w-[430px]"
                            :state="state"
