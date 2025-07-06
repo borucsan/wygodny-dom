@@ -61,14 +61,14 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     type: "radio",
     question: "Czy chcesz przetestować nowoczesne aparaty słuchowe za darmo?",
     prop: "prop67",
-    filter: (consents, user) => {
+    filter: (consents, user) => false, /* {
       const today = new Date();
       const maxDate = sub(today, { years: 60 });
       const date = parse(user.dob as string, "dd-MM-yyyy", new Date());
       return ["prop22", "prop26", "prop27"].every((c) => consents.includes(c));
       // You may want to re-enable this logic:
       // && date.toString() !== 'Invalid Date' && (isBefore(date, maxDate) || isEqual(date, maxDate))
-    },
+    }, */
     options: ["tak, chętnie", "nie jestem zainteresowany/a"],
     inisTrack: "cpl_coreg_7_aparaty",
   },
@@ -113,7 +113,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     type: "radio",
     question: "Czy chcesz nauczyć się inwestować?",
     prop: "prop69",
-    filter: () => true,
+    filter: () => false,
     options: ["tak, chcę porozmawiać ze specjalistą", "nie interesuje mnie ten temat"],
     inisTrack: "cpl_coreg_5_inwestycje",
   },
