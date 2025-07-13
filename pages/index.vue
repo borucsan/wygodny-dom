@@ -1,11 +1,11 @@
 <template>
     <section>
-        <div class="flex justify-end lg:hidden pt-6 pb-3" v-if="show && step !== 1"><img class="" src="/assets/images/phones2.png"></div>
+        <div class="flex justify-end lg:hidden" v-if="show && step !== 1"><img class="" src="/assets/images/bg3.png"></div>
         <TransitionFade :duration="{ enter: 500, leave: 200 }">
-            <div class="flex flex-col gap-4" v-if="show && step === 1">
-                <div>
+            <div class="flex flex-col gap-4 " v-if="show && step === 1">
+                <div class="px-4 sm:px-6 lg:px-16">
                     <div class="pt-4 pb-8 lg:my-12 w-20 lg:w-[126px]">
-                        <img src="/assets/images/head.svg" alt="Odbierz nagrodę" />
+                        <img src="/assets/images/head.svg" alt="Wygodny dom" />
                     </div>
                     <h1 class="font-poppins text-xl lg:text-4xl">Rozdajemy aż <strong>10 x Air Fryer</strong>!</h1>
                     <h3 class="font-poppins text-lg tracking-tighter mb-12">...za najszybsze, poprawne odpowiedzi konkursowe!</h3>
@@ -21,12 +21,12 @@
                         </div>
                     </UForm>
                 </div>
-                <div class="flex lg:hidden"><img class="w-auto max-w-[277px]"
-                         src="/assets/images/phones.png" alt=""></div>
+                <div class="flex lg:hidden"><img class="w-full"
+                         src="/assets/images/bg2.png" alt=""></div>
             </div>
             
             <UForm ref="form2"
-                   class="lg:pt-24"
+                   class="lg:pt-24 px-4 sm:px-6 lg:px-16"
                    :state="state" :validate="validateWithVuelidate1"
                    @submit="onSubmit1" v-if="show && step === 2">
                 <div class="w-full max-w-[430px] flex flex-col gap-12 mb-8">
@@ -56,7 +56,7 @@
                 </div>
             </UForm>
             <UForm ref="form3"
-                   class="lg:pt-24"
+                   class="lg:pt-24 px-4 sm:px-6 lg:px-16"
                    :state="state" :validate="validateWithVuelidate2"
                    @submit="onSubmit2" v-if="show && step === 3">
                 <div class="w-full max-w-[430px] flex flex-col gap-12 mb-8">
@@ -75,7 +75,7 @@
                 </div>
             </UForm>
             <UForm ref="form4"
-                   class="lg:pt-24"
+                   class="lg:pt-24 px-4 sm:px-6 lg:px-16"
                    :state="state" :validate="validateWithVuelidate3"
                    @submit="onSubmit3" v-if="show && step === 4">
                 <div class="w-full max-w-[430px] flex flex-col gap-12 mb-8">
@@ -91,7 +91,7 @@
                 </div>
             </UForm>
             <UForm ref="form5"
-                   class="lg:pt-24"
+                   class="lg:pt-24 px-4 sm:px-6 lg:px-16"
                    :state="state" :validate="validateWithVuelidate4"
                    @submit="onSubmit" v-if="show && step === 5">
                 <div class="w-full max-w-[430px] flex flex-col gap-12 mb-8">
