@@ -121,7 +121,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     type: "radio",
     question: 'Czy chcesz pobrać aplikację ułatwiającą codzienne zarabianie na małe przyjemności?',
     prop: 'prop76',
-    filter: (consensts) => true, // ['prop22', 'prop26', 'prop27'].every(c => consensts.includes(c)),
+    filter: (consensts) => false, // ['prop22', 'prop26', 'prop27'].every(c => consensts.includes(c)),
     options: ["TAK - chcę spróbować i zarobić", "NIE - rezygnuję z korzyści"],
     onAnswer: async (answer) => {
       if (answer === "TAK - chcę spróbować i zarobić") {
