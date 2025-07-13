@@ -1,39 +1,37 @@
 <template>
-  <main class="px-2 sm:px-4 md:px-8 lg:px-2">
-    <div class="relative md:my-8 lg:my-16 overflow-hidden">
-             <div class="hidden lg:flex h-full flex-col">
-         <img src="/assets/images/bg.png" alt="Background" class="absolute right-0 top-16" />
-       </div>
-      <div
-           class="flex flex-col lg:flex-row justify-center py-4 gap-4 sm:gap-8 lg:gap-12 w-full xl:max-w-screen-xl lg:max-w-screen-lg h-full mx-auto min-h-screen  col-start-1 row-start-1 z-10">
-        <NuxtPage
-                  class="flex flex-col w-full lg:flex-[1_1_768px] lg:max-w-[760px] bg-[#FFFFFF99] backdrop-blur-xl rounded-2xl" />
-        <footer class="flex-1 text-xxxs self-end pb-2">
-          <p class="text-black font-barlow text-xss mb-1"> Grafika użyta na stronie pochodzi z legalnych źródeł i ma
-            charakter wyłącznie poglądowy. Nagrodą jest Frytkownica beztłuszczowa PHILIPS Essential Ovi XL HD9270/90 Air
-            Fryer. Dla 10 użytkowników, którzy odpowiedzą poprawnie, w najkrótszym czasie, na 3 pytania konkursowe.
-            Marka Philips nie jest związane z organizatorem promocji ani nie wspiera i nie sponsoruje konkursu.<br>Aby
-            wziąć udział w konkursie, należy spełnić kilka prostych warunków. Uczestnik powinien wypełnić formularz
-            zgłoszeniowy, podając swoje dane osobowe, takie jak imię, adres e-mail, datę urodzenia oraz telefon.
-            Zwycięzcy konkursu zostaną poinformowani o wygranej drogą telefoniczną. Każde kolejne zgłoszenie tego samego
-            adresu e-mail powoduje nadpisanie poprzednich odpowiedzi. Konkurs skierowany jest wyłącznie do osób
-            pełnoletnich. Uczestnictwo w konkursie jest bezpłatne.</p>
-          <div class="flex flex-col lg:flex-row mt-1 font-barlow">
-            <ul class="flex gap-2 flex-1 md:flex-auto text-xxxs font-medium underline">
-              <a href="#" @click.prevent="modals.rules = true">Regulamin</a>
-              <a href="#" @click.prevent="modals.privacy = true" class="text-center">Polityka prywatności</a>
-              <a href="#" @click.prevent="modals.data = true" class="text-center">Zasady Przetwarzania Danych</a>
-            </ul>
-            <div class="flex text-xxxs">Serwis wykorzystuje pliki cookies. <a @click.prevent="modals.privacy = true"
-                 href="#" class="font-medium underline">Więcej</a></div>
-          </div>
-        </footer>
+  <main class="flex justify-end min-h-screen items-center md:pl-8 pl-4 pr-4 md:pr-0">
+    <div
+         class="grid grid-cols-1 md:justify-end md:grid-cols-[minmax(0,761px)_minmax(0,550px)] auto-rows-max py-4 gap-4 sm:gap-8 md:gap-12 w-full z-10">
+      <NuxtPage
+                class="row-span-2 flex flex-col w-full bg-[#FFFFFF99] backdrop-blur-xl rounded-2xl" />
+      <div class="hidden md:flex items-start">
+        <img src="/assets/images/bg.png" alt="Background" class="w-full h-auto object-contain" />
       </div>
-      <RulesModal />
-      <PrivacyModal />
-      <DataModal />
-      <PartnersModal />
+      <footer class="text-xxxs pb-2 md:pr-8">
+        <p class="text-black font-barlow text-xss mb-1"> Grafika użyta na stronie pochodzi z legalnych źródeł i ma
+          charakter wyłącznie poglądowy. Nagrodą jest Frytkownica beztłuszczowa PHILIPS Essential Ovi XL HD9270/90 Air
+          Fryer. Dla 10 użytkowników, którzy odpowiedzą poprawnie, w najkrótszym czasie, na 3 pytania konkursowe.
+          Marka Philips nie jest związane z organizatorem promocji ani nie wspiera i nie sponsoruje konkursu.<br>Aby
+          wziąć udział w konkursie, należy spełnić kilka prostych warunków. Uczestnik powinien wypełnić formularz
+          zgłoszeniowy, podając swoje dane osobowe, takie jak imię, adres e-mail, datę urodzenia oraz telefon.
+          Zwycięzcy konkursu zostaną poinformowani o wygranej drogą telefoniczną. Każde kolejne zgłoszenie tego samego
+          adresu e-mail powoduje nadpisanie poprzednich odpowiedzi. Konkurs skierowany jest wyłącznie do osób
+          pełnoletnich. Uczestnictwo w konkursie jest bezpłatne.</p>
+        <div class="flex flex-col lg:flex-row mt-1 font-barlow">
+          <ul class="flex gap-2 flex-1 md:flex-auto text-xxxs font-medium underline">
+            <a href="#" @click.prevent="modals.rules = true">Regulamin</a>
+            <a href="#" @click.prevent="modals.privacy = true" class="text-center">Polityka prywatności</a>
+            <a href="#" @click.prevent="modals.data = true" class="text-center">Zasady Przetwarzania Danych</a>
+          </ul>
+          <div class="flex text-xxxs">Serwis wykorzystuje pliki cookies. <a @click.prevent="modals.privacy = true"
+               href="#" class="font-medium underline">Więcej</a></div>
+        </div>
+      </footer>
     </div>
+    <RulesModal />
+    <PrivacyModal />
+    <DataModal />
+    <PartnersModal />
   </main>
 </template>
 <script setup lang="ts">

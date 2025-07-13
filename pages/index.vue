@@ -1,6 +1,6 @@
 <template>
     <section>
-        <div class="flex justify-end lg:hidden" v-if="show && step !== 1"><img class="" src="/assets/images/bg3.png"></div>
+        <div class="flex justify-end md:hidden" v-if="show && step !== 1"><img class="" src="/assets/images/bg3.png"></div>
         <TransitionFade :duration="{ enter: 500, leave: 200 }">
             <div class="flex flex-col gap-4 " v-if="show && step === 1">
                 <div class="px-4 sm:px-6 lg:px-16">
@@ -21,7 +21,7 @@
                         </div>
                     </UForm>
                 </div>
-                <div class="flex lg:hidden"><img class="w-full"
+                <div class="flex md:hidden"><img class="w-full"
                          src="/assets/images/bg2.png" alt=""></div>
             </div>
             

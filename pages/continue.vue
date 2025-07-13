@@ -1,6 +1,6 @@
 <template>
-    <section class="flex flex-col !px-2 lg:pt-24">
-        <div class="flex justify-end lg:hidden"><img class="" src="/assets/images/bg3.png"></div>
+    <section class="flex flex-col lg:pt-24">
+        <div class="flex justify-end md:hidden"><img class="" src="/assets/images/bg3.png"></div>
         <h2 class="text-base lg:text-2xl font-medium text-center">Pytania Partnerów Serwisu</h2>
         <TransitionFade :duration="500" @after-leave="showQuestions = true">
             <form class="h-full flex flex-col flex-wrap pt-8 md:pt-24" v-if="showQuestions && currentQuestion">

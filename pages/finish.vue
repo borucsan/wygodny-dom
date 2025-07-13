@@ -1,6 +1,6 @@
 <template>
 
-        <section class="flex flex-col items-center justify-center py-10">
+        <section class="flex flex-col items-center justify-center py-10 px-4 sm:px-6 md:px-16">
             <div class="max-w-[793px] w-full">
                 <div class="min-h-[90px]">
                     <TransitionFade :duration="{ enter: 200, leave: 0 }">

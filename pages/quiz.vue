@@ -1,7 +1,7 @@
 <template>
     <section>
-        <div class="flex justify-end lg:hidden pt-6" v-if="show && step === 2"><img class=""
-                 src="/assets/images/phones2.png"></div>
+        <div class="flex justify-end md:hidden" v-if="show && step === 2"><img class=""
+                 src="/assets/images/bg3.png"></div>
         <TransitionFade :duration="{ enter: 500, leave: 200 }">
             <div class="flex justify-end pr-3 pt-5 text-xl font-medium" v-if="show && step === 2">
                 <span v-if="stopwatch.hours.value > 0">{{ stopwatch.hours }}:</span><span>{{ minutes }}</span>:<span>{{
@@ -10,7 +10,7 @@
         </TransitionFade>
         <TransitionFade :duration="{ enter: 500, leave: 200 }">
             <div class="flex flex-col justify-center h-full gap-4 pt-4" v-if="show && step === 1">
-                <div class="flex flex-col">
+                <div class="flex flex-col px-4 sm:px-6 md:px-16">
                     <h3 class="font-poppins text-xl -tracking-tighter mb-12"><strong>Za chwilę zobaczysz 3&nbsp;pytania
                             konkursowe.</strong><br />Wygrywa 10&nbsp;najszybszych osób spośród tych, z&nbsp;poprawnymi odpowiedziami.
                     </h3>
@@ -25,12 +25,12 @@
                         </div>
                     </UForm>
                 </div>
-                <div class="flex lg:hidden"><img class="w-auto max-w-[277px]" src="/assets/images/phones.png"
-                         alt="Odbierz nagrodę"></div>
+                <div class="flex md:hidden"><img class="w-full"
+                    src="/assets/images/bg2.png" alt=""></div>
             </div>
             <div v-else-if="show && step === 2" class="flex flex-col justify-center h-full pb-4">
                 <TransitionFade :duration="500" @after-leave="showNext()">
-                    <form v-if="showQuestions" class="grid grid-cols-1 gap-2 text-lg">
+                    <form v-if="showQuestions" class="grid grid-cols-1 gap-2 text-lg px-4 sm:px-6 lg:px-16">
                         <div class="font-bold text-md lg:text-base">{{ currentQuestion.question }}</div>
 
                         <label
