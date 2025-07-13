@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+html, body {
   @apply bg-white font-poppins;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 .answer {
