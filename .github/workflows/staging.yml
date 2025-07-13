@@ -26,7 +26,7 @@ jobs:
         cache: "yarn"
     - run: yarn install --frozen-lockfile --network-timeout 1000000000
     - name: generate_api_env
-      run: printf "API_KEY=${{ secrets.API_KEY }}\nS_KEY=${{ secrets.S_KEY }}\nUID=${{vars.UID}}\nALLOWED_DOMAIN=${{vars.STAGING_DOMAIN}}" >> public/inc/.env
+      run: printf "API_KEY=\nS_KEY=${{ secrets.S_KEY }}\nUID=${{vars.UID}}\nALLOWED_DOMAIN=${{vars.STAGING_DOMAIN}}" >> public/inc/.env
     - name: generate_app_env
       run: printf "NUXT_PUBLIC_ENVIRONMENT=${{ env.ENV }}\nNUXT_PUBLIC_SENTRYDSN=${{ secrets.SENTRY_DSN }}" >> .env
     - name: build
