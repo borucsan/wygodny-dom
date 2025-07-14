@@ -17,13 +17,14 @@
           Zwycięzcy konkursu zostaną poinformowani o wygranej drogą telefoniczną. Każde kolejne zgłoszenie tego samego
           adresu e-mail powoduje nadpisanie poprzednich odpowiedzi. Konkurs skierowany jest wyłącznie do osób
           pełnoletnich. Uczestnictwo w konkursie jest bezpłatne.</p>
-        <div class="flex flex-col lg:flex-row mt-1 font-barlow">
+        <div class="flex flex-col gap-1 mt-1 font-barlow">
           <ul class="flex gap-2 flex-1 md:flex-auto text-xxxs font-medium underline">
             <a href="#" @click.prevent="modals.rules = true">Regulamin</a>
             <a href="#" @click.prevent="modals.privacy = true" class="text-center">Polityka prywatności</a>
             <a href="#" @click.prevent="modals.data = true" class="text-center">Zasady Przetwarzania Danych</a>
+            <a href="#" @click.prevent="modals.partners = true" class="text-center">Partnerzy</a>
           </ul>
-          <div class="flex text-xxxs">Serwis wykorzystuje pliki cookies. <a @click.prevent="modals.privacy = true"
+          <div class="flex text-xxxs self-end">Serwis wykorzystuje pliki cookies. <a @click.prevent="modals.privacy = true"
                href="#" class="font-medium underline">Więcej</a></div>
         </div>
       </footer>
