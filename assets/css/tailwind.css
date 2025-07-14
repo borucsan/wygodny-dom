@@ -90,6 +90,16 @@ body {
   z-index: 2;
 }
 
+
+.form-checkbox:indeterminate {
+  background-image: none;
+}
+
+
+.form-checkbox:indeterminate::after {
+  background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="25" height="19"><path stroke="rgb(0, 0, 0)" stroke-width="4" d="M4 10h10"/></svg>');
+}
+
 .pre-question {
   @apply pb-8 leading-7 text-xl px-3 md:px-7;
 }

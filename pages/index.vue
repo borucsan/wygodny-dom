@@ -117,15 +117,21 @@
                                label="Wyrażam zgodę na otrzymywanie informacji handlowych od Salelifter Sp. z o.o. za pośrednictwem wiadomości e-mail." />
                     <UCheckbox v-model="state.consents.prop25" name="prop25"
                                label="Wyrażam zgodę na otrzymywanie informacji handlowych od Salelifter Sp. z o.o. za pośrednictwem telefonu (połączenia głosowe/SMS/MMS)." />
-                    <UCheckbox v-model="state.consents.prop26" name="prop26">
+                               <UCheckbox v-model="state.consents.prop26" name="prop26" :indeterminate="isPartnersIndeterminate" @change="selectAllPartners">
                         <template #label>
-                            <div>Wyrażam zgodę na przetwarzanie moich danych osobowych w celu marketingowym (w tym na
-                                profilowanie) przez <a href="#" @click.prevent="modals.partners = true"
-                                   class="underline">partnerów</a> handlowych oraz na udostępnienie partnerom moich
-                                danych
-                                osobowych we wskazanym celu.</div>
+                            <div class="flex items-center">
+                                <div>Wyrażam zgodę na przetwarzanie moich danych osobowych w celu marketingowym (w tym na
+                                    profilowanie) przez partnerów handlowych oraz na udostępnienie partnerom moich danych
+                                    osobowych we wskazanym celu.</div>
+                                    <UButton variant="link" :icon="partnersShow ? 'i-material-symbols:keyboard-arrow-up' : 'i-material-symbols:keyboard-arrow-down'" class="w-5 h-5 text-black dark:text-gray-200 hover:text-black hover:dark:text-gray-200" @click="partnersShow = !partnersShow"/>
+                            </div>
                         </template>
                     </UCheckbox>
+                    <TransitionSlide :duration="{ enter: 200, leave: 200 }" >
+                            <div class="pl-7 flex flex-col gap-2" v-if="partnersShow">
+                                <UCheckbox :label="partner.label" v-for="partner in partners" :key="partner.id" :model-value="state.partners?.includes(partner.name)" @update:model-value="selectPartner(partner)" />
+                            </div>
+                    </TransitionSlide>
                     <UCheckbox v-model="state.consents.prop27" name="prop27"
                                label="Wyrażam zgodę na otrzymywanie informacji handlowych od partnerów, którym dane będą udostępnione za pośrednictwem telefonu (połączenia głosowe/SMS/MMS)." />
                     <UCheckbox v-model="state.consents.prop28" name="prop28"
@@ -158,6 +164,7 @@ import type { UserData } from '~/types';
 import { capitalizeAllWords, capitalizeFirstLetter } from '~/utils';
 import { IMask } from 'vue-imask';
 import { last } from 'lodash-es';
+import { partners } from '~/const';
 
 const actionId = useActionId();
 actionId.value = Date.now().toString();
@@ -179,6 +186,7 @@ const config = useRuntimeConfig();
 const options = { baseURL: config.public.apiBase };
 const prop22Modal = ref(false);
 const showResult = ref<"success" | "error" | null>(null);
+const partnersShow = ref(false);
 
 const firstNameInput = ref();
 const lastNameInput = ref();
@@ -240,9 +248,51 @@ const allConsents = computed<boolean>({
         for (const key in state.value.consents) {
             state.value.consents[key] = val;
         }
+        if (!state.value.partners) {
+            state.value.partners = [];
+        }
+        
+        if (val) {
+            state.value.partners = partners.map((partner) => partner.name);
+        } else {
+            state.value.partners = [];
+        }
     },
 });
 
+const isPartnersIndeterminate = computed(() => {
+    return state.value.partners?.length > 0 && state.value.partners?.length < partners.length;
+});
+
+const selectPartner = (partner: { name: string }) => {
+    if (!state.value.partners) {
+        state.value.partners = [];
+    }
+    
+    if (state.value.partners.includes(partner.name)) {
+        state.value.partners = state.value.partners.filter((p) => p !== partner.name);
+    } else {
+        state.value.partners.push(partner.name);
+    }
+
+    if(state.value.partners.length > 0) {
+        state.value.consents.prop26 = true;
+    } else {
+        state.value.consents.prop26 = false;
+    }
+}
+
+const selectAllPartners = (val: boolean) => {
+    if (!state.value.partners) {
+        state.value.partners = [];
+    }
+    
+    if(val) {
+        state.value.partners = partners.map((partner) => partner.name);
+    } else {
+        state.value.partners = [];
+    }
+}
 const firstNameInputRef = (el: unknown) => {
     firstNameInput.value = el;
     if (firstNameInput?.value?.$el) {
@@ -439,6 +489,7 @@ async function onSubmit() {
     postData.append("group", group.toString());
     postData.append("prop17", "odbierznagrode.pl");
     postData.append("prop10", actionId.value);
+    postData.append("partners", JSON.stringify(state.value.partners));
     if (utm.value.utm_source) {
         postData.append("prop62", utm.value.utm_source);
     }

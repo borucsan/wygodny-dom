@@ -1,18 +1,19 @@
 <template>
   <main class="from-[#FDE3E2] to-[#F6F8FA] bg-gradient-to-b px-4 md:px-8 lg:px-2 grid grid-cols-1">
-    <div class="bg-[url('assets/images/bg.png')] max-w-screen-xl bg-no-repeat bg-right w-full h-screen mx-auto col-start-1 row-start-1 hidden lg:flex"></div>
+    <div class="bg-[url('assets/images/bg.png')] max-w-screen-xl bg-no-repeat bg-[right_top_30%] w-full h-screen mx-auto col-start-1 row-start-1 hidden lg:flex"></div>
     <div class="flex flex-col lg:flex-row justify-center gap-12 w-full max-w-screen-xl h-full mx-auto min-h-screen py-4 md:py-8 lg:py-16 col-start-1 row-start-1 z-10">
       <NuxtPage class="flex flex-col w-full lg:max-w-[760px] bg-[#FFFFFF99] backdrop-blur-xl px-6 lg:px-16 rounded-2xl" />
       <footer class="flex-1 text-xxxs self-end pb-12 lg:pb-0">
         <p class="text-black font-barlow text-xss mb-1"> Grafika użyta na stronie pochodzi z legalnych źródeł i ma charakter wyłącznie ilustracyjny. Apple Inc. nie jest związane z organizatorem promocji ani nie wspiera i nie sponsoruje konkursu. </p>
         <p class="text-black font-barlow text-xss"> Aby wziąć udział w konkursie, należy spełnić kilka prostych warunków. Uczestnik powinien wypełnić formularz zgłoszeniowy, podając swoje dane osobowe, takie jak imię, adres e-mail datę urodzenia oraz telefon. Następnie należy odpowiedzieć na 3 pytania konkursowe, najszybsza osoba, która udzieli poprawnych odpowiedzi - wygrywa. Zwycięzca konkursu zostanie poinformowany o wygranej drogą telefoniczną. Każde kolejne zgłoszenie tego samego adresu e-mail powoduje nadpisanie poprzednich odpowiedzi. Konkurs skierowany jest wyłącznie do osób pełnoletnich. Nagrodą jest iPhone 16, a uczestnictwo w konkursie jest bezpłatne. </p>
-        <div class="flex flex-col lg:flex-row mt-1 font-barlow">
+        <div class="flex flex-col gap-1 mt-1 font-barlow">
           <ul class="flex gap-2 flex-1 md:flex-auto text-xxxs font-medium underline">
               <a href="#"  @click.prevent="modals.rules = true">Regulamin</a>
               <a href="#"  @click.prevent="modals.privacy = true" class="text-center">Polityka prywatności</a>
               <a href="#"  @click.prevent="modals.data = true" class="text-center">Zasady Przetwarzania Danych</a>
+              <a href="#" @click.prevent="modals.partners = true" class="text-center">Partnerzy</a>
             </ul>
-            <div class="flex text-xxxs">Serwis wykorzystuje pliki cookies. <a @click.prevent="modals.privacy = true" href="#" class="font-medium underline">Więcej</a></div></div>
+            <div class="flex text-xxxs self-end">Serwis wykorzystuje pliki cookies. <a @click.prevent="modals.privacy = true" href="#" class="font-medium underline">Więcej</a></div></div>
       </footer>
     </div>
     <RulesModal />

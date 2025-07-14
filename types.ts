@@ -39,6 +39,7 @@ export interface UserData {
     settlementType?: SettlementType;
     consents: UserConsents;
     time: string | null;
+    partners: string[];
 }
 
 export interface UserConsents {

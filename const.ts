@@ -225,3 +225,102 @@ export const profileQuestions: RegistrationQuestion[] = [
     ],
   },
 ];
+
+export const partners = [
+  {
+      id: 1,
+      name: "INIS Sp. z o.o.",
+      label: 'INIS Sp. z o.o., z siedzibą w Rybniku (44 – 200), ul. Raciborska 35a',
+      enabled: true,
+  },
+  {
+      id: 2,
+      name: "Vente Unique",
+      label: 'Vente Unique, 9-11 Rue Jacquard, 93310 Le Pré Saint Gervais, Francja',
+      enabled: true,
+  },
+  {
+      id: 3,
+      name: "one56media Szymon Surma",
+      label: 'one56media Szymon Surma, Kiczory 12a, 34-483 Kiczory',
+      enabled: true,
+  },
+  {
+      id: 4,
+      name: "Wewo Media Sp. z o.o.",
+      label: 'Wewo Media Sp. z o.o., ul. Nowogrodzka 64/43, 02-014 Warszawa',
+      enabled: true,
+  },
+  {
+      id: 5,
+      name: "Great Call Sp. z o.o. S.K.A.",
+      label: 'Great Call Sp. z o.o. S.K.A. ul. Fordońska, 40 85-719 Bydgoszcz',
+      enabled: true,
+  },
+  {
+      id: 6,
+      name: "HelpHero Sp. z o.o.",
+      label: 'HelpHero Sp. z o.o. al. Jerozolimskie 146A, 02-305 Warszawa.',
+      enabled: false,
+  },
+  {
+      id: 7,
+      name: "Sales Masters Sp. z o.o.",
+      label: 'Sales Masters Sp. z o.o.,ul. Franciszka Ksawerego Dmochowskiego 4 /2, 00-427 Warszawa',
+      enabled: true,
+  },
+  {
+      id: 8,
+      name: "Salvum Wojciech Dudkiewicz",
+      label: 'Salvum Wojciech Dudkiewicz, ul. Konecka 41 97-330 Sulejów',
+      enabled: false,
+  },
+  {
+    id: 8,
+    name: "Energia",
+    label: "Energia (dostawcy energii, paliw, gazu itp.)",
+    enabled: true
+},
+{
+    id: 9,
+    name: "Finanse",
+    label: "Finanse (pożyczki, karty kredytowe, kredyty, inwestycje, odszkodowania itp.)",
+    enabled: true
+},
+{
+    id: 10,
+    name: "Handel detaliczny",
+    label: "Handel detaliczny (sprzedaż online, stacjonarna, FMCG, motoryzacja, beauty itp.)",
+    enabled: true
+},
+{
+    id: 11,
+    name: "Lifestyle",
+    label: "Lifestyle (zdrowie i uroda, fitness itp.)",
+    enabled: true
+},
+{
+    id: 12,
+    name: "Media i wydawnictwa",
+    label: "Media i wydawnictwa (hobby, gry, edukacja, social media itp.)",
+    enabled: true
+},
+{
+    id: 13,
+    name: "Telekomunikacja",
+    label: "Telekomunikacja (usługi telefoniczne i internetowe itp.)",
+    enabled: true
+},
+{
+    id: 14,
+    name: "Turystyka",
+    label: "Turystyka (podróże, noclegi, biura podróży itp.)",
+    enabled: true
+},
+{
+    id: 15,
+    name: "Ubezpieczenia",
+    label: "Ubezpieczenia (osobowe, turystyczne, majątkowe itp.)",
+    enabled: true
+}
+]
