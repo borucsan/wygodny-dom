@@ -166,6 +166,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question: "Czy chcesz przetestować nowoczesne aparaty słuchowe za darmo?",
     prop: "prop67",
     filter: (consents, user) => false, /* {
+    d
       const today = new Date();
       const maxDate = sub(today, { years: 60 });
       const date = parse(user.dob as string, "dd-MM-yyyy", new Date());
