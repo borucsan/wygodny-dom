@@ -5,7 +5,7 @@
     }">
         <div class="p-1 md:p-10 font-barlow text-center flex flex-col overflow-hidden">
             <div class="overflow-y-scroll px-4">
-                <h2 class="text-xl font-bold">REGULAMIN KONKURSU „ODBIERZ NAGRODĘ”</h2>
+                <h2 class="text-xl font-bold">REGULAMIN KONKURSU „WYGODNY DOM"</h2>
                 <h3 class="font-bold">§1<br> Definicje</h3>
                 <ol class="flex flex-col gap-4 list-decimal mb-4 text-left" type="1">
                     <li>Użyte w Regulaminie określenia oznaczają:</li>
@@ -32,20 +32,19 @@
                 </ol><br>
                 <h3 class="font-bold">§2<br> Postanowienia ogólne</h3>
                 <ol class="flex flex-col gap-4 list-decimal mb-4 text-left" type="1">
-                    <li>Konkurs trwa od 02.05.2025 r. do 01.05.2026 r. Uczestnicy mogą rejestrować swój udział w
-                        Konkursie do dnia 01.05.2026 r.</li>
+                    <li>Konkurs trwa od 14.08.2025 r. do 14.08.2026 r. Uczestnicy mogą rejestrować swój udział w
+                        Konkursie do dnia 14.08.2026 r.</li>
                     <li>Uczestnictwo w Konkursie jest całkowicie dobrowolne.</li>
                     <li>Konkurs dla Uczestników jest bezpłatny. Organizator nie pobiera od Uczestników żadnych opłat za
                         rejestrację Uczestnika w Konkursie, jak również za sam udział w nim.</li>
                     <li>Celem wzięcia udziału w Konkursie Uczestnik powinien odpowiedzieć na wszystkie (3, słownie:
-                        trzy) zadane pytania konkursowe zamknięte jak najszybciej a także dokonać rejestracji poprzez
-                        wypełnienie formularza rejestracyjnego znajdującego się na internetowej stronie konkursowej pod
-                        adresem www.odbierz-nagrode.pl oraz potwierdzić chęć udziału w Konkursie (poprzez zaznaczenie
-                        na stronie checkboxa i kliknięcie przycisku rejestracji), jak i zapoznanie się oraz akceptację
-                        niniejszego Regulaminu i Polityki prywatności znajdującej się na internetowej stronie
-                        konkursowej. Po udzieleniu odpowiedzi na wszystkie zamknięte pytania konkursowe oraz wypełnieniu
-                        formularza rejestracyjnego i udzieleniu niezbędnych zgód Uczestnik otrzyma e-mail z linkiem
-                        potwierdzającym rejestrację.</li>
+                        trzy) zadane pytania konkursowe zamknięte jak najszybciej a także dokonać rejestracji poprzez wypełnienie formularza rejestracyjnego znajdującego się na
+                        internetowej stronie konkursowej pod adresem www.wygodny-dom.pl oraz potwierdzić chęć
+                        udziału w Konkursie (poprzez zaznaczenie na stronie checkboxa i kliknięcie przycisku
+                        rejestracji), jak i zapoznanie się oraz akceptację niniejszego Regulaminu i Polityki prywatności
+                        znajdującej się na internetowej stronie konkursowej. Po udzieleniu odpowiedzi na wszystkie
+                        zamknięte pytania konkursowe oraz wypełnieniu formularza rejestracyjnego i udzieleniu
+                        niezbędnych zgód Uczestnik otrzyma e-mail z linkiem potwierdzającym rejestrację. </li>
                     <li>Warunkiem koniecznym pomyślnej rejestracji Uczestnika w&nbsp;Konkursie jest podanie pełnych
                         i&nbsp; prawdziwych danych w&nbsp;formularzu rejestracyjnym. W&nbsp;przypadku podania przez
                         Uczestnika danych nieprawdziwych lub niepełnych Organizator jest uprawniony do wykluczenia
@@ -73,28 +72,23 @@
                 </ol><br>
                 <h3 class="font-bold">§4<br> Nagrody</h3>
                 <ol class="flex flex-col gap-4 list-decimal mb-4 text-left" type="1">
-                    <li>W Konkursie zostanie przyznana jedna nagroda.</li>
-                    <li>Nagrodę stanowi Smartfon APPLE iPhone 16 5G 128GB, o wartości 3 599 zł.</li>
-                    <li>Organizator poinformuje Laureata o wyniku Konkursu oraz możliwości i sposobach odbioru nagrody w
+                    <li>W Konkursie zostanie przyznanych 10 nagród. Dla 10 osób, które najszybciej odpowiedzą poprawnie na zadane pytania konkursowe.</li>
+                    <li>Nagrodę stanowi Frytkownica beztłuszczowa PHILIPS Essential Ovi XL HD9270/90 Air Fryer, o wartości 365 zł.</li>
+                    <li>Organizator poinformuje Laureatów o wyniku Konkursu oraz możliwości i sposobach odbioru nagrody w
                         rozmowie telefonicznej, dzwoniąc w tym celu na wskazany przez niego numer telefonu do dnia
-                        16.05.2026 r. Organizator podejmie 3 (słownie: trzy) próby kontaktu telefonicznego, w co
+                        28.08.2026 r. Organizator podejmie 3 (słownie: trzy) próby kontaktu telefonicznego, w co
                         najmniej dwugodzinnych odstępach czasu, w celu skontaktowania się z Laureatem. Po wykonaniu
                         przez Organizatora trzech nieudanych prób kontaktu, Laureat utraci status zwycięzcy konkursu i
                         nie będzie mógł domagać się przyznania nagrody, która pozostaje w dyspozycji Organizatora. Za
                         nieudaną próbę połączenia rozumie się brak odbioru telefonu przez 6 (słownie: sześć) sygnałów
                         lub niemożność połączenia się z użytkownikiem telefonu (abonent poza zasięgiem, wyłączony
                         telefon, włączenie się poczty głosowej lub automatycznej sekretarki, sygnał fax).</li>
-                    <li>Nagroda zostanie przesłana na wskazany przez Laureata adres, w terminie do 10 (słownie:
-                        dziesięć) dni roboczych od dnia poinformowania Laureata o wygranej..</li>
+                    <li>Nagrody zostaną wysłane w terminie do 10 (słownie: dziesięć) dni roboczych od dnia poinformowania Laureatów o wygranej.</li>
                     <li>Organizator nie ponosi odpowiedzialności za dokonanie przez Laureata zmiany danych (zmiana
                         adresu) uniemożliwiającą przesłanie nagrody Laureatowi, jak również za niemożność odbioru lub
                         nieodebranie nagrody, z jakiejkolwiek przyczyny leżącej po stronie Laureata. W takim przypadku
                         Laureat traci prawo do nagrody, która pozostanie w dyspozycji Organizatora.</li>
-                    <li>Nagroda zostanie powiększona o nagrodę dodatkową w wysokości stanowiącej równowartość 10 %
-                        wartości nagrody o której mowa w ust. 2 powyżej. Nagroda dodatkowa zostanie przeznaczona na
-                        należny podatek dochodowy, płatny zgodnie z przepisami ustawy o podatku dochodowym od osób
-                        fizycznych.</li>
-                    <li>Nagroda w Konkursie opodatkowana jest na zasadach określonych w powszechnie obowiązujących
+                    <li>Jeśli nagroda w Konkursie opodatkowana jest na zasadach określonych w powszechnie obowiązujących
                         przepisach podatkowych. Organizator oblicza, pobiera i płaci podatek w imieniu Laureata w
                         wysokości 10% wartości wygranej.</li>
                 </ol><br>
@@ -131,13 +125,13 @@
                     </li>
                     <li>Organizator zastrzega sobie prawo do wprowadzania zmian w Regulaminie. Każda taka zmiana będzie
                         ogłaszana przez Organizatora z&nbsp;tygodniowym wyprzedzeniem. Obowiązująca wersja Regulaminu
-                        znajduje się na stronie internetowej pod adresem: odbierz-nagrode.pl</li>
+                        znajduje się na stronie internetowej pod adresem: wygodny-dom.pl</li>
                     <li>Uczestnik zostanie poinformowany o zmianach niniejszego Regulaminu za pośrednictwem poczty
                         elektronicznej, na podany przez Uczestnika adres e-mail. </li>
                     <li>W sprawach nieuregulowanych w niniejszym Regulaminie zastosowanie mają odpowiednie przepisy
                         prawa obowiązującego na terenie Rzeczpospolitej Polskiej.</li>
                 </ol>
-                <div class="text-left">Powyższy Regulamin obowiązuje od dnia 02.05.2025 r.</div>
+                <div class="text-left">Powyższy Regulamin obowiązuje od dnia 14.08.2025 r.</div>
             </div>
             <a class="uppercase mt-2" href="#" @click.prevent="modals.rules = false">Zamknij</a>
         </div>
