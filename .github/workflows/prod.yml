@@ -13,8 +13,11 @@ on:
         type: boolean
         default: false
 env:
-  USER: ${{ vars.DEPLOY_PROD_USER }}
-  TARGET: "/var/www/odbierz-nagrode.pl/"
+  #USER: ${{ vars.DEPLOY_PROD_USER }}
+  #TARGET: "/var/www/odbierz-nagrode.pl/"
+  REMOTE_HOST: ${{ vars.PROD_DEPLOY_FTP_HOST }}
+  USER: ${{ vars.DEPLOY_FTP_USER }}
+  TARGET: "./wygodny-dom.pl/"
   ENV: prod
 jobs:
   deploy:
@@ -39,25 +42,35 @@ jobs:
       run: printf "NUXT_PUBLIC_ENVIRONMENT=${{ env.ENV }}\nNUXT_PUBLIC_SENTRYDSN=${{ secrets.SENTRY_DSN }}" >> .env
     - name: build
       run: yarn run generate
-    - name: rsync h1.salelifter.pl
-      uses: up9cloud/action-rsync@master
-      env:
-        HOST: h1.salelifter.pl
-        PORT: 20022
-        KEY: ${{ secrets.DEPLOYER_KEY }}
-        USER: ${{ env.USER }}
-        VERBOSE: true
-        TARGET: "${{ env.TARGET }}"
-        ARGS: "-avzogO --delete "
-        SOURCE: ./.output/public/
-    - name: rsync h2.salelifter.pl
-      uses: up9cloud/action-rsync@master
-      env:
-        HOST: h2.salelifter.pl
-        PORT: 20022
-        KEY: ${{ secrets.DEPLOYER_KEY }}
-        USER: ${{ env.USER }}
-        VERBOSE: true
-        TARGET: "${{ env.TARGET }}"
-        ARGS: "-avzogO --delete "
-        SOURCE: ./.output/public/
+    - name: ftp deployments
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ env.REMOTE_HOST }}
+        username: ${{ env.USER }}
+        password: ${{ secrets.DEPLOY_FTP_PASSWORD }}
+        local-dir: ./.output/public/
+        server-dir: ${{ env.TARGET }}
+        dangerous-clean-slate: ${{ inputs.cleanup }} 
+        dry-run:  ${{ inputs.dry_run }}
+#    - name: rsync h1.salelifter.pl
+#      uses: up9cloud/action-rsync@master
+#      env:
+#        HOST: h1.salelifter.pl
+#        PORT: 20022
+#        KEY: ${{ secrets.DEPLOYER_KEY }}
+#        USER: ${{ env.USER }}
+#        VERBOSE: true
+#        TARGET: "${{ env.TARGET }}"
+#        ARGS: "-avzogO --delete "
+#        SOURCE: ./.output/public/
+#    - name: rsync h2.salelifter.pl
+#      uses: up9cloud/action-rsync@master
+#      env:
+#        HOST: h2.salelifter.pl
+#        PORT: 20022
+#        KEY: ${{ secrets.DEPLOYER_KEY }}
+#        USER: ${{ env.USER }}
+#        VERBOSE: true
+#        TARGET: "${{ env.TARGET }}"
+#        ARGS: "-avzogO --delete "
+#        SOURCE: ./.output/public/
