@@ -4,6 +4,21 @@ export default defineNuxtConfig({
   ssr: false,
   app: {
     pageTransition: { mode: 'out-in' },
+    head: {
+      htmlAttrs: {
+        lang: 'pl'
+      },
+      title: 'Wygodny Dom',
+      meta: [
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'theme-color', content: '#d6ceb7' },
+        { name: 'msapplication-TileColor', content: '#d6ceb7' }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }
+      ]
+    }
   },
   modules: ["@nuxt/fonts", "@nuxt/eslint", "@morev/vue-transitions/nuxt", "@nuxt/ui", "@samk-dev/nuxt-vcalendar", '@vueuse/nuxt', '@nuxt/scripts', "@sentry/nuxt/module", 'nuxt-gtag'],
 
@@ -11,7 +26,7 @@ export default defineNuxtConfig({
     preference: 'light'
   },
   gtag: {
-    id: 'G-X66CB01M7N'
+    id: 'G-YJEJ3M6H9W'
   },
   eslint: {
     config: {

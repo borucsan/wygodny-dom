@@ -12,5 +12,14 @@
     </section>
 </template>
 <script setup lang="js">
+const user = useUserData();
 
+onMounted(() => {
+    const consents = Object.keys(user.value.consents)
+        .filter(p => user.value.consents[p] === true);
+
+    if (consents.length === 1 && consents[0] === 'prop22') {
+        navigateTo('/quiz');
+    }
+});
 </script>
