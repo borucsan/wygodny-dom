@@ -14,7 +14,7 @@ on:
         default: false
 env:
   #USER: ${{ vars.DEPLOY_PROD_USER }}
-  #TARGET: "/var/www/odbierz-nagrode.pl/"
+  #TARGET: "/var/www/wygodny-dom.pl/"
   REMOTE_HOST: ${{ vars.PROD_DEPLOY_FTP_HOST }}
   USER: ${{ vars.DEPLOY_FTP_USER }}
   TARGET: "./wygodny-dom.pl/"
