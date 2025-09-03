@@ -7,7 +7,7 @@
             <div class="overflow-y-scroll px-4">
                 <h2 class="text-xl font-bold text-left">POLITYKA PRYWATNOŚCI I COOKIES<br>
                     SERWISU INTERNETOWEGO<br>
-                    https://odbierz-nagrode.pl/&nbsp;(zwanego dalej Serwisem)</h2><br>
+                    https://wygodny-dom.pl/&nbsp;(zwanego dalej Serwisem)</h2><br>
 
                 <p class="text-left">Polityka Prywatności określa zasady Przetwarzania i ochrony Danych osobowych<br>
                     Użytkowników oraz innych podmiotów korzystających z Serwisu internetowego. Dokument określa również
