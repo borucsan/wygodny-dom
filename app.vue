@@ -80,8 +80,9 @@ useHead({
   link: [
     { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
     { rel: "icon", type: 'image/png', sizes: "32x32", href: "/favicon-32x32.png" },
-    { rel: "icon", type: 'image/png', sizes: "16x16", href: "/favicon-32x32.png" },
-    { rel: "mask-icon", color: "#D6CEB7", href: "/safari-pinned-tab.svg" },
+    { rel: "icon", type: 'image/png', sizes: "16x16", href: "/favicon-16x16.png" },
+    { rel: "icon", type: 'image/png', sizes: "96x96", href: "/favicon-96x96.png" },
+    { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
     { rel: "manifest", href: "/site.webmanifest" },
   ],
   script: [
@@ -91,7 +92,7 @@ useHead({
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-WPRP8LD7');
+})(window,document,'script','dataLayer','GTM-TZ6R7NZ4');
 `
     } : {},
     useEnv().value === 'prod' && false ? {
@@ -100,7 +101,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "nv9xjjpw3s");
+    })(window, document, "clarity", "script", "sjcw6r5u28");
 `
     } : {},
     useEnv().value === 'prod' ? {
@@ -112,7 +113,7 @@ var isStgDebug=(window.location.href.match("stg_debug")||document.cookie.match("
 var qP=[];dataLayerName!=="dataLayer"&&qP.push("data_layer_name="+dataLayerName),isStgDebug&&qP.push("stg_debug");var qPString=qP.length>0?("?"+qP.join("&")):"";
 tags.async=!0,tags.src="https://inis.containers.piwik.pro/"+id+".js"+qPString,scripts.parentNode.insertBefore(tags,scripts);
 !function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++)!function(i){a[n][i]=a[n][i]||{},a[n][i].api=a[n][i].api||function(){var a=[].slice.call(arguments,0);"string"==typeof a[0]&&window[dataLayerName].push({event:n+"."+i+":"+a[0],parameters:[].slice.call(arguments,1)})}}(i[c])}(window,"ppms",["tm","cm"]);
-})(window, document, 'dataLayer', '1ce0a52b-7a67-4d87-ae0a-f595c74e0a73');
+})(window, document, 'dataLayer', '1765e4f8-0a74-4d64-ac1c-4a6ab44aa060');
 `
     } : {},
     useEnv().value === 'prod' && false ? {
@@ -138,7 +139,7 @@ tags.async=!0,tags.src="https://inis.containers.piwik.pro/"+id+".js"+qPString,sc
   ],
   noscript: [
     useEnv().value === 'prod' ? {
-      innerHTML: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPRP8LD7"
+      innerHTML: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TZ6R7NZ4"
 height="0" width="0" style="display:none;visibility:hidden"></iframe>
 `
     } : {}
@@ -147,7 +148,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>
 const actionId = useActionId();
 const cookie = useCookie('actionId', {
   maxAge: 5184000,
-  domain: "odbierz-nagrode.pl",
+  domain: "wygodny-dom.pl",
 });
 
 const route = useRoute();
