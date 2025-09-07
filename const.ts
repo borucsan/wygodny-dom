@@ -212,7 +212,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     options: ["TAK - chcę spróbować i zarobić", "NIE - rezygnuję z korzyści"],
     onAnswer: async (answer) => {
       if (answer === "TAK - chcę spróbować i zarobić") {
-        window.open('https://app.polecamprodukt.pl/?utm_medium=konkurs&utm_source=odbierznagrode&utm_campaign=salelifter', '_blank', 'noopener');
+        window.open('https://app.polecamprodukt.pl/?utm_medium=konkurs&utm_source=wygodny-dom&utm_campaign=salelifter', '_blank', 'noopener');
       }
     },
     image: {
