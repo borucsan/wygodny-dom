@@ -493,7 +493,7 @@ async function onSubmit() {
     postData.append("dob", state.value.dob?.toString() ?? "");
     postData.append("consents", JSON.stringify(state.value.consents));
     postData.append("group", group.toString());
-    postData.append("prop17", "odbierznagrode.pl");
+    postData.append("prop17", "wygodny-dom.pl");
     postData.append("prop10", actionId.value);
     postData.append("partners", JSON.stringify(state.value.partners));
     if (utm.value.utm_source) {

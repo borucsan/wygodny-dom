@@ -5,6 +5,7 @@
                 <div class="text-center font-bold mb-5 text-xl">Dziękujemy za potwierdzenie udziału w konkursie.</div>
                 <div class="text-center font-bold mb-1 text-xl">Zapraszamy do skorzystania z kodów rabatowych:</div>
                 <div class="text-center font-bold mb-12 text-xl"><UButton color="black" size="md" to="https://www.kody-rabaty-promocje.pl/">KLIKNIJ TUTAJ</UButton> </div>
+                
             </div>
 
 

@@ -41,7 +41,7 @@ import { useEnv } from "./composables/states";
 
 
 const title = ref(
-  "Odbierz nagrodę"
+  "Wygodny dom"
 )
 useEnv().value = process.env.NODE_ENV === 'production' ? 'prod' : 'dev';
 
@@ -62,11 +62,11 @@ useHead({
     },
     {
       name: "apple-mobile-web-app-title",
-      content: "Odbierz nagrodę",
+      content: "Wygodny dom",
     },
     {
       name: "application-name",
-      content: "Odbierz nagrodę",
+      content: "Wygodny dom",
     },
     {
       name: "msapplication-TileColor",
