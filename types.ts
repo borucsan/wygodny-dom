@@ -66,14 +66,21 @@ export interface IconOption {
 }
 
 export interface RegistrationQuestion {
-    prop: string
-    type: 'select' | 'radio'
+    prop?: string
+    props?: {
+        postalCode?: string,
+        city?: string,
+        street?: string,
+        houseNumber?: string,
+        apartmentNumber?: string
+    }
+    type: 'select' | 'radio' | 'inputs'
     class?: string
-    question: string,
+    question?: string,
     filter: ((consents: string[], user: UserData) => boolean),
-    options: string[] | ImageOption[] | IconOption[],
+    options?: string[] | ImageOption[] | IconOption[],
     inisTrack?: string,
-    onAnswer?: (answer: string) => Promise<void>,
+    onAnswer?: (answer: string | Record<string, unknown>) => Promise<void>,
     image?: {
         src: string,
         class?: string

@@ -4,8 +4,9 @@
         <h2 class="text-base lg:text-2xl font-medium text-center">Pytania Partnerów Serwisu</h2>
         <TransitionFade :duration="500" @after-leave="showQuestions = true">
             <form class="h-full flex flex-col flex-wrap pt-8 md:pt-24" v-if="showQuestions && currentQuestion">
-                <div class="mb-5 text-md lg:text-xl font-bold px-10" v-html="currentQuestion.question"></div>
-                
+                <!-- Show question text for non-inputs types -->
+                <div class="mb-5 text-md lg:text-xl font-bold px-10" v-if="currentQuestion.type !== 'inputs' && currentQuestion.question" v-html="currentQuestion.question"></div>
+
                 <!-- Add question image -->
                 <div v-if="currentQuestion.image" class="flex justify-center mb-5">
                     <img :src="currentQuestion.image.src" :class="currentQuestion.image.class || 'w-48 h-auto'" :alt="currentQuestion.question">
@@ -17,6 +18,70 @@
                          @update:model-value="handleSelectChange($event)"
                          :options="getSelectOptions()"
                          class="relative max-w-[250px] w-full self-center" />
+
+                <!-- Postal code and city inputs - styled like form2 -->
+                <div v-if="currentQuestion.type === 'inputs' && currentQuestion.props?.postalCode" class="w-full max-w-[430px] flex flex-col gap-12 mb-8 px-10">
+                    <div class="text-sm mb-4">Pola nieobowiązkowe</div>
+                    <UFormGroup label="Kod pocztowy" name="postalCode">
+                        <UInput
+                            :model-value="data[currentQuestion.props.postalCode]"
+                            placeholder="00-000"
+                            size="md"
+                            color="gray"
+                            variant="outline"
+                            ref="postalCodeInput"
+                            @update:model-value="updatePostalCode"
+                            @blur="handleInputBlur(currentQuestion.props.postalCode)" />
+                    </UFormGroup>
+                    <UFormGroup label="Miejscowość" name="city">
+                        <UInput
+                            :model-value="data[currentQuestion.props.city]"
+                            placeholder="Wpisz miejscowość"
+                            size="md"
+                            color="gray"
+                            variant="outline"
+                            ref="cityInput"
+                            @update:model-value="updateCity"
+                            @blur="handleInputBlur(currentQuestion.props.city)" />
+                    </UFormGroup>
+                </div>
+
+                <!-- Street, house number and apartment number inputs -->
+                <div v-if="currentQuestion.type === 'inputs' && currentQuestion.props?.street" class="w-full max-w-[430px] flex flex-col gap-12 mb-8 px-10">
+                    <div class="text-sm mb-4">Pola nieobowiązkowe</div>
+                    <UFormGroup label="Ulica" name="street">
+                        <UInput
+                            v-model="data[currentQuestion.props.street]"
+                            placeholder="Wpisz ulicę"
+                            size="md"
+                            color="gray"
+                            variant="outline"
+                            ref="streetInput"
+                            @blur="handleInputBlur(currentQuestion.props.street)" />
+                    </UFormGroup>
+                    <div class="flex gap-4">
+                        <UFormGroup label="Numer domu" name="houseNumber" class="flex-1">
+                            <UInput
+                                v-model="data[currentQuestion.props.houseNumber]"
+                                placeholder="Np. 12"
+                                size="md"
+                                color="gray"
+                                variant="outline"
+                                ref="houseNumberInput"
+                                @blur="handleInputBlur(currentQuestion.props.houseNumber)" />
+                        </UFormGroup>
+                        <UFormGroup label="Nr mieszkania" name="apartmentNumber" class="flex-1">
+                            <UInput
+                                v-model="data[currentQuestion.props.apartmentNumber]"
+                                placeholder="Np. 5"
+                                size="md"
+                                color="gray"
+                                variant="outline"
+                                ref="apartmentNumberInput"
+                                @blur="handleInputBlur(currentQuestion.props.apartmentNumber)" />
+                        </UFormGroup>
+                    </div>
+                </div>
                 <div v-if="currentQuestion.type === 'radio'" class="w-full">
                     <ul
                         :class="[currentQuestion.class ?? ' w-full px-12 flex flex-col gap-2']">
@@ -71,6 +136,9 @@
 
 import type { ImageOption, IconOption, Question, RegistrationQuestion } from "~/types";
 import { coRegistrationQuestions, profileQuestions } from "../const";
+import { IMask } from 'vue-imask';
+import { capitalizeFirstLetter, capitalizeAllWords } from '~/utils';
+import { nextTick, watch } from 'vue';
 
 const config = useRuntimeConfig();
 const options = { baseURL: config.public.apiBase };
@@ -89,13 +157,26 @@ const currentQuestion = computed(() => {
 });
 const actionId = useActionId();
 
+// Input refs and masks for validation
+const postalCodeInput = ref();
+const cityInput = ref();
+const streetInput = ref();
+const houseNumberInput = ref();
+const apartmentNumberInput = ref();
+const postalCodeMask = ref();
+const cityMask = ref();
+const streetMask = ref();
+const houseNumberMask = ref();
+const apartmentNumberMask = ref();
+
 const getSelectOptions = () => {
+    if (!currentQuestion.value.options) return [];
     return currentQuestion.value.options.map((opt, index) => {
         if (typeof opt === 'string') {
             return { value: index, label: opt };
         } else if ((opt as IconOption).label !== undefined) {
             const iconOpt = opt as IconOption;
-            const label = iconOpt.icon && iconOpt.iconPosition === 'before' 
+            const label = iconOpt.icon && iconOpt.iconPosition === 'before'
                 ? `${iconOpt.icon} ${iconOpt.label}`
                 : iconOpt.icon && iconOpt.iconPosition === 'after'
                 ? `${iconOpt.label} ${iconOpt.icon}`
@@ -109,9 +190,10 @@ const getSelectOptions = () => {
 };
 
 const getSelectValue = () => {
+    if (!currentQuestion.value.prop || !currentQuestion.value.options) return -1;
     const currentValue = data.value[currentQuestion.value.prop];
     if (!currentValue) return -1;
-    
+
     return currentQuestion.value.options.findIndex(opt => {
         if (typeof opt === 'string') {
             return opt === currentValue;
@@ -125,6 +207,7 @@ const getSelectValue = () => {
 };
 
 const handleSelectChange = async (selectedIndex: number) => {
+    if (!currentQuestion.value.prop || !currentQuestion.value.options) return;
     const selectedOption = currentQuestion.value.options[selectedIndex];
     if (typeof selectedOption === 'string') {
         data.value[currentQuestion.value.prop] = selectedOption;
@@ -142,23 +225,82 @@ const handleRadioChange = async (value: any) => {
     await triggerInisIfNeeded();
 }
 
+// Update functions for masked inputs
+const updatePostalCode = () => {
+    if (postalCodeMask.value) {
+        postalCodeMask.value.updateValue();
+        data.value[currentQuestion.value.props?.postalCode || 'postalCode'] = postalCodeMask.value.masked.value;
+    }
+}
+
+const updateCity = () => {
+    if (cityMask.value) {
+        cityMask.value.updateValue();
+        const capitalizedValue = capitalizeAllWords(cityMask.value.masked.value);
+        data.value[currentQuestion.value.props?.city || 'city'] = capitalizedValue;
+        cityMask.value.updateValue();
+    }
+}
+
+// Watchers for data transformations
+watch(data, (newData) => {
+    // Apply capitalization to street names
+    questions.value.forEach((question, index) => {
+        if (question.type === 'inputs' && question.props?.street) {
+            const streetValue = newData[question.props.street];
+            if (streetValue && typeof streetValue === 'string') {
+                const capitalizedValue = capitalizeAllWords(streetValue);
+                if (capitalizedValue !== streetValue) {
+                    newData[question.props!.street!] = capitalizedValue;
+                }
+            }
+        }
+    });
+}, { deep: true });
+
+const handleInputBlur = async (prop: string) => {
+    // Validate postal code format if it's the postal code field
+    if (prop === 'postalCode' && data.value[prop]) {
+        const postalCodeRegex = /^\d{2}-\d{3}$/;
+        if (!postalCodeRegex.test(data.value[prop])) {
+            console.warn('Invalid postal code format. Expected format: XX-XXX');
+        }
+    }
+
+    if (data.value[prop]) {
+        await triggerInisIfNeeded();
+    }
+}
+
+
 const triggerInisIfNeeded = async () => {
-    if (currentQuestion.value.inisTrack && 
-        !inisTrackedQuestions.value.has(currentIndex.value) && 
-        data.value[currentQuestion.value.prop]) {
-        
-        inisTrackedQuestions.value.add(currentIndex.value);
-        
-        try {
-            await useInis360([
-                {
-                    actionId: actionId.value,
-                    advId: 'ef9b1ff32314ba272bc3c9100d474386',
-                    model: currentQuestion.value.inisTrack
-                },
-            ]);
-        } catch (error) {
-            console.error('Inis360 tracking error:', error);
+    if (currentQuestion.value.inisTrack &&
+        !inisTrackedQuestions.value.has(currentIndex.value)) {
+
+        // Check if any props have values for inputs type (optional fields)
+        let hasAnyValues = false;
+        if (currentQuestion.value.type === 'inputs' && currentQuestion.value.props) {
+            hasAnyValues = Object.values(currentQuestion.value.props).some(prop =>
+                data.value[prop as string]
+            );
+        } else if (currentQuestion.value.prop) {
+            hasAnyValues = !!data.value[currentQuestion.value.prop];
+        }
+
+        if (hasAnyValues) {
+            inisTrackedQuestions.value.add(currentIndex.value);
+
+            try {
+                await useInis360([
+                    {
+                        actionId: actionId.value,
+                        advId: 'ef9b1ff32314ba272bc3c9100d474386',
+                        model: currentQuestion.value.inisTrack
+                    },
+                ]);
+            } catch (error) {
+                console.error('Inis360 tracking error:', error);
+            }
         }
     }
 }
@@ -184,15 +326,32 @@ const saveAndGoNext = async (input?: Record<string, unknown>) => {
 const saveAndGoNextLazy = async (q: RegistrationQuestion) => {
     selected.value = true;
     try {
-        const current = {
-            [q.prop]: data.value[q.prop]
-        };
-        
+        let current: Record<string, unknown> = {};
+
+        // Handle inputs type with multiple props
+        if (q.type === 'inputs' && q.props) {
+            Object.keys(q.props).forEach(key => {
+                const propName = q.props![key as keyof typeof q.props];
+                if (propName) {
+                    current[propName as string] = data.value[propName as string];
+                }
+            });
+        } else if (q.prop) {
+            current = {
+                [q.prop]: data.value[q.prop]
+            };
+        }
+
         await save(current);
 
         // Execute onAnswer callback if it exists
-        if (q.onAnswer && data.value[q.prop]) {
-            await q.onAnswer(data.value[q.prop]);
+        if (q.onAnswer) {
+            if (q.type === 'inputs' && q.props) {
+                // For inputs type, call onAnswer with the data object
+                await q.onAnswer(current);
+            } else if (q.prop && data.value[q.prop]) {
+                await q.onAnswer(data.value[q.prop]);
+            }
         }
 
         if (currentIndex.value < questions.value.length - 1) {
@@ -256,7 +415,44 @@ onMounted(async () => {
     questions.value = [...coRegistrationQuestions, ...profileQuestions]
         .filter(q => q.filter(consents, user.value));
 
+    // Initialize IMask for input fields
+    nextTick(() => {
+        if (postalCodeInput.value?.$el) {
+            postalCodeMask.value = IMask(postalCodeInput.value.$el.querySelector('input'), {
+                mask: '00-000',
+                lazy: false,
+            });
+        }
+
+        if (cityInput.value?.$el) {
+            cityMask.value = IMask(cityInput.value.$el.querySelector('input'), {
+                mask: /^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ\s\-']+$/,
+                lazy: false,
+            });
+        }
+
+        if (streetInput.value?.$el) {
+            streetMask.value = IMask(streetInput.value.$el.querySelector('input'), {
+                mask: /^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ\s\-']+$/,
+                lazy: false,
+            });
+        }
+
+        if (houseNumberInput.value?.$el) {
+            houseNumberMask.value = IMask(houseNumberInput.value.$el.querySelector('input'), {
+                mask: /^[0-9A-Za-z\/\s\-]+$/,
+                lazy: false,
+            });
+        }
+
+        if (apartmentNumberInput.value?.$el) {
+            apartmentNumberMask.value = IMask(apartmentNumberInput.value.$el.querySelector('input'), {
+                mask: /^[0-9A-Za-z\/\s\-]+$/,
+                lazy: false,
+            });
+        }
     });
+});
 </script>
 
 <style scoped>

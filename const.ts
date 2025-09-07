@@ -50,6 +50,23 @@ export const quiz: { title: string; questions: Question[] } = {
 
 export const coRegistrationQuestions: RegistrationQuestion[] = [
   {
+    type: "inputs",
+    props: {
+      postalCode: "prop8",
+      city: "prop9"
+    },
+    filter: () => true,
+  },
+  {
+    type: "inputs",
+    props: {
+      street: "prop5",
+      houseNumber: "prop6",
+      apartmentNumber: "prop7"
+    },
+    filter: () => true,
+  },
+  {
     type: "select",
     question: "Kiedy kończy Ci się umowa z operatorem GSM?",
     prop: "prop66",
