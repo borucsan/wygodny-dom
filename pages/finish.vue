@@ -16,7 +16,7 @@
                     <TransitionFade :duration="{ enter: 500, leave: 200 }">
                         <div class="text-center mb-5 text-lg font-barlow h-full"
                              v-if="completed && show">
-                            Na adres: <span class="underline">{{ user.email }}</span> wysłaliśmy Ci ostatnie zadanie konkursowe.<br>
+                            Na adres: <span class="underline">{{ user.email }}</span> wysłaliśmy Ci prośbę o potwierdzenie udziału.<br>
                             Wejdź na swoją skrzynkę pocztową i Wygraj!
                             <div class="flex items-center justify-center">
                             <a :href="currentEsp.link" class="flex items-center min-h-[70px]"  v-if="currentEsp" target="_blank">
