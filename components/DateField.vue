@@ -10,6 +10,7 @@
             variant="outline"
             :ui="{ wrapper: 'w-full', }"
             inputmode="numeric"
+            autocomplete="bday"
             @blur="emit('blur')"
             data-testid="form-dob"
             </UInput>

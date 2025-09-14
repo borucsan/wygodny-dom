@@ -38,7 +38,7 @@
                                 variant="outline"
                                 :ref="firstNameInputRef"
                                 data-testid="form-firstName"
-
+                                autocomplete="given-name"
                                 @blur="blurEvents.firstName" />
                     </UFormGroup>
                     <UFormGroup label="Nazwisko" name="lastName">
@@ -46,6 +46,7 @@
                                 v-model="state.lastName" size="md" color="gray" variant="outline"
                                 placeholder="Wpisz swoje nazwisko"
                                 :ref="lastNameInputRef"
+                                autocomplete="family-name"
                                 @blur="blurEvents.lastName" />
                     </UFormGroup>
                 </div>
@@ -64,6 +65,7 @@
                     <UFormGroup name="email" type="email" required class="mb-10" label="E-mail">
                         <UInput data-testid="form-email" v-model="state.email"
                                 placeholder="Wprowadź adres e-mail" size="md" color="gray" variant="outline"
+                                autocomplete="email"
                                 @blur="blurEvents.email" />
                     </UFormGroup>
                 </div>
@@ -503,7 +505,7 @@ async function onSubmit() {
         try {
             if (useEnv().value === 'prod') {
                 console.log('prod mgid');
-                window._mgq.push(["MgSensorInvoke", "register"]);
+                (window as any)._mgq.push(["MgSensorInvoke", "register"]);
             }
         }
         catch (e) {

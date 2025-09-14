@@ -56,6 +56,7 @@
                     :value="props.modelValue"
                     ref="phoneInput"
                     type="tel" title="phone"
+                    autocomplete="tel"
                     :ui="{ padding: { sm: phonePrefix ? 'pl-[75px]' : '' } }"
                     @blur="emit('blur')"
                     size="md"

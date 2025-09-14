@@ -30,19 +30,21 @@
                             color="gray"
                             variant="outline"
                             ref="postalCodeInput"
+                            autocomplete="postal-code"
                             @update:model-value="updatePostalCode"
                             @blur="handleInputBlur(currentQuestion.props.postalCode)" />
                     </UFormGroup>
                     <UFormGroup label="Miejscowość" name="city">
                         <UInput
-                            :model-value="data[currentQuestion.props.city]"
+                            :model-value="data[currentQuestion.props?.city || 'city']"
                             placeholder="Wpisz miejscowość"
                             size="md"
                             color="gray"
                             variant="outline"
                             ref="cityInput"
+                            autocomplete="address-level2"
                             @update:model-value="updateCity"
-                            @blur="handleInputBlur(currentQuestion.props.city)" />
+                            @blur="handleInputBlur(currentQuestion.props?.city || 'city')" />
                     </UFormGroup>
                 </div>
 
@@ -51,34 +53,37 @@
                     <div class="text-sm mb-4">Pola nieobowiązkowe</div>
                     <UFormGroup label="Ulica" name="street">
                         <UInput
-                            v-model="data[currentQuestion.props.street]"
+                            v-model="data[currentQuestion.props?.street || 'street']"
                             placeholder="Wpisz ulicę"
                             size="md"
                             color="gray"
                             variant="outline"
                             ref="streetInput"
-                            @blur="handleInputBlur(currentQuestion.props.street)" />
+                            autocomplete="address-line1"
+                            @blur="handleInputBlur(currentQuestion.props?.street || 'street')" />
                     </UFormGroup>
                     <div class="flex gap-4">
                         <UFormGroup label="Numer domu" name="houseNumber" class="flex-1">
                             <UInput
-                                v-model="data[currentQuestion.props.houseNumber]"
+                                v-model="data[currentQuestion.props?.houseNumber || 'houseNumber']"
                                 placeholder="Np. 12"
                                 size="md"
                                 color="gray"
                                 variant="outline"
                                 ref="houseNumberInput"
-                                @blur="handleInputBlur(currentQuestion.props.houseNumber)" />
+                                autocomplete="address-line2"
+                                @blur="handleInputBlur(currentQuestion.props?.houseNumber || 'houseNumber')" />
                         </UFormGroup>
                         <UFormGroup label="Nr mieszkania" name="apartmentNumber" class="flex-1">
                             <UInput
-                                v-model="data[currentQuestion.props.apartmentNumber]"
+                                v-model="data[currentQuestion.props?.apartmentNumber || 'apartmentNumber']"
                                 placeholder="Np. 5"
                                 size="md"
                                 color="gray"
                                 variant="outline"
                                 ref="apartmentNumberInput"
-                                @blur="handleInputBlur(currentQuestion.props.apartmentNumber)" />
+                                autocomplete="address-line3"
+                                @blur="handleInputBlur(currentQuestion.props?.apartmentNumber || 'apartmentNumber')" />
                         </UFormGroup>
                     </div>
                 </div>
@@ -91,31 +96,31 @@
                             <label class="flex flex-col items-center cursor-pointer text-lg hover:font-black"
                                    v-if="(o as ImageOption)?.label && (o as ImageOption)?.img">
                                 <img :src="(o as ImageOption)?.img" class="w-24 md:w-32" />
-                                <input class="hidden" type="radio" :name="currentQuestion.prop" :value="o"
+                                <input class="hidden" type="radio" :name="currentQuestion.prop || 'option'" :value="o"
                                        :disabled="selected"
                                        @change="handleRadioChange(o)"
-                                       v-model="data[currentQuestion.prop]">
+                                       v-model="data[currentQuestion.prop || 'option']">
                                 <span>{{ (o as ImageOption).label }}</span>
                             </label>
                             <!-- Icon option (new) -->
                             <label class="answer flex gap-4 cursor-pointer text-base hover:font-black items-center"
                                    v-else-if="(o as IconOption)?.label !== undefined">
-                                <input class="hidden" type="radio" :name="currentQuestion.prop" :value="(o as IconOption).label"
+                                <input class="hidden" type="radio" :name="currentQuestion.prop || 'option'" :value="(o as IconOption).label"
                                        :disabled="selected"
                                        @change="handleRadioChange((o as IconOption).label)"
-                                       v-model="data[currentQuestion.prop]">
-                                <span v-if="(o as IconOption).icon && (o as IconOption).iconPosition === 'before'" 
+                                       v-model="data[currentQuestion.prop || 'option']">
+                                <span v-if="(o as IconOption).icon && (o as IconOption).iconPosition === 'before'"
                                       class="no-underline">{{ (o as IconOption).icon }}</span>
                                 <span class="text-left">{{ (o as IconOption).label }}</span>
-                                <span v-if="(o as IconOption).icon && (o as IconOption).iconPosition === 'after'" 
+                                <span v-if="(o as IconOption).icon && (o as IconOption).iconPosition === 'after'"
                                       class="no-underline">{{ (o as IconOption).icon }}</span>
                             </label>
                             <!-- Plain string option (existing) -->
                             <label class="answer flex gap-4 cursor-pointer text-base hover:font-black" v-else>
-                                <input class="hidden" type="radio" :name="currentQuestion.prop" :value="o"
+                                <input class="hidden" type="radio" :name="currentQuestion.prop || 'option'" :value="o"
                                        :disabled="selected"
                                        @change="handleRadioChange(o)"
-                                       v-model="data[currentQuestion.prop]">
+                                       v-model="data[currentQuestion.prop || 'option']">
                                 <span class="text-left">{{ o }}</span>
                             </label>
                         </li>
