@@ -68,11 +68,11 @@ export interface IconOption {
 export interface RegistrationQuestion {
     prop?: string
     props?: {
-        postalCode?: string,
-        city?: string,
-        street?: string,
-        houseNumber?: string,
-        apartmentNumber?: string
+        postalCode?: string | { prop: string, inisTrack?: string },
+        city?: string | { prop: string, inisTrack?: string },
+        street?: string | { prop: string, inisTrack?: string },
+        houseNumber?: string | { prop: string, inisTrack?: string },
+        apartmentNumber?: string | { prop: string, inisTrack?: string }
     }
     type: 'select' | 'radio' | 'inputs'
     class?: string

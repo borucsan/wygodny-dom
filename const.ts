@@ -52,17 +52,17 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
   {
     type: "inputs",
     props: {
-      postalCode: "prop8",
-      city: "prop9"
+      postalCode: { prop: "prop8", inisTrack: "cpl_adres_kod" },
+      city: { prop: "prop9", inisTrack: "cpl_adres_miejscowosc" }
     },
     filter: () => true,
   },
   {
     type: "inputs",
     props: {
-      street: "prop5",
-      houseNumber: "prop6",
-      apartmentNumber: "prop7"
+      street: { prop: "prop5", inisTrack: "cpl_adres_ulica" },
+      houseNumber: { prop: "prop6", inisTrack: "cpl_adres_ulica_numer" },
+      apartmentNumber: { prop: "prop7", inisTrack: "cpl_adres_ulica_numer" }
     },
     filter: () => true,
   },
@@ -114,8 +114,8 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     prop: "prop74",
     filter: () => true,
     options: [
-      { label: "nie jestem zainteresowany/a" },
-      { label: "jestem zainteresowany/a poznaniem oferty", icon: "📞", iconPosition: "before" }
+      { label: "Nie, dziękuję – nie chcę kontaktu" },
+      { label: "Tak, proszę o telefon i więcej szczegółów", icon: "📞", iconPosition: "before" }
     ] as IconOption[],
   },
   {

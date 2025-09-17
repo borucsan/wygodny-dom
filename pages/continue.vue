@@ -24,7 +24,7 @@
                     <div class="text-sm mb-4">Pola nieobowiązkowe</div>
                     <UFormGroup label="Kod pocztowy" name="postalCode">
                         <UInput
-                            :model-value="data[currentQuestion.props.postalCode]"
+                            :model-value="data[getFieldInfo(currentQuestion.props!.postalCode!).prop]"
                             placeholder="00-000"
                             size="md"
                             color="gray"
@@ -32,11 +32,11 @@
                             ref="postalCodeInput"
                             autocomplete="postal-code"
                             @update:model-value="updatePostalCode"
-                            @blur="handleInputBlur(currentQuestion.props.postalCode)" />
+                            @blur="handleInputBlur(getFieldInfo(currentQuestion.props!.postalCode!).prop)" />
                     </UFormGroup>
                     <UFormGroup label="Miejscowość" name="city">
                         <UInput
-                            :model-value="data[currentQuestion.props?.city || 'city']"
+                            :model-value="data[getFieldInfo(currentQuestion.props!.city!).prop]"
                             placeholder="Wpisz miejscowość"
                             size="md"
                             color="gray"
@@ -44,7 +44,7 @@
                             ref="cityInput"
                             autocomplete="address-level2"
                             @update:model-value="updateCity"
-                            @blur="handleInputBlur(currentQuestion.props?.city || 'city')" />
+                            @blur="handleInputBlur(getFieldInfo(currentQuestion.props!.city!).prop)" />
                     </UFormGroup>
                 </div>
 
@@ -53,37 +53,37 @@
                     <div class="text-sm mb-4">Pola nieobowiązkowe</div>
                     <UFormGroup label="Ulica" name="street">
                         <UInput
-                            v-model="data[currentQuestion.props?.street || 'street']"
+                            v-model="data[getFieldInfo(currentQuestion.props!.street!).prop]"
                             placeholder="Wpisz ulicę"
                             size="md"
                             color="gray"
                             variant="outline"
                             ref="streetInput"
                             autocomplete="address-line1"
-                            @blur="handleInputBlur(currentQuestion.props?.street || 'street')" />
+                            @blur="handleInputBlur(getFieldInfo(currentQuestion.props!.street!).prop)" />
                     </UFormGroup>
                     <div class="flex gap-4">
                         <UFormGroup label="Numer domu" name="houseNumber" class="flex-1">
                             <UInput
-                                v-model="data[currentQuestion.props?.houseNumber || 'houseNumber']"
+                                v-model="data[getFieldInfo(currentQuestion.props!.houseNumber!).prop]"
                                 placeholder="Np. 12"
                                 size="md"
                                 color="gray"
                                 variant="outline"
                                 ref="houseNumberInput"
                                 autocomplete="address-line2"
-                                @blur="handleInputBlur(currentQuestion.props?.houseNumber || 'houseNumber')" />
+                                @blur="handleInputBlur(getFieldInfo(currentQuestion.props!.houseNumber!).prop)" />
                         </UFormGroup>
                         <UFormGroup label="Nr mieszkania" name="apartmentNumber" class="flex-1">
                             <UInput
-                                v-model="data[currentQuestion.props?.apartmentNumber || 'apartmentNumber']"
+                                v-model="data[getFieldInfo(currentQuestion.props!.apartmentNumber!).prop]"
                                 placeholder="Np. 5"
                                 size="md"
                                 color="gray"
                                 variant="outline"
                                 ref="apartmentNumberInput"
                                 autocomplete="address-line3"
-                                @blur="handleInputBlur(currentQuestion.props?.apartmentNumber || 'apartmentNumber')" />
+                                @blur="handleInputBlur(getFieldInfo(currentQuestion.props!.apartmentNumber!).prop)" />
                         </UFormGroup>
                     </div>
                 </div>
@@ -234,7 +234,7 @@ const handleRadioChange = async (value: any) => {
 const updatePostalCode = () => {
     if (postalCodeMask.value) {
         postalCodeMask.value.updateValue();
-        data.value[currentQuestion.value.props?.postalCode || 'postalCode'] = postalCodeMask.value.masked.value;
+        data.value[getFieldInfo(currentQuestion.value.props!.postalCode!).prop] = postalCodeMask.value.masked.value;
     }
 }
 
@@ -242,7 +242,7 @@ const updateCity = () => {
     if (cityMask.value) {
         cityMask.value.updateValue();
         const capitalizedValue = capitalizeAllWords(cityMask.value.masked.value);
-        data.value[currentQuestion.value.props?.city || 'city'] = capitalizedValue;
+        data.value[getFieldInfo(currentQuestion.value.props!.city!).prop] = capitalizedValue;
         cityMask.value.updateValue();
     }
 }
@@ -252,11 +252,12 @@ watch(data, (newData) => {
     // Apply capitalization to street names
     questions.value.forEach((question, index) => {
         if (question.type === 'inputs' && question.props?.street) {
-            const streetValue = newData[question.props.street];
+            const { prop } = getFieldInfo(question.props.street);
+            const streetValue = newData[prop];
             if (streetValue && typeof streetValue === 'string') {
                 const capitalizedValue = capitalizeAllWords(streetValue);
                 if (capitalizedValue !== streetValue) {
-                    newData[question.props!.street!] = capitalizedValue;
+                    newData[prop] = capitalizedValue;
                 }
             }
         }
@@ -278,31 +279,69 @@ const handleInputBlur = async (prop: string) => {
 }
 
 
+// Helper function to extract prop and inisTrack from field config
+const getFieldInfo = (fieldConfig: string | { prop: string, inisTrack?: string }) => {
+    if (typeof fieldConfig === 'string') {
+        return { prop: fieldConfig, inisTrack: undefined };
+    }
+    return { prop: fieldConfig.prop, inisTrack: fieldConfig.inisTrack };
+};
+
 const triggerInisIfNeeded = async () => {
-    if (currentQuestion.value.inisTrack &&
-        !inisTrackedQuestions.value.has(currentIndex.value)) {
+    if (!inisTrackedQuestions.value.has(currentIndex.value)) {
+        // Handle inisTrack for different question types
+        const trackCalls: any[] = [];
 
-        // Check if any props have values for inputs type (optional fields)
-        let hasAnyValues = false;
         if (currentQuestion.value.type === 'inputs' && currentQuestion.value.props) {
-            hasAnyValues = Object.values(currentQuestion.value.props).some(prop =>
-                data.value[prop as string]
-            );
-        } else if (currentQuestion.value.prop) {
-            hasAnyValues = !!data.value[currentQuestion.value.prop];
-        }
+            // Handle individual inisTrack for each input field
+            Object.entries(currentQuestion.value.props).forEach(([fieldKey, fieldConfig]) => {
+                if (fieldConfig) {
+                    const { prop, inisTrack } = getFieldInfo(fieldConfig);
+                    const propValue = data.value[prop];
+                    if (propValue && propValue.trim() && inisTrack) {
+                        trackCalls.push({
+                            actionId: actionId.value,
+                            advId: 'ef9b1ff32314ba272bc3c9100d474386',
+                            model: inisTrack
+                        });
+                    }
+                }
+            });
 
-        if (hasAnyValues) {
-            inisTrackedQuestions.value.add(currentIndex.value);
-
-            try {
-                await useInis360([
-                    {
+            // Fallback to old structure global inisTrack if props are strings and no individual tracks
+            if (trackCalls.length === 0 && currentQuestion.value.inisTrack) {
+                const hasAnyValues = Object.values(currentQuestion.value.props).some(fieldConfig => {
+                    if (fieldConfig) {
+                        const { prop } = getFieldInfo(fieldConfig);
+                        return data.value[prop];
+                    }
+                    return false;
+                });
+                if (hasAnyValues) {
+                    trackCalls.push({
                         actionId: actionId.value,
                         advId: 'ef9b1ff32314ba272bc3c9100d474386',
                         model: currentQuestion.value.inisTrack
-                    },
-                ]);
+                    });
+                }
+            }
+        } else if (currentQuestion.value.prop && currentQuestion.value.inisTrack) {
+            // Handle single prop questions (radio, select)
+            const hasValue = !!data.value[currentQuestion.value.prop];
+            if (hasValue) {
+                trackCalls.push({
+                    actionId: actionId.value,
+                    advId: 'ef9b1ff32314ba272bc3c9100d474386',
+                    model: currentQuestion.value.inisTrack
+                });
+            }
+        }
+
+        // Execute all tracking calls
+        if (trackCalls.length > 0) {
+            inisTrackedQuestions.value.add(currentIndex.value);
+            try {
+                useInis360(trackCalls);
             } catch (error) {
                 console.error('Inis360 tracking error:', error);
             }
