@@ -76,6 +76,13 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
   },
   {
     type: "radio",
+    question: "Czy chcesz sprawdzić, jak działa nowoczesna telewizja w Play oraz szybki światłowód?",
+    prop: "prop77",
+    filter: (consents) => true,
+    options: ["nie, dziękuję", "tak, chętnie dowiem się więcej"],
+},
+  {
+    type: "radio",
     question: "Czy chcesz przetestować nowoczesne aparaty słuchowe za darmo?",
     prop: "prop67",
     filter: (consents, user) => false, /* {
