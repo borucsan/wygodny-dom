@@ -181,7 +181,7 @@ onMounted(async () => {
                         model: 'cpl_info_doubleoptin',
                     },
                 ]);
-
+                (window as any)._mgq?.push(["MgSensorInvoke", "register"]);
 });
 
 </script>
