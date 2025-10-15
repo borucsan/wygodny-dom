@@ -109,6 +109,8 @@ async function start() {
         interval.value = setInterval(function () {
             elapsed.value = Date.now() - (from?.value ?? 0);
         }, 100);
+
+        (window as any)._mgq?.push(["MgSensorInvoke", "register"]);
     }, 300);
 
 

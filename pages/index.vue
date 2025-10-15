@@ -439,6 +439,13 @@ async function start() {
     setTimeout(() => {
         show.value = true;
         step.value = 2;
+        useInis360([
+                {
+                    actionId: actionId.value,
+                    advId: 'ef9b1ff32314ba272bc3c9100d474386',
+                    model: 'cpl_start_konkurs'
+                },
+            ]);
     }, 300);
 }
 
