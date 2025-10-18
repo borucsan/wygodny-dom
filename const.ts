@@ -76,7 +76,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
   },
   {
     type: "radio",
-    question: "Czy chcesz sprawdzić, jak działa nowoczesna telewizja w Play oraz szybki światłowód?",
+    question: "Czy chcesz sprawdzić, jak działa nowoczesna telewizja oraz szybki światłowód?",
     prop: "prop77",
     filter: (consents) => true,
     options: ["nie, dziękuję", "tak, chętnie dowiem się więcej"],
@@ -120,9 +120,10 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question: "Chcesz płacić niższe rachunki za prąd w swoim domu? Sprawdź na jakie dotacje do fotowoltaiki możesz liczyć.",
     prop: "prop74",
     filter: () => true,
+    inisTrack: "cpl_coreg_9_fotowoltaika",
     options: [
       { label: "Nie, dziękuję – nie chcę kontaktu" },
-      { label: "Tak, proszę o telefon i więcej szczegółów", icon: "📞", iconPosition: "before" }
+      { label: "Tak, proszę o telefon i więcej szczegółów" }
     ] as IconOption[],
   },
   {
