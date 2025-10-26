@@ -67,6 +67,13 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     filter: () => true,
   },
   {
+    type: "radio",
+    question: "Czy chcesz sprawdzić, jak działa nowoczesna telewizja oraz szybki światłowód?",
+    prop: "prop77",
+    filter: (consents) => true,
+    options: ["nie, dziękuję", "tak, chętnie dowiem się więcej"],
+},
+  {
     type: "select",
     question: "Kiedy kończy Ci się umowa z operatorem GSM?",
     prop: "prop66",
@@ -74,13 +81,6 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     options: [...months, "mam telefon na kartę", "mam umowę na czas nieokreślony"],
     inisTrack: "cpl_coreg_2_GSM",
   },
-  {
-    type: "radio",
-    question: "Czy chcesz sprawdzić, jak działa nowoczesna telewizja oraz szybki światłowód?",
-    prop: "prop77",
-    filter: (consents) => true,
-    options: ["nie, dziękuję", "tak, chętnie dowiem się więcej"],
-},
   {
     type: "radio",
     question: "Czy chcesz przetestować nowoczesne aparaty słuchowe za darmo?",
@@ -123,15 +123,16 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     inisTrack: "cpl_coreg_9_fotowoltaika",
     options: [
       { label: "Nie, dziękuję – nie chcę kontaktu" },
-      { label: "Tak, proszę o telefon i więcej szczegółów" }
+      { label: "Tak, proszę o telefon i więcej szczegółów" },
+      { label: "mam już fotowoltaikę" },
     ] as IconOption[],
   },
   {
     type: "radio",
-    question: "Czy kiedykolwiek brałeś/aś pożyczkę gotówkową lub kredyt konsumpcyjny?",
+    question: "Czy kiedykolwiek brałeś/aś chwilówkę lub pożyczkę w banku?",
     prop: "prop40",
     filter: () => true,
-    options: ["tak, w złotówkach", "tak, w innej walucie", "nie"],
+    options: ["tak, kredyt gotówkowy w banku", "tak, pożyczkę chwilówkę", "nie, ale rozważam to", "nie i nie zamierzam brać pożyczek"],
     inisTrack: "cpl_profilowe_6_kredyt",
   },
   {
@@ -179,7 +180,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question:
       'Lekarze bez Granic to niezależna medyczna organizacja humanitarna niosąca pomoc przy konfliktach zbrojnych, epidemiach, katastrofach naturalnych.<br>Które działania Lekarzy bez Granic chcesz wesprzeć?:',
     prop: "prop70",
-    filter: () => false,
+    filter: () => true,
     class: "in-row-images-3",
     options: [
       { label: "leczenie niedożywienia", img: "/img/image39.jpg" },
@@ -206,7 +207,7 @@ export const profileQuestions: RegistrationQuestion[] = [
     type: "radio",
     question: "Czy masz ogród?",
     prop: "prop36",
-    filter: () => true,
+    filter: () => false,
     options: ["tak", "nie"],
     inisTrack: "cpl_profilowe_2_dom",
   },
@@ -262,25 +263,25 @@ export const partners = [
       id: 2,
       name: "Vente Unique",
       label: 'Vente Unique, 9-11 Rue Jacquard, 93310 Le Pré Saint Gervais, Francja',
-      enabled: true,
+      enabled: false,
   },
   {
       id: 3,
       name: "one56media Szymon Surma",
       label: 'one56media Szymon Surma, Kiczory 12a, 34-483 Kiczory',
-      enabled: true,
+      enabled: false,
   },
   {
       id: 4,
       name: "Wewo Media Sp. z o.o.",
       label: 'Wewo Media Sp. z o.o., ul. Nowogrodzka 64/43, 02-014 Warszawa',
-      enabled: true,
+      enabled: false,
   },
   {
       id: 5,
       name: "Great Call Sp. z o.o. S.K.A.",
       label: 'Great Call Sp. z o.o. S.K.A. ul. Fordońska, 40 85-719 Bydgoszcz',
-      enabled: true,
+      enabled: false,
   },
   {
       id: 6,
@@ -295,10 +296,22 @@ export const partners = [
       enabled: true,
   },
   {
-      id: 8,
-      name: "Salvum Wojciech Dudkiewicz",
-      label: 'Salvum Wojciech Dudkiewicz, ul. Konecka 41 97-330 Sulejów',
-      enabled: false,
+    id: 8,
+    name: "Salvum Wojciech Dudkiewicz",
+    label: 'Salvum Wojciech Dudkiewicz, ul. Konecka 41 97-330 Sulejów',
+    enabled: false,
+  },
+  {
+    id: 16,
+    name: "Caf Call Sp. z o.o.",
+    label: 'Caf Call Sp. z o.o. ul. rondo Marsz. Józefa Piłsudskiego 28, 05-120 Legionowo',
+    enabled: true,
+  },
+  {
+    id: 17,
+    name: 'Fundacja "Lekarze bez Granic"',
+    label: 'Fundacja "Lekarze bez Granic" ul. Sapieżyńska 10A, 00-215 Warszawa',
+    enabled: true,
   },
   {
     id: 8,
