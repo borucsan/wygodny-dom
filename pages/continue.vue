@@ -265,8 +265,8 @@ watch(data, (newData) => {
 }, { deep: true });
 
 const handleInputBlur = async (prop: string) => {
-    // Validate postal code format if it's the postal code field
-    if (prop === 'postalCode' && data.value[prop]) {
+    // Validate postal code format if it's the postal code field (prop8)
+    if (prop === 'prop8' && data.value[prop]) {
         const postalCodeRegex = /^\d{2}-\d{3}$/;
         if (!postalCodeRegex.test(data.value[prop])) {
             console.warn('Invalid postal code format. Expected format: XX-XXX');
@@ -375,9 +375,10 @@ const saveAndGoNextLazy = async (q: RegistrationQuestion) => {
         // Handle inputs type with multiple props
         if (q.type === 'inputs' && q.props) {
             Object.keys(q.props).forEach(key => {
-                const propName = q.props![key as keyof typeof q.props];
-                if (propName) {
-                    current[propName as string] = data.value[propName as string];
+                const fieldConfig = q.props![key as keyof typeof q.props];
+                if (fieldConfig) {
+                    const { prop } = getFieldInfo(fieldConfig);
+                    current[prop] = data.value[prop];
                 }
             });
         } else if (q.prop) {
@@ -385,7 +386,7 @@ const saveAndGoNextLazy = async (q: RegistrationQuestion) => {
                 [q.prop]: data.value[q.prop]
             };
         }
-
+console.log(current);
         await save(current);
 
         // Execute onAnswer callback if it exists
