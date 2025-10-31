@@ -96,9 +96,9 @@
                             <label class="flex flex-col items-center cursor-pointer text-lg hover:font-black"
                                    v-if="(o as ImageOption)?.label && (o as ImageOption)?.img">
                                 <img :src="(o as ImageOption)?.img" class="w-24 md:w-32" />
-                                <input class="hidden" type="radio" :name="currentQuestion.prop || 'option'" :value="o"
+                                <input class="hidden" type="radio" :name="currentQuestion.prop || 'option'" :value="(o as ImageOption).label"
                                        :disabled="selected"
-                                       @change="handleRadioChange(o)"
+                                       @change="handleRadioChange((o as ImageOption).label)"
                                        v-model="data[currentQuestion.prop || 'option']">
                                 <span>{{ (o as ImageOption).label }}</span>
                             </label>
