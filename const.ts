@@ -122,10 +122,21 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     filter: () => true,
     inisTrack: "cpl_coreg_9_fotowoltaika",
     options: [
-      { label: "Nie, dziękuję – nie chcę kontaktu" },
-      { label: "Tak, proszę o telefon i więcej szczegółów" },
+      { label: "nie, dziękuję – nie chcę kontaktu" },
+      { label: "tak, proszę o telefon i więcej szczegółów" },
       { label: "mam już fotowoltaikę" },
     ] as IconOption[],
+  },
+  {
+    type: "radio",
+    question: "Chcesz, żeby Twoja fotowoltaika znów zarabiała?",
+    prop: "prop78",
+    filter: (consents, user, answers) => answers?.prop74 === "mam już fotowoltaikę",
+    //inisTrack: "cpl_coreg_magazyn_energii",
+    options: [
+      "chcę dowiedzieć się więcej o magazynie energii",
+      "nie, nie chcę",
+    ],
   },
   {
     type: "radio",
@@ -314,6 +325,18 @@ export const partners = [
     enabled: true,
   },
   {
+    id: 18,
+    name: "Colonnade Insurance Societe Anonyme",
+    label: "Colonnade Insurance Societe Anonyme, z siedzibą w Luksemburgu, Rue Jean Piret 1, L-2350 Luksemburg, Wielkie Księstwo Luksemburga",
+    enabled: true
+},
+{
+    id: 19,
+    name: "Call Center House Sp. z o.o.",
+    label: "Call Center House Sp. z o.o. Aleja T. Kościuszki 80/82, 90-437 Łódź",
+    enabled: true
+},
+  {
     id: 8,
     name: "Energia",
     label: "Energia (dostawcy energii, paliw, gazu itp.)",
@@ -360,5 +383,5 @@ export const partners = [
     name: "Ubezpieczenia",
     label: "Ubezpieczenia (osobowe, turystyczne, majątkowe itp.)",
     enabled: true
-}
+},
 ]

@@ -77,7 +77,7 @@ export interface RegistrationQuestion {
     type: 'select' | 'radio' | 'inputs'
     class?: string
     question?: string,
-    filter: ((consents: string[], user: UserData) => boolean),
+    filter: ((consents: string[], user: UserData, answers?: Record<string, string>) => boolean),
     options?: string[] | ImageOption[] | IconOption[],
     inisTrack?: string,
     onAnswer?: (answer: string | Record<string, unknown>) => Promise<void>,

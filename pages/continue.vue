@@ -155,7 +155,11 @@ const data = ref<Record<string, string>>({
 const showQuestions = ref(true);
 const selected = ref(false);
 const localKey = ref<string | undefined>();
-const questions = ref<RegistrationQuestion[]>([]);
+const consentsForFilter = ref<string[]>([]);
+const questions = computed<RegistrationQuestion[]>(() => {
+    return [...coRegistrationQuestions, ...profileQuestions]
+        .filter(q => q.filter(consentsForFilter.value, user.value, data.value));
+});
 const inisTrackedQuestions = ref<Set<number>>(new Set());
 const currentQuestion = computed(() => {
     return questions.value[currentIndex.value];
@@ -457,8 +461,7 @@ onMounted(async () => {
 
     const consents = Object.keys(user.value.consents)
         .filter(p => user.value.consents[p] === true);
-    questions.value = [...coRegistrationQuestions, ...profileQuestions]
-        .filter(q => q.filter(consents, user.value));
+    consentsForFilter.value = consents;
 
     // Initialize IMask for input fields
     nextTick(() => {
