@@ -1,7 +1,7 @@
 <template>
     <section class="flex flex-col justify-center !px-2 lg:pt-24">
         <div class="flex justify-end md:hidden"><img class="" src="/assets/images/bg3.png"></div>
-        <h3 class="font-poppins text-xl tracking-tighter mb-12 text-center">Wyświetlimy kilka nieobowiązkowych pytań od
+        <h3 class="font-poppins text-xl tracking-tighter mb-12 text-center">Wyświetlimy kilka pytań od
                 Partnerów Serwisu</h3>
         
         <div class="flex justify-center w-full my-12">
