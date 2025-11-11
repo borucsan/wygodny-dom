@@ -336,6 +336,12 @@ export const partners = [
     label: "Call Center House Sp. z o.o. Aleja T. Kościuszki 80/82, 90-437 Łódź",
     enabled: true
 },
+{
+    id: 20,
+    name: "Verda Energy Solutions sp. z o.o.",
+    label: "Verda Energy Solutions sp. z o.o. ul. Wincentego Pola 27, 44-100 Gliwice",
+    enabled: true
+},
   {
     id: 8,
     name: "Energia",
