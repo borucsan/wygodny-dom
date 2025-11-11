@@ -161,6 +161,7 @@ const questions = computed<RegistrationQuestion[]>(() => {
         .filter(q => q.filter(consentsForFilter.value, user.value, data.value));
 });
 const inisTrackedQuestions = ref<Set<number>>(new Set());
+const inisTrackedFields = ref<Set<string>>(new Set());
 const currentQuestion = computed(() => {
     return questions.value[currentIndex.value];
 });
@@ -292,63 +293,63 @@ const getFieldInfo = (fieldConfig: string | { prop: string, inisTrack?: string }
 };
 
 const triggerInisIfNeeded = async () => {
-    if (!inisTrackedQuestions.value.has(currentIndex.value)) {
-        // Handle inisTrack for different question types
-        const trackCalls: any[] = [];
+    const trackCalls: any[] = [];
 
-        if (currentQuestion.value.type === 'inputs' && currentQuestion.value.props) {
-            // Handle individual inisTrack for each input field
-            Object.entries(currentQuestion.value.props).forEach(([fieldKey, fieldConfig]) => {
-                if (fieldConfig) {
-                    const { prop, inisTrack } = getFieldInfo(fieldConfig);
-                    const propValue = data.value[prop];
-                    if (propValue && propValue.trim() && inisTrack) {
-                        trackCalls.push({
-                            actionId: actionId.value,
-                            advId: 'ef9b1ff32314ba272bc3c9100d474386',
-                            model: inisTrack
-                        });
-                    }
-                }
-            });
-
-            // Fallback to old structure global inisTrack if props are strings and no individual tracks
-            if (trackCalls.length === 0 && currentQuestion.value.inisTrack) {
-                const hasAnyValues = Object.values(currentQuestion.value.props).some(fieldConfig => {
-                    if (fieldConfig) {
-                        const { prop } = getFieldInfo(fieldConfig);
-                        return data.value[prop];
-                    }
-                    return false;
-                });
-                if (hasAnyValues) {
+    if (currentQuestion.value.type === 'inputs' && currentQuestion.value.props) {
+        // Handle individual inisTrack for each input field
+        Object.entries(currentQuestion.value.props).forEach(([fieldKey, fieldConfig]) => {
+            if (fieldConfig) {
+                const { prop, inisTrack } = getFieldInfo(fieldConfig);
+                const propValue = data.value[prop];
+                // Track only if field has value, has inisTrack, and hasn't been tracked yet
+                if (propValue && propValue.trim() && inisTrack && !inisTrackedFields.value.has(prop)) {
                     trackCalls.push({
                         actionId: actionId.value,
                         advId: 'ef9b1ff32314ba272bc3c9100d474386',
-                        model: currentQuestion.value.inisTrack
+                        model: inisTrack
                     });
+                    inisTrackedFields.value.add(prop);
                 }
             }
-        } else if (currentQuestion.value.prop && currentQuestion.value.inisTrack) {
-            // Handle single prop questions (radio, select)
-            const hasValue = !!data.value[currentQuestion.value.prop];
-            if (hasValue) {
+        });
+
+        // Fallback to old structure global inisTrack if props are strings and no individual tracks
+        if (trackCalls.length === 0 && currentQuestion.value.inisTrack && !inisTrackedQuestions.value.has(currentIndex.value)) {
+            const hasAnyValues = Object.values(currentQuestion.value.props).some(fieldConfig => {
+                if (fieldConfig) {
+                    const { prop } = getFieldInfo(fieldConfig);
+                    return data.value[prop];
+                }
+                return false;
+            });
+            if (hasAnyValues) {
                 trackCalls.push({
                     actionId: actionId.value,
                     advId: 'ef9b1ff32314ba272bc3c9100d474386',
                     model: currentQuestion.value.inisTrack
                 });
+                inisTrackedQuestions.value.add(currentIndex.value);
             }
         }
-
-        // Execute all tracking calls
-        if (trackCalls.length > 0) {
+    } else if (currentQuestion.value.prop && currentQuestion.value.inisTrack && !inisTrackedQuestions.value.has(currentIndex.value)) {
+        // Handle single prop questions (radio, select)
+        const hasValue = !!data.value[currentQuestion.value.prop];
+        if (hasValue) {
+            trackCalls.push({
+                actionId: actionId.value,
+                advId: 'ef9b1ff32314ba272bc3c9100d474386',
+                model: currentQuestion.value.inisTrack
+            });
             inisTrackedQuestions.value.add(currentIndex.value);
-            try {
-                useInis360(trackCalls);
-            } catch (error) {
-                console.error('Inis360 tracking error:', error);
-            }
+        }
+    }
+
+    // Execute all tracking calls
+    if (trackCalls.length > 0) {
+        try {
+            useInis360(trackCalls);
+        } catch (error) {
+            console.error('Inis360 tracking error:', error);
         }
     }
 }
