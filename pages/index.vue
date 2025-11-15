@@ -93,7 +93,7 @@
             </UForm>
             <UForm ref="form5"
                    class="lg:pt-24"
-                   :state="state" :validate="validateWithVuelidate2"
+                   :state="state" :validate="validateWithVuelidate4"
                    @submit="onSubmit" v-if="show && step === 5">
                 <div class="w-full max-w-[430px] flex flex-col gap-12 mb-8">
                     <h2 class="text-base lg:text-2xl font-medium">Wypełnij formularz zgłoszeniowy</h2>
@@ -232,6 +232,10 @@ const rules3 = {
 };
 
 const rules4 = {
+    email: { required: helpers.withMessage("Proszę podać prawidłowy e-mail", required), email: helpers.withMessage("Proszę podać prawidłowy e-mail", email) },
+    dob: { required: helpers.withMessage("Uczestnik musi być pełnoletni.", required), validateDate },
+    firstName: { required: helpers.withMessage("Proszę podać prawidłowe imię", and(required, minLength(1))) },
+    lastName: {},
     phone: { required: helpers.withMessage("Proszę podać prawidłowy nr tel.", required,), validPhone },
 };
 
