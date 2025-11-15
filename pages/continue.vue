@@ -21,7 +21,6 @@
 
                 <!-- Postal code and city inputs - styled like form2 -->
                 <div v-if="currentQuestion.type === 'inputs' && currentQuestion.props?.postalCode" class="w-full max-w-[430px] flex flex-col gap-12 mb-8 px-10">
-                    <div class="text-sm mb-4">Pola nieobowiązkowe</div>
                     <UFormGroup label="Kod pocztowy" name="postalCode">
                         <UInput
                             :model-value="data[getFieldInfo(currentQuestion.props!.postalCode!).prop]"
@@ -50,7 +49,6 @@
 
                 <!-- Street, house number and apartment number inputs -->
                 <div v-if="currentQuestion.type === 'inputs' && currentQuestion.props?.street" class="w-full max-w-[430px] flex flex-col gap-12 mb-8 px-10">
-                    <div class="text-sm mb-4">Pola nieobowiązkowe</div>
                     <UFormGroup label="Ulica" name="street">
                         <UInput
                             v-model="data[getFieldInfo(currentQuestion.props!.street!).prop]"
