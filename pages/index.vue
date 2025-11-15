@@ -239,11 +239,12 @@ const rules4 = {
     phone: { required: helpers.withMessage("Proszę podać prawidłowy nr tel.", required,), validPhone },
 };
 
-const scrollTo = (target: string) => {
+const scrollTo = async (target: string) => {
+    await nextTick();
     const element = document.querySelector(`#${target}`);
-    console.debug(element);
-    element?.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
-
+    if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+    }
 }
 
 const allConsents = computed<boolean>({
@@ -467,7 +468,7 @@ async function onSubmit3() {
 async function onSubmit() {
     if (state.value.consents.prop22 === false) {
         prop22Modal.value = true;
-        scrollTo("consents");
+        await scrollTo("consentsContent");
         useInis360([
             {
                 actionId: actionId.value,
