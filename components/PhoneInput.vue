@@ -101,7 +101,45 @@ const updInput = () => {
     emit('update:modelValue', mask.value.masked.value);
 }
 onMounted(() => {
-    mask.value = IMask(phoneInput.value.$el.querySelector('input'), {
+    const input = phoneInput.value.$el.querySelector('input');
+    
+    // Handle autocomplete before mask processes the value
+    input.addEventListener('input', (e: InputEvent) => {
+        const target = e.target as HTMLInputElement;
+        const value = target.value;
+        
+        // Only process autocomplete if prefix is selected (not null/...)
+        // When prefix is null, user can type full number with country code
+        if (phonePrefix.value === null) {
+            return;
+        }
+        
+        // Check if autocomplete filled in a value with country code
+        // Formats: "+XX XXX XXX XXX" or "+XXXXXXXXXXX"
+        if (value && value.startsWith('+') && value.length > 10) {
+            // Remove all spaces to get clean digits
+            const cleanValue = value.replace(/\s+/g, '');
+            
+            // Extract all digits after the +
+            const digitsOnly = cleanValue.substring(1); // Remove the +
+            
+            // Polish phone numbers have 9 digits, extract last 9 digits as the number
+            if (digitsOnly.length >= 11) { // At least 2 digits for prefix + 9 for number
+                const number = digitsOnly.slice(-9); // Last 9 digits
+                const prefixDigits = digitsOnly.slice(0, -9); // Everything before last 9 digits
+                const prefix = '+' + prefixDigits;
+                
+                // Check if prefix is valid (+ followed by 2-4 digits)
+                if (/^\+\d{2,4}$/.test(prefix)) {
+                    phonePrefix.value = prefix;
+                    // Set only the number part, let the mask format it
+                    target.value = number;
+                }
+            }
+        }
+    }, true); // Use capture phase to run before mask
+    
+    mask.value = IMask(input, {
         mask: [
             {
                 mask: '000 000 000',
