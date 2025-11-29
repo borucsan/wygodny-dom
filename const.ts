@@ -180,10 +180,10 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
   },
   {
     type: "radio",
-    question: "Czy prowadzisz działalność gospodarczą?",
+    question: "Jakie jest źródło Twojego dochodu?",
     prop: "prop68",
     filter: (consents) => ["prop22", "prop26", "prop27"].every((c) => consents.includes(c)),
-    options: ["tak", "nie"],
+    options: ["umowa o pracę", "umowa zlecenie/dzieło", "emerytura/renta", "zasiłek", "własna działalność", "inne", "brak dochodu"],
     inisTrack: "cpl_coreg_3_B2B",
   },
   {
