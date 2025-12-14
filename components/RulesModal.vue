@@ -33,27 +33,26 @@
                 <h3 class="font-bold">§2<br> Postanowienia ogólne</h3>
                 <ol class="flex flex-col gap-4 list-decimal mb-4 text-left" type="1">
                     <li>Konkurs trwa od 02.05.2025 r. do 01.05.2026 r. Uczestnicy mogą rejestrować swój udział w
-                        Konkursie do dnia 02.05.2025 r.</li>
+                        Konkursie do dnia 01.05.2026 r.</li>
                     <li>Uczestnictwo w Konkursie jest całkowicie dobrowolne.</li>
                     <li>Konkurs dla Uczestników jest bezpłatny. Organizator nie pobiera od Uczestników żadnych opłat za
                         rejestrację Uczestnika w Konkursie, jak również za sam udział w nim.</li>
-                    <li>Celem wzięcia udziału w Konkursie Uczestnik powinien odpowiedzieć na wszystkie (6, słownie:
-                        sześć) zadane pytania konkursowe zamknięte oraz jedno otwarte pytanie konkursowe, a także
-                        dokonać rejestracji poprzez wypełnienie formularza rejestracyjnego znajdującego się na
-                        internetowej stronie konkursowej pod adresem www.quiz-to-pieniadz.pl oraz potwierdzić chęć
-                        udziału w Konkursie (poprzez zaznaczenie na stronie checkboxa i kliknięcie przycisku
-                        rejestracji), jak i zapoznanie się oraz akceptację niniejszego Regulaminu i Polityki prywatności
-                        znajdującej się na internetowej stronie konkursowej. Po udzieleniu odpowiedzi na wszystkie
-                        zamknięte pytania konkursowe oraz wypełnieniu formularza rejestracyjnego i udzieleniu
-                        niezbędnych zgód Uczestnik otrzyma e-mail z linkiem potwierdzającym rejestrację. Otwarte pytanie
-                        konkursowe pojawi się po kliknięciu w link potwierdzający rejestrację. </li>
+                    <li>Celem wzięcia udziału w Konkursie Uczestnik powinien odpowiedzieć na wszystkie (3, słownie:
+                        trzy) zadane pytania konkursowe zamknięte jak najszybciej a także dokonać rejestracji poprzez
+                        wypełnienie formularza rejestracyjnego znajdującego się na internetowej stronie konkursowej pod
+                        adresem www.odbierz-nagrode.pl oraz potwierdzić chęć udziału w Konkursie (poprzez zaznaczenie
+                        na stronie checkboxa i kliknięcie przycisku rejestracji), jak i zapoznanie się oraz akceptację
+                        niniejszego Regulaminu i Polityki prywatności znajdującej się na internetowej stronie
+                        konkursowej. Po udzieleniu odpowiedzi na wszystkie zamknięte pytania konkursowe oraz wypełnieniu
+                        formularza rejestracyjnego i udzieleniu niezbędnych zgód Uczestnik otrzyma e-mail z linkiem
+                        potwierdzającym rejestrację.</li>
                     <li>Warunkiem koniecznym pomyślnej rejestracji Uczestnika w&nbsp;Konkursie jest podanie pełnych
                         i&nbsp; prawdziwych danych w&nbsp;formularzu rejestracyjnym. W&nbsp;przypadku podania przez
                         Uczestnika danych nieprawdziwych lub niepełnych Organizator jest uprawniony do wykluczenia
                         Uczestnika z&nbsp;udziału w&nbsp;Konkursie oraz do odmowy przyznania takiemu Uczestnikowi
                         nagrody.</li>
                     <li>Uczestnikowi wolno zarejestrować się w&nbsp;Konkursie tylko jeden raz używając tego samego
-                        adresu e-mail. W przypadku, gdy Uczestnik zarejestruje się drugi i&nbsp;każdy kolejny raz
+                        adresu e-mail. W przypadku, gdy Uczestnik rejestruje się drugi i&nbsp;każdy kolejny raz
                         w&nbsp;Konkursie podając ten sam adres e-mail, poprzednio udzielone przez Uczestnika odpowiedzi
                         na pytania konkursowe są zastępowane nowymi (nadpisywane, anulowane, kasowane), a&nbsp;pod uwagę
                         przy wyborze Laureatów będą brane odpowiedzi udzielone w&nbsp;późniejszym zgłoszeniu do
@@ -86,7 +85,7 @@
                         lub niemożność połączenia się z użytkownikiem telefonu (abonent poza zasięgiem, wyłączony
                         telefon, włączenie się poczty głosowej lub automatycznej sekretarki, sygnał fax).</li>
                     <li>Nagroda zostanie przesłana na wskazany przez Laureata adres, w terminie do 10 (słownie:
-                        dziesięć) dni roboczych od dnia poinformowania Laureata o wygranej.</li>
+                        dziesięć) dni roboczych od dnia poinformowania Laureata o wygranej..</li>
                     <li>Organizator nie ponosi odpowiedzialności za dokonanie przez Laureata zmiany danych (zmiana
                         adresu) uniemożliwiającą przesłanie nagrody Laureatowi, jak również za niemożność odbioru lub
                         nieodebranie nagrody, z jakiejkolwiek przyczyny leżącej po stronie Laureata. W takim przypadku
