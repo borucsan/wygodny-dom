@@ -68,11 +68,91 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
   },
   {
     type: "radio",
-    question: "Czy chcesz sprawdzić, jak działa nowoczesna telewizja oraz szybki światłowód?",
+    question: "Specjalna oferta tylko dla użytkowników konkursu! Czy chcesz sprawdzić ofertę Internetu o prędkości światła i pakietu TV nowej generacji? 📺",
     prop: "prop77",
     filter: (consents) => true,
     options: ["nie, dziękuję", "tak, chętnie dowiem się więcej"],
 },
+  {
+    type: "radio",
+    question:
+      'Lekarze bez Granic to niezależna medyczna organizacja humanitarna niosąca pomoc przy konfliktach zbrojnych, epidemiach, katastrofach naturalnych.<br>Które działania Lekarzy bez Granic chcesz wesprzeć?:',
+    prop: "prop70",
+    filter: () => true,
+    class: "in-row-images-3",
+    options: [
+      { label: "leczenie niedożywienia", img: "/img/image39.jpg" },
+      { label: "dostęp do opieki okołoporodowej", img: "/img/image31.jpg" },
+      { label: "pomoc pokrzywdzonym w konfliktach zbrojnych", img: "/img/image8.jpg" },
+      { label: "pomoc pokrzywdzonym na skutek katastrof naturalnych", img: "/img/image16.jpg" },
+      { label: "walka z chorobami zakaźnymi np. gruźlicą", img: "/img/image6.jpg" },
+      { label: "nie jestem zainteresowana", img: "/img/image36.jpg" },
+    ],
+    inisTrack: "cpl_coreg_4_LBG",
+  },
+  {
+    type: "radio",
+    question: "Czy kiedykolwiek brałeś/aś chwilówkę lub pożyczkę w banku?",
+    prop: "prop40",
+    filter: () => true,
+    options: ["tak, kredyt gotówkowy w banku", "tak, pożyczkę chwilówkę", "nie, ale rozważam to", "nie i nie zamierzam brać pożyczek"],
+    inisTrack: "cpl_profilowe_6_kredyt",
+  },
+  {
+    type: "select",
+    question: "Kiedy kończy Ci się ubezpieczenie OC samochodu?",
+    prop: "prop65",
+    filter: (consents) => ["prop22", "prop26", "prop27"].every((c) => consents.includes(c)),
+    options: [...months, "nie mam auta"],
+    inisTrack: "cpl_coreg_1_OC",
+  },
+  {
+    type: "radio",
+    question: "Chcesz płacić niższe rachunki za prąd w swoim domu? Sprawdź na jakie dotacje do fotowoltaiki możesz liczyć.",
+    prop: "prop74",
+    filter: () => true,
+    inisTrack: "cpl_coreg_9_fotowoltaika",
+    options: [
+      { label: "nie, dziękuję – nie chcę kontaktu" },
+      { label: "tak, proszę o telefon i więcej szczegółów" },
+      { label: "mam już fotowoltaikę" },
+    ] as IconOption[],
+  },
+  {
+    type: "radio",
+    question: "Chcesz, żeby Twoja fotowoltaika znów zarabiała?",
+    prop: "prop78",
+    filter: (consents, user, answers) => answers?.prop74 === "mam już fotowoltaikę",
+    //inisTrack: "cpl_coreg_magazyn_energii",
+    options: [
+      "chcę dowiedzieć się więcej o magazynie energii",
+      "nie, nie chcę",
+    ],
+  },
+  {
+    type: "radio",
+    question: "Jakie jest źródło Twojego dochodu?",
+    prop: "prop68",
+    filter: (consents) => ["prop22", "prop26", "prop27"].every((c) => consents.includes(c)),
+    options: ["umowa o pracę", "umowa zlecenie/dzieło", "emerytura/renta", "zasiłek", "własna działalność", "inne", "brak dochodu"],
+    inisTrack: "cpl_coreg_3_B2B",
+  },
+  {
+    type: "radio",
+    question: "Czy masz dzieci?",
+    prop: "prop35",
+    filter: () => true,
+    options: ["tak", "nie"],
+    inisTrack: "cpl_profilowe_13_dzieci",
+  },
+  {
+    type: "radio",
+    question: "Jakiego języka chcesz się nauczyć?",
+    prop: "prop39",
+    filter: () => true,
+    options: ["angielskiego", "niemieckiego", "włoskiego", "francuskiego", "hiszpańskiego", "innego", "nauka nie jest moim priorytetem"],
+    inisTrack: "cpl_profilowe_5_jezyk",
+  },
   {
     type: "select",
     question: "Kiedy kończy Ci się umowa z operatorem GSM?",
@@ -117,37 +197,6 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
   },
   {
     type: "radio",
-    question: "Chcesz płacić niższe rachunki za prąd w swoim domu? Sprawdź na jakie dotacje do fotowoltaiki możesz liczyć.",
-    prop: "prop74",
-    filter: () => true,
-    inisTrack: "cpl_coreg_9_fotowoltaika",
-    options: [
-      { label: "nie, dziękuję – nie chcę kontaktu" },
-      { label: "tak, proszę o telefon i więcej szczegółów" },
-      { label: "mam już fotowoltaikę" },
-    ] as IconOption[],
-  },
-  {
-    type: "radio",
-    question: "Chcesz, żeby Twoja fotowoltaika znów zarabiała?",
-    prop: "prop78",
-    filter: (consents, user, answers) => answers?.prop74 === "mam już fotowoltaikę",
-    //inisTrack: "cpl_coreg_magazyn_energii",
-    options: [
-      "chcę dowiedzieć się więcej o magazynie energii",
-      "nie, nie chcę",
-    ],
-  },
-  {
-    type: "radio",
-    question: "Czy kiedykolwiek brałeś/aś chwilówkę lub pożyczkę w banku?",
-    prop: "prop40",
-    filter: () => true,
-    options: ["tak, kredyt gotówkowy w banku", "tak, pożyczkę chwilówkę", "nie, ale rozważam to", "nie i nie zamierzam brać pożyczek"],
-    inisTrack: "cpl_profilowe_6_kredyt",
-  },
-  {
-    type: "radio",
     question: "Czy chcesz nauczyć się inwestować?",
     prop: "prop69",
     filter: () => false,
@@ -170,50 +219,9 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
       class: 'w-48 h-auto'
     }
   },
-  {
-    type: "select",
-    question: "Kiedy kończy Ci się ubezpieczenie OC samochodu?",
-    prop: "prop65",
-    filter: (consents) => ["prop22", "prop26", "prop27"].every((c) => consents.includes(c)),
-    options: [...months, "nie mam auta"],
-    inisTrack: "cpl_coreg_1_OC",
-  },
-  {
-    type: "radio",
-    question: "Jakie jest źródło Twojego dochodu?",
-    prop: "prop68",
-    filter: (consents) => ["prop22", "prop26", "prop27"].every((c) => consents.includes(c)),
-    options: ["umowa o pracę", "umowa zlecenie/dzieło", "emerytura/renta", "zasiłek", "własna działalność", "inne", "brak dochodu"],
-    inisTrack: "cpl_coreg_3_B2B",
-  },
-  {
-    type: "radio",
-    question:
-      'Lekarze bez Granic to niezależna medyczna organizacja humanitarna niosąca pomoc przy konfliktach zbrojnych, epidemiach, katastrofach naturalnych.<br>Które działania Lekarzy bez Granic chcesz wesprzeć?:',
-    prop: "prop70",
-    filter: () => true,
-    class: "in-row-images-3",
-    options: [
-      { label: "leczenie niedożywienia", img: "/img/image39.jpg" },
-      { label: "dostęp do opieki okołoporodowej", img: "/img/image31.jpg" },
-      { label: "pomoc pokrzywdzonym w konfliktach zbrojnych", img: "/img/image8.jpg" },
-      { label: "pomoc pokrzywdzonym na skutek katastrof naturalnych", img: "/img/image16.jpg" },
-      { label: "walka z chorobami zakaźnymi np. gruźlicą", img: "/img/image6.jpg" },
-      { label: "nie jestem zainteresowana", img: "/img/image36.jpg" },
-    ],
-    inisTrack: "cpl_coreg_4_LBG",
-  },
 ];
 
 export const profileQuestions: RegistrationQuestion[] = [
-  {
-    type: "radio",
-    question: "Czy masz dzieci?",
-    prop: "prop35",
-    filter: () => true,
-    options: ["tak", "nie"],
-    inisTrack: "cpl_profilowe_13_dzieci",
-  },
   {
     type: "radio",
     question: "Czy masz ogród?",
@@ -245,21 +253,6 @@ export const profileQuestions: RegistrationQuestion[] = [
     prop: "prop38",
     filter: (consents) => ["prop26", "prop27"].every((c) => !consents.includes(c)),
     options: ["podstawowe", "gimnazjalne", "zasadnicze", "średnie", "wyższe"],
-  },
-  {
-    type: "radio",
-    question: "Jakiego języka chcesz się jeszcze nauczyć lub chociaż podszkolić?",
-    prop: "prop39",
-    inisTrack: "cpl_profilowe_5_jezyk",
-    filter: (consents) => ["prop26", "prop27"].every((c) => !consents.includes(c)),
-    options: [
-      "angielskiego",
-      "hiszpańskiego",
-      "niemieckiego",
-      "włoskiego",
-      "innego",
-      "nie chcę się uczyć języków",
-    ],
   },
 ];
 
@@ -340,6 +333,12 @@ export const partners = [
     id: 20,
     name: "Verda Energy Solutions sp. z o.o.",
     label: "Verda Energy Solutions sp. z o.o. ul. Wincentego Pola 27, 44-100 Gliwice",
+    enabled: true
+},
+{
+    id: 21,
+    name: "Sanmarks Sp. z o.o.",
+    label: "Sanmarks Sp. z o.o. ul. Słowackiego 36, Lubaczów",
     enabled: true
 },
   {

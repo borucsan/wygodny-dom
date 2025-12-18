@@ -20,6 +20,8 @@
     <PrivacyModal />
     <DataModal />
     <PartnersModal />
+    <!-- RevHunter Pixel -->
+    <img src="https://app.revhunter.tech/px/69402037d0117?type=start&product={productid}&category={categoryid}" width="0" height="0" style="display: none;" alt="" />
   </main>
 </template>
 <script setup lang="ts">
