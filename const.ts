@@ -157,7 +157,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     type: "select",
     question: "Kiedy kończy Ci się umowa z operatorem GSM?",
     prop: "prop66",
-    filter: (consents) => ["prop22", "prop26", "prop27"].every((c) => consents.includes(c)),
+    filter: (consents) => ["prop22", "prop26", "prop27"].every((c) => false),
     options: [...months, "mam telefon na kartę", "mam umowę na czas nieokreślony"],
     inisTrack: "cpl_coreg_2_GSM",
   },
