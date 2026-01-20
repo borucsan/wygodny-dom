@@ -66,6 +66,8 @@
                                 placeholder="Wprowadź adres e-mail" size="md" color="gray" variant="outline"
                                 autocomplete="email"
                                 @blur="blurEvents.email" />
+                        <div v-if="emailTouched && !emailValidation.isValid && emailValidation.message" class="dark:text-red-400 pl-4 font-barlow !text-xxs leading-[1.2] text-error text-left mt-1 text-sm text-xxs" v-html="emailValidation.message"></div>
+                        <div v-if="emailTouched && emailValidation.hasWarning && warningShown && emailValidation.message" class="dark:text-red-400 pl-4 font-barlow !text-xxs leading-[1.2] text-error text-left mt-1 text-sm text-xxs" v-html="emailValidation.message"></div>
                     </UFormGroup>
                 </div>
                 <div class="flex justify-start w-full max-w-[430px] mb-6">
@@ -159,13 +161,14 @@
 </template>
 <script setup lang="ts">
 import useVuelidate, { type ValidationRuleWithoutParams } from '@vuelidate/core'
-import { required, email, helpers, minLength, and } from '@vuelidate/validators'
+import { required, helpers, minLength, and } from '@vuelidate/validators'
 import { isAfter, isBefore, isEqual, parse, sub } from 'date-fns'
 import type { UserData } from '~/types';
 import { capitalizeAllWords, capitalizeFirstLetter } from '~/utils';
 import { IMask } from 'vue-imask';
 import { last } from 'lodash-es';
 import { partners } from '~/const';
+import { validateEmail, type EmailValidationResult } from '~/composables/useEmailValidation';
 
 const actionId = useActionId();
 actionId.value = Date.now().toString();
@@ -188,6 +191,14 @@ const options = { baseURL: config.public.apiBase };
 const prop22Modal = ref(false);
 const showResult = ref<"success" | "error" | null>(null);
 const partnersShow = ref(false);
+const emailValidation = ref<EmailValidationResult>({
+    isValid: true,
+    hasWarning: false,
+    message: null
+});
+const emailTouched = ref(false);
+const warningShown = ref(false);
+const emailSubmitLocked = ref(false);
 
 const firstNameInput = ref();
 const lastNameInput = ref();
@@ -221,17 +232,15 @@ const rules1 = {
     lastName: {},
 };
 const rules2 = {
-    email: { required: helpers.withMessage("Proszę podać prawidłowy e-mail", required), email: helpers.withMessage("Proszę podać prawidłowy e-mail", email) },
+    email: { required: helpers.withMessage("Proszę podać prawidłowy e-mail", required) },
     firstName: { required: helpers.withMessage("Proszę podać prawidłowe imię", and(required, minLength(1))) },
     lastName: {},
 };
 const rules3 = {
-    email: { required: helpers.withMessage("Proszę podać prawidłowy e-mail", required), email: helpers.withMessage("Proszę podać prawidłowy e-mail", email) },
     dob: { required: helpers.withMessage("Uczestnik musi być pełnoletni.", required), validateDate },
 };
 
 const rules4 = {
-    email: { required: helpers.withMessage("Proszę podać prawidłowy e-mail", required), email: helpers.withMessage("Proszę podać prawidłowy e-mail", email) },
     dob: { required: helpers.withMessage("Uczestnik musi być pełnoletni.", required), validateDate },
     firstName: { required: helpers.withMessage("Proszę podać prawidłowe imię", and(required, minLength(1))) },
     lastName: {},
@@ -399,6 +408,17 @@ const blurEvents = ref({
     }
 });
 
+watch(() => state.value.email, (value) => {
+    if (emailTouched.value) {
+        emailValidation.value = validateEmail(value ?? "", {message: "Upewnij się, że adres e-mail jest poprawny."});
+        if (!emailValidation.value.hasWarning) {
+            warningShown.value = false;
+        }
+    } else {
+        emailValidation.value = { isValid: true, hasWarning: false, message: null };
+    }
+});
+
 async function validateWithVuelidate1() {
     v1.value.$touch()
     await v1.value.$validate()
@@ -457,6 +477,30 @@ async function onSubmit1() {
     }, 300);
 }
 async function onSubmit2() {
+    if (emailSubmitLocked.value) {
+        return;
+    }
+    if (!emailTouched.value) {
+        emailTouched.value = true;
+        emailValidation.value = validateEmail(state.value.email ?? "", {message: "Upewnij się, że adres e-mail jest poprawny."});
+        if (!emailValidation.value.isValid) {
+            emailSubmitLocked.value = true;
+            setTimeout(() => {
+                emailSubmitLocked.value = false;
+            }, 3000);
+            return;
+        }
+        if (emailValidation.value.hasWarning) {
+            warningShown.value = true;
+            emailSubmitLocked.value = true;
+            setTimeout(() => {
+                emailSubmitLocked.value = false;
+            }, 3000);
+            return;
+        }
+    } else if (warningShown.value) {
+        warningShown.value = false;
+    }
     show.value = false;
     setTimeout(() => {
         show.value = true;
@@ -581,6 +625,10 @@ onMounted(() => {
             model: 'suc_strona_glowna'
         }
     );
+    
+    if (state.value.email?.length) {
+        emailValidation.value = validateEmail(state.value.email, {message: "Upewnij się, że e-mail jest poprawny"});
+    }
     
 });
 
