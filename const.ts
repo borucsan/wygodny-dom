@@ -68,7 +68,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
   },
   {
     type: "radio",
-    question: "Specjalna oferta tylko dla użytkowników konkursu! Czy chcesz sprawdzić ofertę Internetu o prędkości światła i pakietu TV nowej generacji? 📺",
+    question: "Czy chcesz się dowiedzieć jak działa szybki światłowód lub nowoczesna telewizja w Play? 📺",
     prop: "prop77",
     filter: (consents) => true,
     options: ["nie, dziękuję", "tak, chętnie dowiem się więcej"],
