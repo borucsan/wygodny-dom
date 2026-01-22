@@ -147,10 +147,10 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
   },
   {
     type: "radio",
-    question: "Jakiego języka chcesz się nauczyć?",
+    question: "Czy chcesz płynnie mówić po angielsku?",
     prop: "prop39",
     filter: () => true,
-    options: ["angielskiego", "niemieckiego", "włoskiego", "francuskiego", "hiszpańskiego", "innego", "nauka nie jest moim priorytetem"],
+    options: ["tak, chcę", "nie, nie jest to moim priorytetem"],
     inisTrack: "cpl_profilowe_5_jezyk",
   },
   {
