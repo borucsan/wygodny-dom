@@ -24,7 +24,7 @@
                 <div class="flex md:hidden"><img class="w-full"
                          src="/assets/images/bg2.png" alt=""></div>
             </div>
-            
+
             <UForm ref="form2"
                    class="lg:pt-24 px-4 sm:px-6 lg:px-16"
                    :state="state" :validate="validateWithVuelidate1"
@@ -198,7 +198,6 @@ const emailValidation = ref<EmailValidationResult>({
 });
 const emailTouched = ref(false);
 const warningShown = ref(false);
-const emailSubmitLocked = ref(false);
 
 const firstNameInput = ref();
 const lastNameInput = ref();
@@ -266,7 +265,7 @@ const allConsents = computed<boolean>({
         if (!state.value.partners) {
             state.value.partners = [];
         }
-        
+
         if (val) {
             state.value.partners = partners.map((partner) => partner.name);
         } else {
@@ -283,7 +282,7 @@ const selectPartner = (partner: { name: string }) => {
     if (!state.value.partners) {
         state.value.partners = [];
     }
-    
+
     if (state.value.partners.includes(partner.name)) {
         state.value.partners = state.value.partners.filter((p) => p !== partner.name);
     } else {
@@ -301,7 +300,7 @@ const selectAllPartners = (val: boolean) => {
     if (!state.value.partners) {
         state.value.partners = [];
     }
-    
+
     if(val) {
         state.value.partners = partners.map((partner) => partner.name);
     } else {
@@ -477,25 +476,14 @@ async function onSubmit1() {
     }, 300);
 }
 async function onSubmit2() {
-    if (emailSubmitLocked.value) {
-        return;
-    }
     if (!emailTouched.value) {
         emailTouched.value = true;
         emailValidation.value = validateEmail(state.value.email ?? "", {message: "Upewnij się, że adres e-mail jest poprawny."});
         if (!emailValidation.value.isValid) {
-            emailSubmitLocked.value = true;
-            setTimeout(() => {
-                emailSubmitLocked.value = false;
-            }, 3000);
             return;
         }
         if (emailValidation.value.hasWarning) {
             warningShown.value = true;
-            emailSubmitLocked.value = true;
-            setTimeout(() => {
-                emailSubmitLocked.value = false;
-            }, 3000);
             return;
         }
     } else if (warningShown.value) {
@@ -625,11 +613,11 @@ onMounted(() => {
             model: 'suc_strona_glowna'
         }
     );
-    
+
     if (state.value.email?.length) {
         emailValidation.value = validateEmail(state.value.email, {message: "Upewnij się, że e-mail jest poprawny"});
     }
-    
+
 });
 
 </script>
