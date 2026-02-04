@@ -28,6 +28,9 @@
                             <span class="text-sm">PS. Jeżeli nie masz emaila w&nbsp;skrzynce głównej, sprawdź inne foldery i&nbsp;spam.</span>
                             <a target="_blank" href="https://system360.inistrack.net/d/inckis.php?inisTrack=d2N-1E-LeG-&zoneid=1773201&OXLCA=1&adf=eyJzdm4xIjo1NzQ0Mywic3YxIjoiQjJDIiwic3Y1IjoiS08yMDUiLCJzdjYiOiJLTzk2In0=" class="flex justify-center">
                                 <img src="assets/images/banner.png" alt="" class="max-w-[410px]">
+                            </a><br><br>
+                            <a target="_blank" href="https://zrabatowani.pl/#oferty" class="flex justify-center">
+                                <img src="assets/images/banner2.png" alt="" class="max-w-[410px]">
                             </a>
                         </div>
 
