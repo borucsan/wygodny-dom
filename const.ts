@@ -68,10 +68,10 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
   },
   {
     type: "radio",
-    question: "Czy chcesz się dowiedzieć jak działa szybki światłowód lub nowoczesna telewizja w Play? 📺",
+    question: "Chcesz Internet, który nigdy nie zwalnia? 🛜 Odkryj moc światłowodu i TV w Play! 📺",
     prop: "prop77",
     filter: (consents) => true,
-    options: ["nie, dziękuję", "tak, chętnie dowiem się więcej"],
+    options: ["nie, mój Internet jest OK🚂", "tak, sprawdźmy to! 🚀"],
 },
   {
     type: "radio",
