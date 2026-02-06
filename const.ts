@@ -147,7 +147,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
   },
   {
     type: "radio",
-    question: "Czy chcesz płynnie mówić po angielsku?",
+    question: "Czy chcesz płynnie mówić po angielsku? 🗽🌍💂",
     prop: "prop39",
     filter: () => true,
     options: ["tak, chcę", "nie, nie jest to moim priorytetem"],
@@ -346,6 +346,18 @@ export const partners = [
         id: 15,
         name: "Sanmarks Sp. z o.o.",
         label: "Sanmarks Sp. z o.o. ul. Słowackiego 36, Lubaczów",
+        enabled: true
+    },
+  {
+        id: 16,
+        name: "Loando Direct Sp. z o.o.",
+        label: "Loando Direct Sp. z o.o. Aleje Jerozolimskie 123A, 02-017 Warszawa, Polska",
+        enabled: true
+    },
+  {
+        id: 17,
+        name: "CC POINT Sp. z o.o.",
+        label: "CC POINT Sp. z o.o. ul. Aleja T. Kościuszki nr 80/82, 90-437 Łódź",
         enabled: true
     }
 ];
