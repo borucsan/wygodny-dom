@@ -72,6 +72,14 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     prop: "prop77",
     filter: (consents) => true,
     options: ["nie, mój Internet jest OK🚂", "tak, sprawdźmy to! 🚀"],
+   
+},
+   {
+    type: "radio",
+    question: "Ile osób w Twoim domu korzysta z telefonu komórkowego? 📱",
+    prop: "prop79",
+    filter: (consents) => true,
+    options: ["tylko ja", "dwie", "trzy", "więcej"],
 },
   {
     type: "radio",
@@ -99,18 +107,24 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     inisTrack: "cpl_profilowe_6_kredyt",
   },
   {
-    type: "select",
+    type: "radio", 
     question: "Kiedy kończy Ci się ubezpieczenie OC samochodu?",
     prop: "prop65",
     filter: (consents) => ["prop22", "prop26", "prop27"].every((c) => consents.includes(c)),
-    options: [...months, "nie mam auta"],
+    class: "in-row-3", 
+    options: [
+      "styczeń", "luty", "marzec", 
+      "kwiecień", "maj", "czerwiec", 
+      "lipiec", "sierpień", "wrzesień", 
+      "październik", "listopad", "grudzień",
+    ],
     inisTrack: "cpl_coreg_1_OC",
   },
   {
     type: "radio",
     question: "Chcesz płacić niższe rachunki za prąd w swoim domu? Sprawdź na jakie dotacje do fotowoltaiki możesz liczyć.",
     prop: "prop74",
-    filter: () => true,
+    filter: () => false,
     inisTrack: "cpl_coreg_9_fotowoltaika",
     options: [
       { label: "nie, dziękuję – nie chcę kontaktu" },
@@ -141,7 +155,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     type: "radio",
     question: "Czy masz dzieci?",
     prop: "prop35",
-    filter: () => true,
+    filter: () => false,
     options: ["tak", "nie"],
     inisTrack: "cpl_profilowe_13_dzieci",
   },
