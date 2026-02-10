@@ -111,7 +111,6 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question: "Kiedy kończy Ci się ubezpieczenie OC samochodu?",
     prop: "prop65",
     filter: (consents) => ["prop22", "prop26", "prop27"].every((c) => consents.includes(c)),
-    class: "in-row2", 
     options: [
       "styczeń", "luty", "marzec", 
       "kwiecień", "maj", "czerwiec", 
