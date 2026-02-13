@@ -68,18 +68,17 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
   },
   {
     type: "radio",
-    question: "Chcesz Internet, który nigdy nie zwalnia? 🛜 Odkryj moc światłowodu i TV w Play! 📺",
+    question: "Szukasz rozrywki bez ograniczeń? 🎬 Odkryj pakiety nowoczesnej TV od Play 📺",
     prop: "prop77",
     filter: (consents) => true,
-    options: ["nie, mój Internet jest OK🚂", "tak, sprawdźmy to! 🚀"],
-   
+    options: ["Odkryj teraz", "Nie, dziękuję"], 
 },
    {
     type: "radio",
-    question: "Ile osób w Twoim domu korzysta z telefonu komórkowego? 📱",
+    question: "Czy Twój obecny operator GSM spełnia wszystkie Twoje potrzeby? 📱",
     prop: "prop79",
     filter: (consents) => true,
-    options: ["tylko ja", "dwie", "trzy", "więcej"],
+    options: ["Tak i nie planuję go zmieniać", "Nie, chcę spróbować czegoś innego", "Brakuje mi dopasowanej oferty"],
 },
   {
     type: "radio",
@@ -370,6 +369,12 @@ export const partners = [
         id: 17,
         name: "CC POINT Sp. z o.o.",
         label: "CC POINT Sp. z o.o. ul. Aleja T. Kościuszki nr 80/82, 90-437 Łódź",
+        enabled: true
+    },
+    {
+        id: 18,
+        name: "Confronter Sp. z o.o.",
+        label: "Confronter Sp. z o.o. ul. Dunikowskiego 10, 44-100 Gliwice",
         enabled: true
     }
 ];
