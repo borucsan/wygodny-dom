@@ -30,9 +30,9 @@
                             class="flex justify-center">
                                 <img src="assets/images/banner.png" alt="" class="max-w-[410px] w-full">
                             </a><br><br>
-                            <a target="_blank" href="https://zrabatowani.pl/#oferty" class="flex justify-center">
+                            <!-- <a target="_blank" href="https://zrabatowani.pl/#oferty" class="flex justify-center">
                                 <img src="assets/images/banner2.png" alt="" class="max-w-[410px] w-full">
-                            </a>
+                            </a> -->
                         </div>
 
                     </TransitionFade>
