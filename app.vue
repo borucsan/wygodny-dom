@@ -140,7 +140,7 @@ tags.async=!0,tags.src="https://inis.containers.piwik.pro/"+id+".js"+qPString,sc
     } : {},
     {
       type: "text/javascript",
-      src: 'https://wl.wniosker.pl/app/wniosker/b6c61c14d1f2b7098ff99617da57a2ed.js'
+      src: 'https://wl.wniosker.pl/app/wniosker/46582d1b59f224f694558a658061bbef.js'
     }
   ],
   noscript: [
