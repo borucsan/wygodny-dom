@@ -74,7 +74,7 @@ export interface RegistrationQuestion {
         houseNumber?: string | { prop: string, inisTrack?: string },
         apartmentNumber?: string | { prop: string, inisTrack?: string }
     }
-    type: 'select' | 'radio' | 'inputs'
+    type: 'select' | 'radio' | 'inputs' | 'component'
     class?: string
     question?: string,
     filter: ((consents: string[], user: UserData, answers?: Record<string, string>) => boolean),
@@ -85,4 +85,5 @@ export interface RegistrationQuestion {
         src: string,
         class?: string
     }
+    component?: () => Promise<any>
 }

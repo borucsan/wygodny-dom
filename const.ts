@@ -156,6 +156,12 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     inisTrack: "cpl_coreg_3_B2B",
   },
   {
+    type: 'component',
+    component: () => import('~/components/Loando.vue'),
+    filter: (consents, user, data) => true,
+    options: [],
+},
+  {
     type: "radio",
     question: "Czy masz dzieci?",
     prop: "prop35",

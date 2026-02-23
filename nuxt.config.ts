@@ -57,5 +57,12 @@ export default defineNuxtConfig({
       apiBase: process.env.ENV === 'production' ? 'https://wygodny-dom.pl/' : process.env.ENV === 'staging' ? 'https://wygodny-dom.dkarwot.me/' : 'http://localhost:3666/public/',
     }
   },
+
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag === 'wniosker-app'
+    }
+  },
+
   compatibilityDate: '2024-07-23'
 })

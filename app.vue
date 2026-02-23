@@ -137,7 +137,11 @@ tags.async=!0,tags.src="https://inis.containers.piwik.pro/"+id+".js"+qPString,sc
         s.src = "https://" + l + "/mgsensor.js?d=" + dt;
         n.parentNode.insertBefore(s, n);
     })();`
-    } : {}
+    } : {},
+    {
+      type: "text/javascript",
+      src: 'https://wl.wniosker.pl/app/wniosker/b6c61c14d1f2b7098ff99617da57a2ed.js'
+    }
   ],
   noscript: [
     useEnv().value === 'prod' ? {

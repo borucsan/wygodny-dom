@@ -4,20 +4,26 @@
         <h2 class="text-base lg:text-2xl font-medium text-center">Pytania Partnerów Serwisu</h2>
         <TransitionFade :duration="500" @after-leave="showQuestions = true">
             <form class="h-full flex flex-col flex-wrap pt-8 md:pt-24" v-if="showQuestions && currentQuestion">
-                <!-- Show question text for non-inputs types -->
-                <div class="mb-5 text-md lg:text-xl font-bold px-10" v-if="currentQuestion.type !== 'inputs' && currentQuestion.question" v-html="currentQuestion.question"></div>
-
-                <!-- Add question image -->
-                <div v-if="currentQuestion.image" class="flex justify-center mb-5">
-                    <img :src="currentQuestion.image.src" :class="currentQuestion.image.class || 'w-48 h-auto'" :alt="currentQuestion.question">
+                <!-- Component type -->
+                <div v-if="currentQuestion.type === 'component'" class="w-full px-10">
+                    <component :is="loadedComponent" @go-next="saveAndGoNextLazy(currentQuestion)" v-if="loadedComponent" />
                 </div>
+                
+                <!-- Show question text for non-inputs and non-component types -->
+                <div v-else>
+                    <div class="mb-5 text-md lg:text-xl font-bold px-10" v-if="currentQuestion.type !== 'inputs' && currentQuestion.question" v-html="currentQuestion.question"></div>
 
-                <USelect v-if="currentQuestion.type === 'select'"
-                         :value="getSelectValue()"
-                         :model-value="getSelectValue()"
-                         @update:model-value="handleSelectChange($event)"
-                         :options="getSelectOptions()"
-                         class="relative max-w-[250px] w-full self-center" />
+                    <!-- Add question image -->
+                    <div v-if="currentQuestion.image" class="flex justify-center mb-5">
+                        <img :src="currentQuestion.image.src" :class="currentQuestion.image.class || 'w-48 h-auto'" :alt="currentQuestion.question">
+                    </div>
+
+                    <USelect v-if="currentQuestion.type === 'select'"
+                             :value="getSelectValue()"
+                             :model-value="getSelectValue()"
+                             @update:model-value="handleSelectChange($event)"
+                             :options="getSelectOptions()"
+                             class="relative max-w-[250px] w-full self-center" />
 
                 <!-- Postal code and city inputs - styled like form2 -->
                 <div v-if="currentQuestion.type === 'inputs' && currentQuestion.props?.postalCode" class="w-full max-w-[430px] flex flex-col gap-12 mb-8 px-10">
@@ -124,10 +130,11 @@
                         </li>
                     </ul>
                 </div>
-                <div class="flex justify-center w-full my-12">
+                <div class="flex justify-center w-full my-12" v-if="currentQuestion.type !== 'component'">
                     <UButton type="button" color="black" size="md" :disabled="selected" @click="saveAndGoNextLazy(currentQuestion)">
                         Dalej
                     </UButton>
+                </div>
                 </div>
             </form>
         </TransitionFade>
@@ -154,6 +161,7 @@ const showQuestions = ref(true);
 const selected = ref(false);
 const localKey = ref<string | undefined>();
 const consentsForFilter = ref<string[]>([]);
+const loadedComponent = shallowRef<any>(null);
 const questions = computed<RegistrationQuestion[]>(() => {
     return [...coRegistrationQuestions, ...profileQuestions]
         .filter(q => q.filter(consentsForFilter.value, user.value, data.value));
@@ -164,6 +172,16 @@ const currentQuestion = computed(() => {
     return questions.value[currentIndex.value];
 });
 const actionId = useActionId();
+
+// Watch for currentQuestion changes and load component if needed
+watch(currentQuestion, async (newQuestion) => {
+    if (newQuestion?.type === 'component' && newQuestion.component) {
+        const componentModule = await newQuestion.component();
+        loadedComponent.value = componentModule.default;
+    } else {
+        loadedComponent.value = null;
+    }
+}, { immediate: true });
 
 // Input refs and masks for validation
 const postalCodeInput = ref();
