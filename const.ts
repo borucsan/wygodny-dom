@@ -89,6 +89,14 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
 },
   {
     type: "radio",
+    question: "Nasz konsultant zadzwoni do Ciebie w celu przekazania dalszych szczegółów - czy potwierdzasz chęć zapisu?",
+    prop: "prop56",
+    filter: (consents, user, answers) =>
+      !!answers?.prop49 && answers.prop49 !== "Nie jestem zainteresowana/y",
+    options: ["tak", "nie"],
+  },
+  {
+    type: "radio",
     question:
       'Lekarze bez Granic to niezależna medyczna organizacja humanitarna niosąca pomoc przy konfliktach zbrojnych, epidemiach, katastrofach naturalnych.<br>Które działania Lekarzy bez Granic chcesz wesprzeć?:',
     prop: "prop70",
