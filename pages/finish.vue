@@ -28,6 +28,7 @@
                             <span class="text-sm">PS. Jeżeli nie masz emaila w&nbsp;skrzynce głównej, sprawdź inne foldery i&nbsp;spam.</span>
                             <a target="_blank" href="http://tracking.affiliate44.com/aff_c?offer_id=1635&aff_id=2796&file_id=77000"
                             class="flex justify-center">
+                                    <br>
                                 <img src="assets/images/nationale.png" alt="" class="max-w-[410px] w-full">
                             </a><br><br>
                             <!-- <a target="_blank" href="https://zrabatowani.pl/#oferty" class="flex justify-center">
