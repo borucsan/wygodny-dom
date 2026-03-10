@@ -85,7 +85,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question: "Umawiamy jazdy testowe topowych marek, która z nich trafia w Twój gust?",
     prop: "prop49",
     filter: (consents) => true,
-    options: ["Toyota", "Nissan", "Mitsubishi", "Mazda", "Audi", "BMW", "Inna", "Nie jestem zainteresowana/y"], 
+    options: ["Toyota", "Nissan", "Mitsubishi", "Audi", "Dacia", "Hyundai", "Inna", "Samochód elektryczny", "Nie jestem zainteresowany/a"], 
 },
   {
     type: "radio",
@@ -120,6 +120,14 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     options: ["tak, kredyt gotówkowy w banku", "tak, pożyczkę chwilówkę", "nie, ale rozważam to", "nie i nie zamierzam brać pożyczek"],
     inisTrack: "cpl_profilowe_6_kredyt",
   },
+  {
+        type: "radio",
+        question: 'Chcesz bezpłatnie sprawdzić swój poziom angielskiego i poznać ofertę Tutlo? 🗽🌍💂',
+        prop: 'prop39',
+        filter: (consents, user, data) => true,
+        options: ['Tak, chcę sprawdzić swój angielski', 'Chcę otrzymać informację o aktualnych promocjach', 'Nie jestem zainteresowany'],
+        inisTrack: 'cpl_profilowe_5_jezyk'
+    },
   {
     type: "radio", 
     question: "Kiedy kończy Ci się ubezpieczenie OC samochodu?",
