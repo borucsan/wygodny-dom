@@ -71,7 +71,8 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question: "Hit cenowy <b> Tak O! </b> <br> Smartfon z abonamentem już <b> od 59 zł/mies. z rabatami </b>",
     prop: "prop80",
     filter: (consents) => true,
-    options: ["chcę się dowiedzieć więcej", "nie interesuje mnie to"], 
+    options: ["chcę się dowiedzieć więcej", "nie interesuje mnie to"]
+  },
   {
     type: "radio",
     question: "Szukasz rozrywki bez ograniczeń? 🎬 Odkryj pakiety nowoczesnej TV od Play 📺",
