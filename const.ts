@@ -68,7 +68,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
   },
   {
     type: "radio",
-    question: "Hit cenowy <b> Tak O! </b> <br> Smartfon z abonamentem już <b> od 59 zł/mies. z rabatami </b>",
+    question: "Hit cenowy <b class="text-orange-500"> Tak O!</b> <br> Smartfon z abonamentem już <b class="text-orange-500"> od 59 zł/mies. z rabatami</b>",
     prop: "prop80",
     filter: (consents) => true,
     options: ["chcę się dowiedzieć więcej", "nie interesuje mnie to"]
