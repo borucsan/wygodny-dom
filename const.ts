@@ -85,7 +85,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question: "Kiedy kończy Ci się umowa z operatorem GSM?",
     prop: "prop66",
     filter: (consents) => ["prop22", "prop26", "prop27"].every((c) => true),
-    options: [...months, "mam telefon na kartę", "mam umowę na czas nieokreślony"],
+    options: [...months, "mam telefon na kartę", "mam umowę na czas nieokreślony", "nie pamiętam"],
     inisTrack: "cpl_coreg_2_GSM",
   },
    {
@@ -100,7 +100,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question: "Umawiamy jazdy testowe topowych marek, która z nich trafia w Twój gust?",
     prop: "prop49",
     filter: (consents) => true,
-    options: ["Toyota", "Nissan", "Mitsubishi", "Audi", "Dacia", "Hyundai", "Inna", "Samochód elektryczny", "Nie jestem zainteresowany/a"], 
+    options: ["Toyota", "Nissan", "Mitsubishi", "Dacia", "Hyundai", "Inna", "Samochód elektryczny", "marki chińskie /(BYD, MG, Omoda itp./)", "nie jestem zainteresowany/a"], 
 },
   {
     type: "radio",
@@ -139,8 +139,8 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
         type: "radio",
         question: 'Chcesz bezpłatnie sprawdzić swój poziom angielskiego i poznać ofertę Tutlo? 🗽🌍💂',
         prop: 'prop39',
-        filter: (consents, user, data) => true,
-        options: ['Tak, chcę sprawdzić swój angielski', 'Chcę otrzymać informację o aktualnych promocjach', 'Nie jestem zainteresowany'],
+        filter: (consents, user, data) => false,
+        options: ['tak, chcę sprawdzić swój angielski', 'chcę otrzymać informację o aktualnych promocjach', 'nie jestem zainteresowany'],
         inisTrack: 'cpl_profilowe_5_jezyk'
     },
   {
@@ -200,15 +200,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     options: ["tak", "nie"],
     inisTrack: "cpl_profilowe_13_dzieci",
   },
-  {
-    type: "radio",
-    question: "Czy chcesz płynnie mówić po angielsku? 🗽🌍💂",
-    prop: "prop39",
-    filter: () => false,
-    options: ["tak, chcę", "nie, nie jest to moim priorytetem"],
-    inisTrack: "cpl_profilowe_5_jezyk",
-  },
-  {
+   {
     type: "radio",
     question: "Czy chcesz przetestować nowoczesne aparaty słuchowe za darmo?",
     prop: "prop67",
