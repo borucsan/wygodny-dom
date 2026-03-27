@@ -100,7 +100,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question: "Umawiamy jazdy testowe topowych marek, która z nich trafia w Twój gust?",
     prop: "prop49",
     filter: (consents) => true,
-    options: ["Toyota", "Nissan", "Mitsubishi", "Dacia", "Hyundai", "Inna", "Samochód elektryczny", "marki chińskie /(BYD, MG, Omoda itp./)", "nie jestem zainteresowany/a"], 
+    options: ["Toyota", "Nissan", "Mitsubishi", "Dacia", "Hyundai", "Inna", "Samochód elektryczny", "marki chińskie (BYD, MG, Omoda itp.)", "nie jestem zainteresowany/a"], 
 },
   {
     type: "radio",
