@@ -3,7 +3,7 @@
         <div class="flex justify-end md:hidden"><img class="" src="/assets/images/bg3.png"></div>
         <h2 class="text-base lg:text-2xl font-medium text-center">Pytania Partnerów Serwisu</h2>
         <TransitionFade :duration="500" @after-leave="showQuestions = true">
-            <form class="h-full flex flex-col flex-wrap pt-8 md:pt-24" v-if="showQuestions && currentQuestion">
+            <form class="h-full flex flex-col flex-wrap pt-8 md:pt-24 md:px-5" v-if="showQuestions && currentQuestion">
                 <!-- Component type -->
                 <div v-if="currentQuestion.type === 'component'" class="w-full px-10">
                     <component :is="loadedComponent" @go-next="saveAndGoNextLazy(currentQuestion)" v-if="loadedComponent" />
@@ -23,7 +23,7 @@
                              :model-value="getSelectValue()"
                              @update:model-value="handleSelectChange($event)"
                              :options="getSelectOptions()"
-                             class="relative max-w-[250px] w-full self-center" />
+                             class="relative w-full self-center" />
 
                 <!-- Postal code and city inputs - styled like form2 -->
                 <div v-if="currentQuestion.type === 'inputs' && currentQuestion.props?.postalCode" class="w-full max-w-[430px] flex flex-col gap-12 mb-8 px-10">
