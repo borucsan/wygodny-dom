@@ -19,9 +19,9 @@
                             Na adres: <span class="underline">{{ user.email }}</span> wysłaliśmy Ci prośbę o potwierdzenie udziału.<br>
                             Wejdź na swoją skrzynkę pocztową i Wygraj!
                             <div class="flex items-center justify-center">
-                            <a :href="currentEsp.link" class="flex items-center min-h-[70px]"  v-if="currentEsp" target="_blank">
-                                <span class="underline">Zaloguj się >></span>
-                                <img :src="currentEsp.img" alt="" class="ml-2 max-w-[150px]">
+                            <a :href="currentEsp.link" class="flex items-center min-h-[70px] gap-2" v-if="currentEsp" target="_blank">
+                                <img src="assets/images/5.gif" alt="Zaloguj się" class="max-h-[70px] w-auto">
+                                <img :src="currentEsp.img" alt="" class="max-w-[150px]">
                             </a>
                         </div>
                             
