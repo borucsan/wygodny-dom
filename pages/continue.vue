@@ -93,39 +93,40 @@
                 </div>
                 <div v-if="currentQuestion.type === 'radio'" class="w-full">
                     <ul
-                        :class="[currentQuestion.class ?? ' w-full px-12 flex flex-col gap-2']">
+                        :class="['w-full px-12 grid gap-1 md:gap-2', currentQuestion.class ?? 'grid-cols-1 sm:grid-cols-2']">
                         <li v-for="o in currentQuestion.options"
-                            :class="['answer', (o as ImageOption)?.class, { 'coregister': true, 'answer-img': (o as ImageOption)?.label && (o as ImageOption)?.img }]">
+                            :key="typeof o === 'string' ? o : (o as ImageOption | IconOption).label"
+                            :class="['answer w-full', (o as ImageOption)?.class, { 'coregister': true, 'answer-img': (o as ImageOption)?.label && (o as ImageOption)?.img }]">
                             <!-- Image option (existing) -->
-                            <label class="flex flex-col items-center cursor-pointer text-lg hover:font-black"
+                            <label class="flex flex-col items-center cursor-pointer text-lg"
                                    v-if="(o as ImageOption)?.label && (o as ImageOption)?.img">
                                 <img :src="(o as ImageOption)?.img" class="w-24 md:w-32" />
                                 <input class="hidden" type="radio" :name="currentQuestion.prop || 'option'" :value="(o as ImageOption).label"
                                        :disabled="selected"
                                        @change="handleRadioChange((o as ImageOption).label)"
                                        v-model="data[currentQuestion.prop || 'option']">
-                                <span>{{ (o as ImageOption).label }}</span>
+                                <span v-html="(o as ImageOption).label"></span>
                             </label>
                             <!-- Icon option (new) -->
-                            <label class="answer flex gap-4 cursor-pointer text-base hover:font-black items-center"
-                                   v-else-if="(o as IconOption)?.label !== undefined">
+                            <label class="answer flex gap-4 cursor-pointer text-base items-center"
+                                   v-else-if="(o as IconOption)?.label !== undefined && !(o as ImageOption)?.img">
                                 <input class="hidden" type="radio" :name="currentQuestion.prop || 'option'" :value="(o as IconOption).label"
                                        :disabled="selected"
                                        @change="handleRadioChange((o as IconOption).label)"
                                        v-model="data[currentQuestion.prop || 'option']">
                                 <span v-if="(o as IconOption).icon && (o as IconOption).iconPosition === 'before'"
                                       class="no-underline">{{ (o as IconOption).icon }}</span>
-                                <span class="text-left">{{ (o as IconOption).label }}</span>
+                                <span class="text-left" v-html="(o as IconOption).label"></span>
                                 <span v-if="(o as IconOption).icon && (o as IconOption).iconPosition === 'after'"
                                       class="no-underline">{{ (o as IconOption).icon }}</span>
                             </label>
                             <!-- Plain string option (existing) -->
-                            <label class="answer flex gap-4 cursor-pointer text-base hover:font-black" v-else>
+                            <label class="answer flex gap-4 cursor-pointer text-base" v-else>
                                 <input class="hidden" type="radio" :name="currentQuestion.prop || 'option'" :value="o"
                                        :disabled="selected"
                                        @change="handleRadioChange(o)"
                                        v-model="data[currentQuestion.prop || 'option']">
-                                <span class="text-left">{{ o }}</span>
+                                <span class="text-left" v-html="String(o)"></span>
                             </label>
                         </li>
                     </ul>

@@ -31,14 +31,14 @@
             <div v-else-if="show && step === 2" class="flex flex-col justify-center h-full pb-4">
                 <TransitionFade :duration="500" @after-leave="showNext()">
                     <form v-if="showQuestions" class="grid grid-cols-1 gap-2 text-lg px-4 sm:px-6 lg:px-16">
-                        <div class="font-bold text-md lg:text-base">{{ currentQuestion.question }}</div>
+                        <div class="font-bold text-md lg:text-base" v-html="currentQuestion.question"></div>
 
                         <label
                                v-for="a in currentQuestion.answers" :key="a.id"
                                :data-testid="`${currentQuestion.id}-${a.id}`"
                                :class="['answer ', { 'correct': currentQuestion.completed && a.correct, 'incorrect': currentQuestion.completed && a.selected && !a.correct }]">
                             <span class="pr-1">{{ a.id }}.</span>
-                            <span>{{ a.answer }}</span>
+                            <span v-html="a.answer"></span>
                             <input
                                    class="hidden" type="radio" name="answer"
                                    :data-answer-id="a.id"

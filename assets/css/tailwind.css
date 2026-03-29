@@ -12,7 +12,10 @@ html, body {
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
-  @apply max-w-max gap-4 cursor-pointer text-base lg:text-xl transition-all hover:font-black duration-100;
+  @apply max-w-max gap-4 cursor-pointer text-base lg:text-xl transition-all duration-100;
+}
+.answer:hover, .answer:hover * {
+  text-shadow: 0 0 .6px currentColor, 0 0 .6px currentColor;
 }
 .answer.correct {
   @apply text-correct;
