@@ -70,7 +70,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     type: "radio",
     question: "Hit cenowy <b> Tak O!</b> <br> Smartfon z abonamentem już <b> od 59 zł/mies. z rabatami</b>",
     prop: "prop80",
-    filter: (consents) => true,
+    filter: (consents) => false,
     options: ["chcę się dowiedzieć więcej", "nie interesuje mnie to"],
   },
   {
@@ -80,9 +80,9 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     class: "grid-cols-1",
     filter: () => true,
     options: [
-      '📺 chcę nowoczesną TV od <span style="color:#6C43BF">Play</span>!',
-      'szukam smartfona📱z abonamentem już od 59 zł/mies od <span style="color:#FF7900">Orange</span>',
-      '💵 poproszę niski abonament <span style="color:#00B1CC">Nju Mobile</span> - 3 miesiące za 0 zł',
+      '📺 chcę nowoczesną TV od  <span style="color:#6C43BF">Play</span>!',
+      'szukam smartfona📱z abonamentem już od 59 zł/mies od  <span style="color:#FF7900">Orange</span>',
+      '💵 poproszę niski abonament  <span style="color:#00B1CC">Nju Mobile</span> - 3 miesiące za 0 zł',
       "dziękuję, nie chcę oszczędzać",
     ],
   },
@@ -90,7 +90,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     type: "radio",
     question: "Szukasz rozrywki bez ograniczeń? 🎬 Odkryj pakiety nowoczesnej TV od Play 📺",
     prop: "prop77",
-    filter: (consents) => true,
+    filter: (consents) => false,
     options: ["odkryj teraz", "nie, dziękuję"], 
 },
     {
