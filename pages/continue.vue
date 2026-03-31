@@ -95,7 +95,7 @@
                     <ul
                         :class="['w-full px-12 grid gap-1 md:gap-2', currentQuestion.class ?? 'grid-cols-1 sm:grid-cols-2']">
                         <li v-for="o in currentQuestion.options"
-                            :key="typeof o === 'string' ? o : (o as ImageOption | IconOption).label"
+                            :key="optionKey(o)"
                             :class="['answer w-full', (o as ImageOption)?.class, { 'coregister': true, 'answer-img': (o as ImageOption)?.label && (o as ImageOption)?.img }]">
                             <!-- Image option (existing) -->
                             <label class="flex flex-col items-center cursor-pointer text-lg"
@@ -109,7 +109,7 @@
                             </label>
                             <!-- Icon option (new) -->
                             <label class="answer flex gap-4 cursor-pointer text-base items-center"
-                                   v-else-if="(o as IconOption)?.label !== undefined && !(o as ImageOption)?.img">
+                                   v-else-if="(o as IconOption)?.label !== undefined && !(o as ImageOption)?.img && !('value' in (o as object))">
                                 <input class="hidden" type="radio" :name="currentQuestion.prop || 'option'" :value="(o as IconOption).label"
                                        :disabled="selected"
                                        @change="handleRadioChange((o as IconOption).label)"
@@ -122,11 +122,11 @@
                             </label>
                             <!-- Plain string option (existing) -->
                             <label class="answer flex gap-4 cursor-pointer text-base" v-else>
-                                <input class="hidden" type="radio" :name="currentQuestion.prop || 'option'" :value="o"
+                                <input class="hidden" type="radio" :name="currentQuestion.prop || 'option'" :value="radioStoredValue(o)"
                                        :disabled="selected"
-                                       @change="handleRadioChange(o)"
+                                       @change="handleRadioChange(radioStoredValue(o))"
                                        v-model="data[currentQuestion.prop || 'option']">
-                                <span class="text-left" v-html="String(o)"></span>
+                                <span class="text-left" v-html="radioLabelHtml(o)"></span>
                             </label>
                         </li>
                     </ul>
@@ -145,7 +145,32 @@
 </template>
 <script setup lang="ts">
 
-import type { ImageOption, IconOption, Question, RegistrationQuestion } from "~/types";
+import type { ImageOption, IconOption, Question, RegistrationQuestion, ValueLabelOption } from "~/types";
+
+function radioStoredValue(
+    o: string | ImageOption | IconOption | ValueLabelOption,
+): string {
+    if (typeof o === 'string') return o;
+    if ('img' in o && (o as ImageOption).img) return (o as ImageOption).label;
+    if ('value' in o) return (o as ValueLabelOption).value;
+    return (o as IconOption).label;
+}
+
+function radioLabelHtml(
+    o: string | ImageOption | IconOption | ValueLabelOption,
+): string {
+    if (typeof o === 'string') return o;
+    if ('value' in o && 'label' in o && !('img' in o))
+        return (o as ValueLabelOption).label;
+    return (o as ImageOption | IconOption).label;
+}
+
+function optionKey(o: string | ImageOption | IconOption | ValueLabelOption): string {
+    if (typeof o === 'string') return o;
+    if ('img' in o && (o as ImageOption).img) return (o as ImageOption).label;
+    if ('value' in o) return (o as ValueLabelOption).value;
+    return (o as IconOption).label;
+}
 import { coRegistrationQuestions, profileQuestions } from "../const";
 import { IMask } from 'vue-imask';
 import { capitalizeFirstLetter, capitalizeAllWords } from '~/utils';
@@ -201,6 +226,8 @@ const getSelectOptions = () => {
     return currentQuestion.value.options.map((opt, index) => {
         if (typeof opt === 'string') {
             return { value: index, label: opt };
+        } else if ('value' in opt && 'label' in opt && !('img' in opt && (opt as ImageOption).img)) {
+            return { value: index, label: (opt as ValueLabelOption).label };
         } else if ((opt as IconOption).label !== undefined) {
             const iconOpt = opt as IconOption;
             const label = iconOpt.icon && iconOpt.iconPosition === 'before'
@@ -224,6 +251,8 @@ const getSelectValue = () => {
     return currentQuestion.value.options.findIndex(opt => {
         if (typeof opt === 'string') {
             return opt === currentValue;
+        } else if ('value' in opt && 'label' in opt && !('img' in opt && (opt as ImageOption).img)) {
+            return (opt as ValueLabelOption).value === currentValue;
         } else if ((opt as IconOption).label !== undefined) {
             return (opt as IconOption).label === currentValue;
         } else if ((opt as ImageOption).label) {
@@ -238,6 +267,8 @@ const handleSelectChange = async (selectedIndex: number) => {
     const selectedOption = currentQuestion.value.options[selectedIndex];
     if (typeof selectedOption === 'string') {
         data.value[currentQuestion.value.prop] = selectedOption;
+    } else if ('value' in selectedOption && 'label' in selectedOption && !('img' in selectedOption && (selectedOption as ImageOption).img)) {
+        data.value[currentQuestion.value.prop] = (selectedOption as ValueLabelOption).value;
     } else if ((selectedOption as IconOption).label !== undefined) {
         data.value[currentQuestion.value.prop] = (selectedOption as IconOption).label;
     } else if ((selectedOption as ImageOption).label) {

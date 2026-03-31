@@ -65,6 +65,12 @@ export interface IconOption {
     iconPosition?: 'before' | 'after';
 }
 
+/** Plain `value` is sent to the API; `label` may contain HTML for display. */
+export interface ValueLabelOption {
+    value: string;
+    label: string;
+}
+
 export interface RegistrationQuestion {
     prop?: string
     props?: {
@@ -78,7 +84,7 @@ export interface RegistrationQuestion {
     class?: string
     question?: string,
     filter: ((consents: string[], user: UserData, answers?: Record<string, string>) => boolean),
-    options?: string[] | ImageOption[] | IconOption[],
+    options?: string[] | ImageOption[] | IconOption[] | ValueLabelOption[],
     inisTrack?: string,
     onAnswer?: (answer: string | Record<string, unknown>) => Promise<void>,
     image?: {
