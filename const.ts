@@ -129,7 +129,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question: "Nasz konsultant zadzwoni do Ciebie w celu przekazania dalszych szczegółów - czy potwierdzasz chęć zapisu?",
     prop: "prop56",
     filter: (consents, user, answers) =>
-      !!answers?.prop49 && answers.prop49 !== "Nie jestem zainteresowana/y",
+      typeof answers?.prop49 === 'string' && answers.prop49.toLowerCase() !== "nie jestem zainteresowany/a",
     options: ["tak", "nie"],
   },
   {
