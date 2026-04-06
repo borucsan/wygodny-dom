@@ -131,7 +131,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="flex justify-center w-full my-12" v-if="currentQuestion.type !== 'component'">
+                <div class="flex justify-center w-full my-12" v-if="currentQuestion.type === 'inputs'">
                     <UButton type="button" color="black" size="md" :disabled="selected" @click="saveAndGoNextLazy(currentQuestion)">
                         Dalej
                     </UButton>
@@ -263,7 +263,8 @@ const getSelectValue = () => {
 };
 
 const handleSelectChange = async (selectedIndex: number) => {
-    if (!currentQuestion.value.prop || !currentQuestion.value.options) return;
+    if (selected.value || !currentQuestion.value.prop || !currentQuestion.value.options) return;
+    const question = currentQuestion.value;
     const selectedOption = currentQuestion.value.options[selectedIndex];
     if (typeof selectedOption === 'string') {
         data.value[currentQuestion.value.prop] = selectedOption;
@@ -277,10 +278,13 @@ const handleSelectChange = async (selectedIndex: number) => {
         data.value[currentQuestion.value.prop] = String(selectedOption);
     }
     await triggerInisIfNeeded();
+    await saveAndGoNextLazy(question);
 }
 
 const handleRadioChange = async (value: any) => {
+    if (selected.value) return;
     await triggerInisIfNeeded();
+    await saveAndGoNextLazy(currentQuestion.value);
 }
 
 // Update functions for masked inputs
