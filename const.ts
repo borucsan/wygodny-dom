@@ -68,10 +68,10 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
   },
   {
     type: "radio",
-    question: "Chcesz nowoczesny telefon 📱 i abonament Orange już od 59 zł/mies.?",
+    question: "📱Chcesz płacić mniej za abonament z nowym smartfonem w pakiecie?",
     prop: "prop80",
     filter: (consents) => true,
-    options: ["tak, proszę o szczegóły", "nie, nie chcę nowego smartfona"],
+    options: ["tak, chcę", "proszę o szczegóły", "nie, nie jestem zainteresowany"],
   },
   {
     type: "radio",
