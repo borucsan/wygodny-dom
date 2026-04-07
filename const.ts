@@ -68,17 +68,17 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
   },
   {
     type: "radio",
-    question: "Hit cenowy <b> Tak O!</b> <br> Smartfon z abonamentem już <b> od 59 zł/mies. z rabatami</b>",
+    question: "Chcesz nowoczesny telefon 📱 i abonament Orange już od 59 zł/mies.?",
     prop: "prop80",
     filter: (consents) => true,
-    options: ["chcę się dowiedzieć więcej", "nie interesuje mnie to"],
+    options: ["tak, proszę o szczegóły", "nie, nie chcę nowego smartfona"],
   },
   {
     type: "radio",
     question: "Szukasz oszczędności? Która z aktualnych okazji telekomunikacyjnych interesuje Cię najbardziej?",
     prop: "prop81",
     class: "grid-cols-1",
-    filter: () => true,
+    filter: () => false,
     options: [
       {
         value: 'chcę nowoczesną TV od Play!',
@@ -122,7 +122,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question: "Umawiamy jazdy testowe topowych marek, która z nich trafia w Twój gust?",
     prop: "prop49",
     filter: (consents) => true,
-    options: ["Toyota", "Nissan", "Mitsubishi", "Dacia", "Hyundai", "Inna", "Samochód elektryczny", "marki chińskie (BYD, MG, Omoda itp.)", "nie jestem zainteresowany/a"], 
+    options: ["Toyota", "Hyundai", "Nissan", "Mitsubishi", "inna", "samochód elektryczny", "marki chińskie (BYD, MG, Omoda itp.)", "nie jestem zainteresowany/a"], 
 },
   {
     type: "radio",
@@ -204,14 +204,14 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     type: "radio",
     question: "Jakie jest źródło Twojego dochodu?",
     prop: "prop68",
-    filter: (consents) => ["prop22", "prop26", "prop27"].every((c) => consents.includes(c)),
+    filter: (consents) => false, // ["prop22", "prop26", "prop27"].every((c) => consents.includes(c)),
     options: ["umowa o pracę", "umowa zlecenie/dzieło", "emerytura/renta", "zasiłek", "własna działalność", "inne", "brak dochodu"],
     inisTrack: "cpl_coreg_3_B2B",
   },
   {
     type: 'component',
     component: () => import('~/components/Loando.vue'),
-    filter: (consents, user, data) => true,
+    filter: (consents, user, data) => false,
     options: [],
 },
   {
@@ -313,7 +313,7 @@ export const profileQuestions: RegistrationQuestion[] = [
     question: "Jakie masz wykształcenie?",
     inisTrack: "cpl_profilowe_4_wyksztalcenie",
     prop: "prop38",
-    filter: (consents) => ["prop26", "prop27"].every((c) => !consents.includes(c)),
+    filter: (consents) => false, //["prop26", "prop27"].every((c) => !consents.includes(c)),
     options: ["podstawowe", "gimnazjalne", "zasadnicze", "średnie", "wyższe"],
   },
 ];
