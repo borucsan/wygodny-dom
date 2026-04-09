@@ -161,7 +161,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
         type: "radio",
         question: 'Chcesz bezpłatnie sprawdzić swój poziom angielskiego i poznać ofertę Tutlo? 🗽🌍💂',
         prop: 'prop39',
-        filter: (consents, user, data) => false,
+        filter: (consents, user, data) => true,
         options: ['tak, chcę sprawdzić swój angielski', 'chcę otrzymać informację o aktualnych promocjach', 'nie jestem zainteresowany'],
         inisTrack: 'cpl_profilowe_5_jezyk'
     },
