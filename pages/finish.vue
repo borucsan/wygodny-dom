@@ -26,11 +26,9 @@
                         </div>
                             
                             <span class="text-sm">PS. Jeżeli nie masz emaila w&nbsp;skrzynce głównej, sprawdź inne foldery i&nbsp;spam.</span>
-                            <a target="_blank" href="http://tracking.affiliate44.com/aff_c?offer_id=1635&aff_id=2796&file_id=77000"
-                            class="flex justify-center">
-                                    <br>
-                                <img src="assets/images/nationale.png" alt="" class="max-w-[410px] w-full">
-                            </a><br><br>
+                            <ClientOnly>
+                                <div id="inisWidget" class="mx-auto mt-4" data-config="eyJlbGVtZW50c0NvdW50IjoxMCwiY29udGVudEZpbHRlciI6ImFsbCIsImNhdGVnb3JpZXMiOltdLCJjYXRlZ29yaWVzRmlsdGVyTW9kZSI6InNob3ciLCJjb2xvciI6IiMwMDdiZmYiLCJkaXNwbGF5TW9kZSI6ImdyaWQiLCJ3aWRnZXRJZCI6NDk2LCJjb2x1bW5zQ291bnQiOjMsInJvd3NDb3VudCI6Miwic2Nyb2xsIjpmYWxzZSwibGluZUJyZWFrIjp0cnVlLCJyZWZyZXNoTW9kZSI6ImludGVydmFsIiwicmVmcmVzaEludGVydmFsU2Vjb25kcyI6NjB9"></div>
+                            </ClientOnly><br><br>
                             <!-- <a target="_blank" href="https://zrabatowani.pl/#oferty" class="flex justify-center">
                                 <img src="assets/images/banner2.png" alt="" class="max-w-[410px] w-full">
                             </a> -->
@@ -108,6 +106,15 @@ const actionId = useActionId();
 
 const postalMask = ref();
 const cityMask = ref();
+
+useHead({
+    script: [
+        {
+            src: 'https://cdn.inis360.com/inisWidget.js',
+            defer: true,
+        },
+    ],
+});
 
 const v = useVuelidate<UserData>(rules, state.value)
 

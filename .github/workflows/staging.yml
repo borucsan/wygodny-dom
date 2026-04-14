@@ -3,46 +3,53 @@ on:
   push:
     branches: [ "main" ]
 env:
-  REMOTE_HOST: 192.168.50.239
-  REMOTE_PORT: 20022
-  USER: deployer
-  TARGET: "${{ vars.STAGING_TARGET_PATH }}"
+  REGISTRY: ghcr.io
   ENV: staging
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
-    - run: |
-        corepack enable &&
-        corepack install # use the in-repo yarn version
-    - uses: actions/setup-node@v4
-      with:
-        node-version: 20
-        cache: "yarn"
-    - run: yarn install --frozen-lockfile --network-timeout 1000000000
-    - name: generate_api_env
-      run: printf "API_KEY=\nS_KEY=${{ secrets.S_KEY }}\nUID=${{vars.UID}}\nALLOWED_DOMAIN=${{vars.STAGING_DOMAIN}}" >> public/inc/.env
-    - name: generate_app_env
-      run: printf "NUXT_PUBLIC_ENVIRONMENT=${{ env.ENV }}\nNUXT_PUBLIC_SENTRYDSN=${{ secrets.SENTRY_DSN }}" >> .env
-    - name: build
-      run: yarn run generate_staging
-    - name: Set up WireGuard Connection
-      uses: niklaskeerl/easy-wireguard-action@v2
-      with:
-        WG_CONFIG_FILE: ${{ secrets.WG_CONFIG_FILE }}
-    - name: rsync deployments
-      uses: up9cloud/action-rsync@master
-      env:
-        HOST: ${{ env.REMOTE_HOST }}
-        PORT: ${{ env.REMOTE_PORT }}
-        KEY: ${{ secrets.DEPLOYER_KEY }}
-        USER: ${{ env.USER }}
-        VERBOSE: true
-        TARGET: "${{ env.TARGET }}"
-        ARGS: "-avzogO --delete "
-        SOURCE: ./.output/public/
+      - uses: actions/checkout@v4
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: |
+          corepack enable &&
+          corepack install
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "yarn"
+      - run: yarn install --frozen-lockfile --network-timeout 1000000000
+      - name: generate_api_env
+        run: printf "API_KEY=\nS_KEY=${{ secrets.S_KEY }}\nUID=${{vars.UID}}\nALLOWED_DOMAIN=${{vars.STAGING_DOMAIN}}" >> public/inc/.env
+      - name: generate_app_env
+        run: printf "NUXT_PUBLIC_ENVIRONMENT=${{ env.ENV }}\nNUXT_PUBLIC_SENTRYDSN=${{ secrets.SENTRY_DSN }}" >> .env
+      - name: build
+        run: yarn run generate_staging
+      - name: Image name (lowercase for GHCR)
+        run: echo "IMAGE_NAME=${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV
+      - name: Login to ghcr.io
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build image and push to registry
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+      - name: Deploy to Coolify
+        run: |
+          curl --request GET '${{ secrets.COOLIFY_WEBHOOK }}' \
+            --header 'Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}'
