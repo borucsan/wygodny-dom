@@ -110,13 +110,6 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     options: [...months, "mam telefon na kartę", "mam umowę na czas nieokreślony", "nie pamiętam"],
     inisTrack: "cpl_coreg_2_GSM",
   },
-   {
-    type: "radio",
-    question: "Czy Twój obecny operator GSM spełnia wszystkie Twoje potrzeby? 📱",
-    prop: "prop79",
-    filter: (consents) => false,
-    options: ["tak i nie planuję go zmieniać", "nie, chcę spróbować czegoś innego", "brakuje mi dopasowanej oferty"],
-},
   {
     type: "radio",
     question: "Umawiamy jazdy testowe topowych marek, która z nich trafia w Twój gust?",
@@ -145,17 +138,9 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
       { label: "pomoc pokrzywdzonym w konfliktach zbrojnych", img: "/img/image8.jpg" },
       { label: "pomoc pokrzywdzonym na skutek katastrof naturalnych", img: "/img/image16.jpg" },
       { label: "walka z chorobami zakaźnymi np. gruźlicą", img: "/img/image6.jpg" },
-      { label: "nie jestem zainteresowana", img: "/img/image36.jpg" },
+      { label: "nie jestem zainteresowana/y", img: "/img/image36.jpg" },
     ],
     inisTrack: "cpl_coreg_4_LBG",
-  },
-  {
-    type: "radio",
-    question: "Czy kiedykolwiek brałeś/aś chwilówkę lub pożyczkę w banku?",
-    prop: "prop40",
-    filter: () => false,
-    options: ["tak, kredyt gotówkowy w banku", "tak, pożyczkę chwilówkę", "nie, ale rozważam to", "nie i nie zamierzam brać pożyczek"],
-    inisTrack: "cpl_profilowe_6_kredyt",
   },
   {
         type: "radio",
@@ -166,10 +151,26 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
         inisTrack: 'cpl_profilowe_5_jezyk'
     },
   {
+        type: "radio",
+        question: 'Szybki Internet za mniej niż 40 zł/mies. z gwarancją ceny na 2 lata - brzmi dobrze?',
+        prop: 'prop82',
+        filter: (consents, user, data) => true,
+        options: ['tak, chcę poznać ofertę od Orange', 'nie, mój Internet jest ok'],
+        inisTrack: 'cpl_orange_swiatlowod'
+    },
+  {
+    type: "radio",
+    question: "Czy kiedykolwiek brałeś/aś chwilówkę lub pożyczkę w banku?",
+    prop: "prop40",
+    filter: () => false,
+    options: ["tak, kredyt gotówkowy w banku", "tak, pożyczkę chwilówkę", "nie, ale rozważam to", "nie i nie zamierzam brać pożyczek"],
+    inisTrack: "cpl_profilowe_6_kredyt",
+  },
+  {
     type: "radio", 
     question: "Kiedy kończy Ci się ubezpieczenie OC samochodu?",
     prop: "prop65",
-    filter: (consents) => ["prop22", "prop26", "prop27"].every((c) => consents.includes(c)),
+    filter: (consents) => false, //["prop22", "prop26", "prop27"].every((c) => consents.includes(c)),
     options: [
       "styczeń", "luty", "marzec", 
       "kwiecień", "maj", "czerwiec", 
