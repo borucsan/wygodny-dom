@@ -66,8 +66,8 @@
                                 placeholder="Wprowadź adres e-mail" size="md" color="gray" variant="outline"
                                 autocomplete="email"
                                 @blur="blurEvents.email" />
-                        <div v-if="emailTouched && !emailValidation.isValid && emailValidation.message" class="dark:text-red-400 pl-4 font-barlow !text-xxs leading-[1.2] text-error text-left mt-1 text-sm text-xxs" v-html="emailValidation.message"></div>
-                        <div v-if="emailTouched && emailValidation.hasWarning && warningShown && emailValidation.message" class="dark:text-red-400 pl-4 font-barlow !text-xxs leading-[1.2] text-error text-left mt-1 text-sm text-xxs" v-html="emailValidation.message"></div>
+                        <div v-if="emailTouched && !emailValidation.isValid && emailValidation.message" class="dark:text-red-400 pl-4 font-barlow leading-snug text-error text-left mt-2 text-[18px] font-bold" v-html="emailValidation.message"></div>
+                        <div v-if="emailTouched && emailValidation.hasWarning && warningShown && emailValidation.message" class="dark:text-red-400 pl-4 font-barlow leading-snug text-error text-left mt-2 text-[18px] font-bold" v-html="emailValidation.message"></div>
                     </UFormGroup>
                 </div>
                 <div class="flex justify-start w-full max-w-[430px] mb-6">
@@ -409,7 +409,7 @@ const blurEvents = ref({
 
 watch(() => state.value.email, (value) => {
     if (emailTouched.value) {
-        emailValidation.value = validateEmail(value ?? "", {message: "Upewnij się, że adres e-mail jest poprawny."});
+        emailValidation.value = validateEmail(value ?? "", {message: "UWAGA! Twój e-mail wygląda na niepoprawny. Sprawdź go!"});
         if (!emailValidation.value.hasWarning) {
             warningShown.value = false;
         }
@@ -478,7 +478,7 @@ async function onSubmit1() {
 async function onSubmit2() {
     if (!emailTouched.value) {
         emailTouched.value = true;
-        emailValidation.value = validateEmail(state.value.email ?? "", {message: "Upewnij się, że adres e-mail jest poprawny."});
+        emailValidation.value = validateEmail(state.value.email ?? "", {message: "UWAGA! Twój e-mail wygląda na niepoprawny. Sprawdź go!"});
         if (!emailValidation.value.isValid) {
             return;
         }
@@ -615,7 +615,7 @@ onMounted(() => {
     );
 
     if (state.value.email?.length) {
-        emailValidation.value = validateEmail(state.value.email, {message: "Upewnij się, że e-mail jest poprawny"});
+        emailValidation.value = validateEmail(state.value.email, {message: "UWAGA! Twój e-mail wygląda na niepoprawny. Sprawdź go!"});
     }
 
 });
