@@ -3,7 +3,7 @@
         <div class="flex justify-end md:hidden"><img class="" src="/assets/images/bg3.png"></div>
         <h2 class="text-base lg:text-2xl font-medium text-center">Pytania Partnerów Serwisu</h2>
         <TransitionFade :duration="500" @after-leave="showQuestions = true">
-            <form class="h-full flex flex-col flex-wrap pt-8 md:pt-24 md:px-5" v-if="showQuestions && currentQuestion">
+            <form class="h-full flex flex-col flex-wrap pt-8 md:pt-24 md:px-5 pb-8" v-if="showQuestions && currentQuestion">
                 <!-- Component type -->
                 <div v-if="currentQuestion.type === 'component'" class="w-full px-10">
                     <component :is="loadedComponent" @go-next="saveAndGoNextLazy(currentQuestion)" v-if="loadedComponent" />
@@ -416,6 +416,11 @@ const saveAndGoNext = async (input?: Record<string, unknown>) => {
             showQuestions.value = false;
 
         } else {
+            const p80ok = ['tak, chcę', 'proszę o szczegóły']
+            const p82ok = ['tak, chcę poznać ofertę od Orange']
+            if (p80ok.includes(data.value['prop80']) || p82ok.includes(data.value['prop82'])) {
+                useOrangeTrigger().value = true
+            }
             user.value.mkey = localKey.value;
             await navigateTo('/quiz')
         }
@@ -460,6 +465,11 @@ console.log(current);
             currentIndex.value++;
             showQuestions.value = false;
         } else {
+            const p80ok = ['tak, chcę', 'proszę o szczegóły']
+            const p82ok = ['tak, chcę poznać ofertę od Orange']
+            if (p80ok.includes(data.value['prop80']) || p82ok.includes(data.value['prop82'])) {
+                useOrangeTrigger().value = true
+            }
             user.value.mkey = localKey.value;
             await navigateTo('/quiz')
         }
