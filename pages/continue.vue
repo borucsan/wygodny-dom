@@ -416,8 +416,8 @@ const saveAndGoNext = async (input?: Record<string, unknown>) => {
             showQuestions.value = false;
 
         } else {
-            const p80ok = ['tak, chcę', 'proszę o szczegóły']
-            const p82ok = ['tak, chcę poznać ofertę od Orange']
+            const p80ok = ['tak, proszę o kontakt doradcy sklepu Orange']
+            const p82ok = ['tak, proszę o kontakt ze sklepu Orange, by poznać szczegóły']
             if (p80ok.includes(data.value['prop80']) || p82ok.includes(data.value['prop82'])) {
                 useOrangeTrigger().value = true
             }
@@ -465,8 +465,8 @@ console.log(current);
             currentIndex.value++;
             showQuestions.value = false;
         } else {
-            const p80ok = ['tak, chcę', 'proszę o szczegóły']
-            const p82ok = ['tak, chcę poznać ofertę od Orange']
+            const p80ok = ['tak, proszę o kontakt doradcy sklepu Orange']
+            const p82ok = ['tak, proszę o kontakt ze sklepu Orange, by poznać szczegóły']
             if (p80ok.includes(data.value['prop80']) || p82ok.includes(data.value['prop82'])) {
                 useOrangeTrigger().value = true
             }
