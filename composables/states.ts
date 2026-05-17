@@ -28,14 +28,24 @@ export const useUserKey = () => useState<string>('mkey', () => "")
 
 export const useEnv = () => useState<'dev' | 'prod' | string>('env', () => 'dev')
 
-export const useModals = () => useState<{rules: boolean, privacy: boolean, data: boolean, cookies: boolean, partners: boolean, orange: boolean}>('modals', () => ({
-    rules: false,
-    privacy: false,
-    data: false,
-    cookies: false,
-    partners: false,
-    orange: false
-}))
+export const ORANGE_POPUP_ENABLED = false
+
+export const useModals = () => {
+    const modals = useState<{rules: boolean, privacy: boolean, data: boolean, cookies: boolean, partners: boolean, orange: boolean}>('modals', () => ({
+        rules: false,
+        privacy: false,
+        data: false,
+        cookies: false,
+        partners: false,
+        orange: false
+    }))
+    if (!ORANGE_POPUP_ENABLED) {
+        watch(() => modals.value.orange, (open) => {
+            if (open) modals.value.orange = false
+        }, { flush: 'sync' })
+    }
+    return modals
+}
 
 export const useOrangeTrigger = () => useState<boolean>('orangeTrigger', () => false)
 
