@@ -70,7 +70,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     type: "radio",
     question: "📱Chcesz płacić mniej za abonament z nowym smartfonem w pakiecie?",
     prop: "prop80",
-    filter: (consents) => true,
+    filter: (consents) => false,
     options: ["tak, proszę o szczegóły", "nie, nie jestem zainteresowany"],
   },
   {
@@ -154,7 +154,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
         type: "radio",
         question: 'Szybki Internet za mniej niż 40 zł/mies. z gwarancją ceny na 2 lata - brzmi dobrze?',
         prop: 'prop82',
-        filter: (consents, user, data) => true,
+        filter: (consents, user, data) => false,
         options: ['tak, proszę o szczegóły', 'nie, mój Internet jest ok'],
         inisTrack: 'cpl_orange_swiatlowod'
     },
