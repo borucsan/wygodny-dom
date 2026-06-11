@@ -66,14 +66,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     },
     filter: () => true,
   },
-  {
-    type: "radio",
-    question: "📱Chcesz płacić mniej za abonament z nowym smartfonem w pakiecie?",
-    prop: "prop80",
-    filter: (consents) => false,
-    options: ["tak, proszę o szczegóły", "nie, nie jestem zainteresowany"],
-  },
-  {
+   {
     type: "radio",
     question: "Szukasz oszczędności? Która z aktualnych okazji telekomunikacyjnych interesuje Cię najbardziej?",
     prop: "prop81",
@@ -115,7 +108,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question: "Umawiamy jazdy testowe topowych marek, która z nich trafia w Twój gust?",
     prop: "prop49",
     filter: (consents) => true,
-    options: ["Toyota", "Hyundai", "Nissan", "Mitsubishi", "Mazda", "Dacia", "KIA", "inna", "samochód elektryczny", "marki chińskie (BYD, MG, Omoda itp.)", "nie jestem zainteresowany/a"], 
+    options: ["Hyundai", "Nissan", "Mitsubishi", "Mazda", "Renault", "KIA", "Toyota", "Skoda", "inna", "samochód elektryczny", "marki chińskie", "nie jestem zainteresowany/a"], 
 },
   {
     type: "radio",
@@ -150,12 +143,19 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
         options: ['tak, chcę sprawdzić swój angielski', 'chcę otrzymać informację o aktualnych promocjach', 'nie jestem zainteresowany'],
         inisTrack: 'cpl_profilowe_5_jezyk'
     },
+   {
+    type: "radio",
+    question: "📱Chcesz płacić mniej za abonament z nowym smartfonem w pakiecie?",
+    prop: "prop80",
+    filter: (consents) => true,
+    options: ["tak, proszę o kontakt eksperta", "nie, nie szukam oszczędności"],
+  },
   {
         type: "radio",
         question: 'Szybki Internet za mniej niż 40 zł/mies. z gwarancją ceny na 2 lata - brzmi dobrze?',
         prop: 'prop82',
-        filter: (consents, user, data) => false,
-        options: ['tak, proszę o szczegóły', 'nie, mój Internet jest ok'],
+        filter: (consents, user, data) => true,
+        options: ['tak, proszę o kontakt eksperta', 'nie, mój Internet jest ok'],
         inisTrack: 'cpl_orange_swiatlowod'
     },
   {
