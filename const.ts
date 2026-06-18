@@ -93,7 +93,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question: "Szukasz rozrywki bez ograniczeń? 🎬 Odkryj pakiety nowoczesnej TV od Play 📺",
     prop: "prop77",
     filter: (consents) => true,
-    options: ["odkryj teraz", "nie, dziękuję"], 
+    options: ["odkryj teraz", "poproszę o ofertę", "nie, dziękuję"], 
 },
     {
     type: "select",
