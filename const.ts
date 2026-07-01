@@ -68,6 +68,21 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
   },
    {
     type: "radio",
+    question: "Umawiamy jazdy testowe topowych marek, która z nich trafia w Twój gust?",
+    prop: "prop49",
+    filter: (consents) => true,
+    options: ["Hyundai", "Nissan", "Mitsubishi", "Mazda", "Renault", "KIA", "Toyota", "Skoda", "inna", "samochód elektryczny", "marki chińskie", "nie jestem zainteresowany/a"], 
+},
+  {
+    type: "radio",
+    question: "Nasz konsultant zadzwoni do Ciebie w celu przekazania dalszych szczegółów - czy potwierdzasz chęć zapisu?",
+    prop: "prop56",
+    filter: (consents, user, answers) =>
+      typeof answers?.prop49 === 'string' && answers.prop49.toLowerCase() !== "nie jestem zainteresowany/a",
+    options: ["tak", "nie"],
+  },
+   {
+    type: "radio",
     question: "Szukasz oszczędności? Która z aktualnych okazji telekomunikacyjnych interesuje Cię najbardziej?",
     prop: "prop81",
     class: "grid-cols-1",
@@ -105,21 +120,6 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
   },
   {
     type: "radio",
-    question: "Umawiamy jazdy testowe topowych marek, która z nich trafia w Twój gust?",
-    prop: "prop49",
-    filter: (consents) => true,
-    options: ["Hyundai", "Nissan", "Mitsubishi", "Mazda", "Renault", "KIA", "Toyota", "Skoda", "inna", "samochód elektryczny", "marki chińskie", "nie jestem zainteresowany/a"], 
-},
-  {
-    type: "radio",
-    question: "Nasz konsultant zadzwoni do Ciebie w celu przekazania dalszych szczegółów - czy potwierdzasz chęć zapisu?",
-    prop: "prop56",
-    filter: (consents, user, answers) =>
-      typeof answers?.prop49 === 'string' && answers.prop49.toLowerCase() !== "nie jestem zainteresowany/a",
-    options: ["tak", "nie"],
-  },
-  {
-    type: "radio",
     question:
       'Lekarze bez Granic to niezależna medyczna organizacja humanitarna niosąca pomoc przy konfliktach zbrojnych, epidemiach, katastrofach naturalnych.<br>Które działania Lekarzy bez Granic chcesz wesprzeć?:',
     prop: "prop70",
@@ -152,9 +152,16 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
   },
   {
         type: "radio",
+        question: 'Potrzeba dodatkowej gotówki? Weź nawet 250 000 zł w Alior Banku, RRSO 9,15%',
+        prop: 'prop86',
+        filter: (consents, user, data) => true,
+        options: ['sprawdzam szczegóły', 'chcę wiedzieć więcej', 'nie potrzebuję pożyczki'],
+      },
+  {
+        type: "radio",
         question: 'Szybki Internet za mniej niż 40 zł/mies. z gwarancją ceny na 2 lata - brzmi dobrze?',
         prop: 'prop82',
-        filter: (consents, user, data) => true,
+        filter: (consents, user, data) => false,
         options: ['tak, proszę o kontakt eksperta', 'nie, mój Internet jest ok'],
         inisTrack: 'cpl_orange_swiatlowod'
     },
@@ -376,54 +383,42 @@ export const partners = [
     },
     {
         id: 10,
-        name: "Sales Masters Sp. z o.o.",
-        label: "Sales Masters Sp. z o.o., ul. Franciszka Ksawerego Dmochowskiego 4/2, 00‑427 Warszawa",
-        enabled: true
-    },
-    {
-        id: 11,
         name: "Caf Call Sp. z o.o.",
         label: "Caf Call Sp. z o.o. ul. rondo Marsz. Józefa Piłsudskiego 28, 05-120 Legionowo",
         enabled: true
     },
     {
-        id: 12,
+        id: 11,
         name: "Fundacja 'Lekarze bez Granic'",
         label: "Fundacja 'Lekarze bez Granic' ul. Sapieżyńska 10A, 00-215 Warszawa",
         enabled: true
     },
     {
-        id: 13,
+        id: 12,
         name: "Colonnade Insurance Societe Anonyme",
         label: "Colonnade Insurance Societe Anonyme SA Oddział w Polsce, ul. Prosta 67, 00-838 Warszawa",
         enabled: true
     },
     {
-        id: 14,
+        id: 13,
         name: "Call Center House Sp. z o.o.",
         label: "Call Center House Sp. z o.o. Aleja T. Kościuszki 80/82, 90-437 Łódź",
         enabled: true
     },
     {
-        id: 15,
+        id: 14,
         name: "Sanmarks Sp. z o.o.",
         label: "Sanmarks Sp. z o.o. ul. Słowackiego 36, Lubaczów",
         enabled: true
     },
   {
-        id: 16,
-        name: "Loando Direct Sp. z o.o.",
-        label: "Loando Direct Sp. z o.o. Aleje Jerozolimskie 123A, 02-017 Warszawa, Polska",
-        enabled: true
-    },
-  {
-        id: 17,
+        id: 15,
         name: "CC POINT Sp. z o.o.",
         label: "CC POINT Sp. z o.o. ul. Aleja T. Kościuszki nr 80/82, 90-437 Łódź",
         enabled: true
     },
     {
-        id: 18,
+        id: 16,
         name: "Confronter Sp. z o.o.",
         label: "Confronter Sp. z o.o. ul. Dunikowskiego 10, 44-100 Gliwice",
         enabled: true
