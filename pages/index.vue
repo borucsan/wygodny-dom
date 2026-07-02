@@ -101,9 +101,12 @@
                     <PhoneInput v-model="state.phone" v-model:phone_prefix="state.phone_prefix"
                                 @blur="blurEvents.phone" />
                 </div>
-                <div class="flex justify-start w-full max-w-[430px] mb-6">
-                    <UButton type="submit" color="black" size="md" :loading="loading" data-testid="form-submit2">
-                        Dalej
+                <div class="flex flex-col items-start gap-3 w-full max-w-[430px] mb-6">
+                    <UButton type="submit" color="black" size="md" :loading="loading" :disabled="loading" data-testid="form-submit2-all" @click="allConsents = true">
+                        Zatwierdź pola &raquo;&nbsp;Idę dalej&nbsp;&laquo;
+                    </UButton>
+                    <UButton type="submit" color="black" variant="outline" size="md" :loading="loading" :disabled="loading" data-testid="form-submit2" class="!text-btn-base !ring-btn-base">
+                        Wybierz i zatwierdź &raquo;
                     </UButton>
                 </div>
                 <div id="consentsContent" class="flex flex-col gap-4 mb-4">
