@@ -145,10 +145,10 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     },
    {
     type: "radio",
-    question: "📱Chcesz płacić mniej za abonament z nowym smartfonem w pakiecie?",
-    prop: "prop80",
+    question: "📱Abonament już od 25 zł miesięcznie i 3 miesiące ZA DARMO - brzmi dobrze?",
+    prop: "prop87",
     filter: (consents) => true,
-    options: ["tak, proszę o kontakt eksperta", "nie, nie szukam oszczędności"],
+    options: ["tak, chcę dowiedzieć się więcej", "nie, nie interesuje mnie to"],
   },
   {
         type: "radio",
