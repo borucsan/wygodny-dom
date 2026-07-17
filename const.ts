@@ -161,7 +161,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
         type: "radio",
         question: 'Szybki Internet za mniej niż 40 zł/mies. z gwarancją ceny na 2 lata - brzmi dobrze?',
         prop: 'prop82',
-        filter: (consents, user, data) => false,
+        filter: (consents, user, data) => true,
         options: ['tak, proszę o kontakt eksperta', 'nie, mój Internet jest ok'],
         inisTrack: 'cpl_orange_swiatlowod'
     },
