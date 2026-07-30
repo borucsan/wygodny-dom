@@ -158,6 +158,14 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
         options: ['sprawdzam szczegóły', 'chcę wiedzieć więcej', 'nie potrzebuję pożyczki'],
       },
   {
+    type: "radio",
+    question: "Czy wiesz, że już od 1,30 zł dziennie możesz zabezpieczyć swoją przyszłość?",
+    prop: "prop83",
+    filter: () => true,
+    options: ["brzmi świetnie - poproszę o więcej informacji", "nie interesuje mnie to"],
+    inisTrack: "cpl_ubezpieczenie",
+  },
+  {
         type: "radio",
         question: 'Szybki Internet za mniej niż 40 zł/mies. z gwarancją ceny na 2 lata - brzmi dobrze?',
         prop: 'prop82',
