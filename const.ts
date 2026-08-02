@@ -1,4 +1,4 @@
-import { parse, sub } from "date-fns";
+import { isAfter, isBefore, isEqual, parse, sub } from "date-fns";
 import type { Question, RegistrationQuestion, IconOption } from "./types";
 
 // Generate full month names
@@ -123,7 +123,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question:
       'Lekarze bez Granic to niezależna medyczna organizacja humanitarna niosąca pomoc przy konfliktach zbrojnych, epidemiach, katastrofach naturalnych.<br>Które działania Lekarzy bez Granic chcesz wesprzeć?:',
     prop: "prop70",
-    filter: () => true,
+    filter: () => false,
     class: "in-row-images-3",
     options: [
       { label: "leczenie niedożywienia", img: "/img/image39.jpg" },
@@ -134,6 +134,33 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
       { label: "nie jestem zainteresowana/y", img: "/img/image36.jpg" },
     ],
     inisTrack: "cpl_coreg_4_LBG",
+  },
+  {
+    type: "radio",
+    question:
+      "Fundacja Dr Clown od 26 lat niesie pomoc dzieciom w 170 szpitalach i placówkach specjalnych w Polsce. Który z obszarów chce Pani wesprzeć?",
+    prop: "prop88",
+    filter: (consents, user) => {
+      if (user.gender !== "kobieta") return false;
+      const today = new Date();
+      const minDate = sub(today, { years: 69 });
+      const maxDate = sub(today, { years: 35 });
+      const date = parse(user.dob as string, "dd-MM-yyyy", new Date());
+      return (
+        date.toString() !== "Invalid Date" &&
+        (isAfter(date, minDate) || isEqual(date, minDate)) &&
+        (isBefore(date, maxDate) || isEqual(date, maxDate))
+      );
+    },
+    class: "in-row-images-3",
+    options: [
+      { label: "terapia śmiechem i zabawą dla dzieci", img: "/img/image40.jpg" },
+      { label: "mobilny gabinet Dr Clowna (oswajanie dzieci ze szpitalem)", img: "/img/image41.jpg" },
+      { label: "dogoterapia (terapia przez zajęcia z psami)", img: "/img/image42.jpg" },
+      { label: "wsparcie dla seniorów i dorosłych", img: "/img/image43.jpg" },
+      { label: "tworzenie kącików zabaw", img: "/img/image44.jpg" },
+      { label: "nie jestem zainteresowada", img: "/img/image45.jpg" },
+    ],
   },
   {
         type: "radio",
