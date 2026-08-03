@@ -139,7 +139,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     type: "radio",
     question:
       "Fundacja Dr Clown od 26 lat niesie pomoc dzieciom w 170 szpitalach i placówkach specjalnych w Polsce. Który z obszarów chce Pani wesprzeć?",
-    prop: "prop88",
+    prop: "prop89",
     filter: (consents, user) => {
       if (user.gender !== "kobieta") return false;
       const today = new Date();
