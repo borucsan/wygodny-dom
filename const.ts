@@ -148,7 +148,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
       { label: "dogoterapia (terapia przez zajęcia z psami)", img: "/img/image42.jpg" },
       { label: "wsparcie dla seniorów i dorosłych", img: "/img/image43.jpg" },
       { label: "tworzenie kącików zabaw", img: "/img/image44.jpg" },
-      { label: "nie jestem zainteresowada", img: "/img/image45.jpg" },
+      { label: "nie jestem zainteresowana/y", img: "/img/image45.jpg" },
     ],
   },
   {
