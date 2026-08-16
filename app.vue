@@ -9,7 +9,7 @@
       </div>
       <footer class="text-xxxs pb-2 md:pr-8">
         <p class="text-black font-barlow text-xss mb-1"> Grafika użyta na stronie pochodzi z legalnych źródeł i ma
-          charakter wyłącznie poglądowy. Nagrodą jest Frytkownica beztłuszczowa PHILIPS Essential Ovi XL HD9270/90 Air
+          charakter wyłącznie poglądowy. Nagrodą jest Frytkownica beztłuszczowa PHILIPS Essential Connected Ovi XL HD9280/30 Air
           Fryer. Dla 10 użytkowników, którzy odpowiedzą poprawnie, w najkrótszym czasie, na 3 pytania konkursowe.
           Marka Philips nie jest związane z organizatorem promocji ani nie wspiera i nie sponsoruje konkursu.<br>Aby
           wziąć udział w konkursie, należy spełnić kilka prostych warunków. Uczestnik powinien wypełnić formularz

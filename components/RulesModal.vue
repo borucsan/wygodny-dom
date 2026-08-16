@@ -32,8 +32,8 @@
                 </ol><br>
                 <h3 class="font-bold">§2<br> Postanowienia ogólne</h3>
                 <ol class="flex flex-col gap-4 list-decimal mb-4 text-left" type="1">
-                    <li>Konkurs trwa od 14.08.2025 r. do 14.08.2026 r. Uczestnicy mogą rejestrować swój udział w
-                        Konkursie do dnia 14.08.2026 r.</li>
+                    <li>Konkurs trwa od 15.08.2026 r. do 15.08.2028 r. Uczestnicy mogą rejestrować swój udział w
+                        Konkursie do dnia 15.08.2028 r.</li>
                     <li>Uczestnictwo w Konkursie jest całkowicie dobrowolne.</li>
                     <li>Konkurs dla Uczestników jest bezpłatny. Organizator nie pobiera od Uczestników żadnych opłat za
                         rejestrację Uczestnika w Konkursie, jak również za sam udział w nim.</li>
@@ -73,10 +73,10 @@
                 <h3 class="font-bold">§4<br> Nagrody</h3>
                 <ol class="flex flex-col gap-4 list-decimal mb-4 text-left" type="1">
                     <li>W Konkursie zostanie przyznanych 10 nagród. Dla 10 osób, które najszybciej odpowiedzą poprawnie na zadane pytania konkursowe.</li>
-                    <li>Nagrodę stanowi Frytkownica beztłuszczowa PHILIPS Essential Ovi XL HD9270/90 Air Fryer, o wartości 365 zł.</li>
+                    <li>Nagrodę stanowi Frytkownica beztłuszczowa Air Fryer Frytkownica beztłuszczowa PHILIPS Essential Connected Ovi XL HD9280/30, o wartości 369 zł.</li>
                     <li>Organizator poinformuje Laureatów o wyniku Konkursu oraz możliwości i sposobach odbioru nagrody w
                         rozmowie telefonicznej, dzwoniąc w tym celu na wskazany przez niego numer telefonu do dnia
-                        28.08.2026 r. Organizator podejmie 3 (słownie: trzy) próby kontaktu telefonicznego, w co
+                        29.08.2028 r. Organizator podejmie 3 (słownie: trzy) próby kontaktu telefonicznego, w co
                         najmniej dwugodzinnych odstępach czasu, w celu skontaktowania się z Laureatem. Po wykonaniu
                         przez Organizatora trzech nieudanych prób kontaktu, Laureat utraci status zwycięzcy konkursu i
                         nie będzie mógł domagać się przyznania nagrody, która pozostaje w dyspozycji Organizatora. Za
@@ -131,7 +131,7 @@
                     <li>W sprawach nieuregulowanych w niniejszym Regulaminie zastosowanie mają odpowiednie przepisy
                         prawa obowiązującego na terenie Rzeczpospolitej Polskiej.</li>
                 </ol>
-                <div class="text-left">Powyższy Regulamin obowiązuje od dnia 14.08.2025 r.</div>
+                <div class="text-left">Powyższy Regulamin obowiązuje od dnia 15.08.2026 r.</div>
             </div>
             <a class="uppercase mt-2" href="#" @click.prevent="modals.rules = false">Zamknij</a>
         </div>
