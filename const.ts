@@ -71,7 +71,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question: "Umawiamy jazdy testowe topowych marek, która z nich trafia w Twój gust?",
     prop: "prop49",
     filter: (consents) => true,
-    options: ["Hyundai", "Nissan", "Mitsubishi", "Mazda", "Renault", "BMW", "Toyota", "Skoda", "inna", "samochód elektryczny", "marki chińskie", "nie jestem zainteresowany/a"], 
+    options: ["Hyundai", "Nissan", "Mitsubishi", "BMW", "Toyota", "Skoda", "inna", "samochód elektryczny", "marki chińskie", "nie jestem zainteresowany/a"], 
 },
   {
     type: "radio",
@@ -108,7 +108,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question: "Szukasz rozrywki bez ograniczeń? 🎬 Odkryj pakiety nowoczesnej TV od Play 📺",
     prop: "prop77",
     filter: (consents) => true,
-    options: ["odkryj teraz", "poproszę o ofertę", "nie, dziękuję"], 
+    options: ["odkryj teraz", "nie, dziękuję"], 
 },
     {
     type: "select",
@@ -180,12 +180,20 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     filter: () => true,
     options: ["brzmi świetnie - poproszę o więcej informacji", "nie interesuje mnie to"],
     inisTrack: "cpl_ubezpieczenie",
-  },
+  },  
+  {
+        type: "radio",
+        question: 'Mamy dla Ciebie bonus: darmowe miesiące telewizji w Polsat Box! Chcesz poznać szczegóły?',
+        prop: 'prop90',
+        filter: (consents, user, data) => true,
+        options: ['tak, poproszę o ofertę', 'nie, nie potrzebuję telewizji'],
+        inisTrack: 'cpl_polsatbox'
+    },
   {
         type: "radio",
         question: 'Szybki Internet za mniej niż 40 zł/mies. z gwarancją ceny na 2 lata - brzmi dobrze?',
         prop: 'prop82',
-        filter: (consents, user, data) => true,
+        filter: (consents, user, data) => false,
         options: ['tak, proszę o kontakt eksperta', 'nie, mój Internet jest ok'],
         inisTrack: 'cpl_orange_swiatlowod'
     },
@@ -439,8 +447,8 @@ export const partners = [
     },
     {
         id: 11,
-        name: "Fundacja 'Lekarze bez Granic'",
-        label: "Fundacja 'Lekarze bez Granic' ul. Sapieżyńska 10A, 00-215 Warszawa",
+        name: "Fundacja 'Dr Clown'",
+        label: "Fundacja 'Dr Clown' ul. Powstańców Śląskich 87/U10B, 01-355 Warszawa",
         enabled: true
     },
     {
