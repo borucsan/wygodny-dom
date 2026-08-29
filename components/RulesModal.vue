@@ -91,6 +91,12 @@
                     <li>Jeśli nagroda w Konkursie opodatkowana jest na zasadach określonych w powszechnie obowiązujących
                         przepisach podatkowych. Organizator oblicza, pobiera i płaci podatek w imieniu Laureata w
                         wysokości 10% wartości wygranej.</li>
+                    <li>W przypadku braku dostępności Nagrody z przyczyn niezależnych od Organizatora (w szczególności
+                        zaprzestania jej produkcji, wycofania z rynku lub braku dostępności u dystrybutorów), Organizator
+                        zastrzega sobie prawo do wydania Laureatowi nagrody zamiennej o zbliżonych parametrach
+                        technicznych i użytkowych oraz o wartości rynkowej nie niższej niż wartość Nagrody pierwotnej.
+                        Wydanie nagrody zamiennej na warunkach określonych w niniejszym zdaniu nie stanowi zmiany
+                        niniejszego Regulaminu.</li>
                 </ol><br>
                 <h3 class="font-bold">§5<br> Dane osobowe</h3>
                 <p class="mb-4 text-left">Administratorem danych osobowych Uczestników oraz Zwycięzców Konkursu jest
