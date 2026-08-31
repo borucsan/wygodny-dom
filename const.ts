@@ -123,7 +123,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question:
       'Lekarze bez Granic to niezależna medyczna organizacja humanitarna niosąca pomoc przy konfliktach zbrojnych, epidemiach, katastrofach naturalnych.<br>Które działania Lekarzy bez Granic chcesz wesprzeć?:',
     prop: "prop70",
-    filter: () => false,
+    filter: () => true,
     class: "in-row-images-3",
     options: [
       { label: "leczenie niedożywienia", img: "/img/image39.jpg" },
@@ -140,7 +140,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question:
       "Fundacja Dr Clown od 26 lat niesie pomoc dzieciom w 170 szpitalach i placówkach specjalnych w Polsce. Który z obszarów chcesz wesprzeć?",
     prop: "prop89",
-    filter: () => true,
+    filter: () => false,
     class: "in-row-images-3",
     options: [
       { label: "terapia śmiechem i zabawą dla dzieci", img: "/img/image40.jpg" },
@@ -447,8 +447,8 @@ export const partners = [
     },
     {
         id: 11,
-        name: "Fundacja 'Dr Clown'",
-        label: "Fundacja 'Dr Clown' ul. Powstańców Śląskich 87/U10B, 01-355 Warszawa",
+        name: "Fundacja 'Lekarze Bez Granic'",
+        label: "Fundacja 'Lekarze Bez Granic', Al. Jana Pawła II 25, 00-854 Warszawa",
         enabled: true
     },
     {
