@@ -123,7 +123,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question:
       'Lekarze bez Granic to niezależna medyczna organizacja humanitarna niosąca pomoc przy konfliktach zbrojnych, epidemiach, katastrofach naturalnych.<br>Które działania Lekarzy bez Granic chcesz wesprzeć?:',
     prop: "prop70",
-    filter: () => true,
+    filter: () => false,
     class: "in-row-images-3",
     options: [
       { label: "leczenie niedożywienia", img: "/img/image39.jpg" },
@@ -134,6 +134,23 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
       { label: "nie jestem zainteresowana/y", img: "/img/image36.jpg" },
     ],
     inisTrack: "cpl_coreg_4_LBG",
+  },
+  {
+    type: "radio",
+    question:
+      'UNICEF od 79 lat ratuje życie dzieciom w ponad 190 krajach.<br>Które z działań UNICEF chce Pani/Pan wesprzeć?',
+    prop: "prop92",
+    filter: () => false,
+    class: "in-row-images-3",
+    options: [
+      { label: "walka z niedożywieniem", img: "/img/image46.jpg" },
+      { label: "dostarczanie czystej wody", img: "/img/image47.jpg" },
+      { label: "dostęp do opieki medycznej", img: "/img/image48.jpg" },
+      { label: "wsparcie psychologiczne", img: "/img/image49.jpg" },
+      { label: "dostęp do edukacji", img: "/img/image50.jpg" },
+      { label: "nie jestem zainteresowana/y", img: "/img/image51.jpg" },
+    ],
+    inisTrack: "cpl_coreg_unicef",
   },
   {
     type: "radio",
@@ -447,8 +464,8 @@ export const partners = [
     },
     {
         id: 11,
-        name: "Fundacja 'Lekarze Bez Granic'",
-        label: "Fundacja 'Lekarze Bez Granic', Al. Jana Pawła II 25, 00-854 Warszawa",
+        name: "Stowarzyszenie PKN UNICEF",
+        label: "Stowarzyszenie PKN UNICEF ul. Powązkowska 44C, 01-797 Warszawa",
         enabled: true
     },
     {
