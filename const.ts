@@ -140,7 +140,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question:
       'UNICEF od 79 lat ratuje życie dzieciom w ponad 190 krajach.<br>Które z działań UNICEF chce Pani/Pan wesprzeć?',
     prop: "prop92",
-    filter: () => false,
+    filter: () => true,
     class: "in-row-images-3",
     options: [
       { label: "walka z niedożywieniem", img: "/img/image46.jpg" },
@@ -172,7 +172,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
         type: "radio",
         question: 'Chcesz bezpłatnie sprawdzić swój poziom angielskiego i poznać ofertę Tutlo? 🗽🌍💂',
         prop: 'prop39',
-        filter: (consents, user, data) => true,
+        filter: (consents, user, data) => false,
         options: ['tak, chcę sprawdzić swój angielski', 'chcę otrzymać informację o aktualnych promocjach', 'nie jestem zainteresowany'],
         inisTrack: 'cpl_profilowe_5_jezyk'
     },
@@ -180,7 +180,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     type: "radio",
     question: "📱Abonament już od 25 zł miesięcznie i 3 miesiące ZA DARMO - brzmi dobrze?",
     prop: "prop87",
-    filter: (consents) => true,
+    filter: (consents) => false,
     options: ["tak, chcę dowiedzieć się więcej", "nie, nie interesuje mnie to"],
   },
   {
@@ -202,7 +202,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
         type: "radio",
         question: 'Mamy dla Ciebie bonus: darmowe miesiące telewizji w Polsat Box! Chcesz poznać szczegóły?',
         prop: 'prop90',
-        filter: (consents, user, data) => true,
+        filter: (consents, user, data) => false,
         options: ['tak, poproszę o ofertę', 'nie, nie potrzebuję telewizji'],
         inisTrack: 'cpl_polsatbox'
     },
@@ -492,10 +492,4 @@ export const partners = [
         label: "CC POINT Sp. z o.o. ul. Aleja T. Kościuszki nr 80/82, 90-437 Łódź",
         enabled: true
     },
-    {
-        id: 16,
-        name: "Confronter Sp. z o.o.",
-        label: "Confronter Sp. z o.o. ul. Dunikowskiego 10, 44-100 Gliwice",
-        enabled: true
-    }
 ];
