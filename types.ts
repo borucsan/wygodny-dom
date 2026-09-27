@@ -91,5 +91,10 @@ export interface RegistrationQuestion {
         src: string,
         class?: string
     }
+    /** Legal note: first paragraph visible, the rest behind „więcej”. */
+    legal?: {
+        preview: string
+        more: string
+    }
     component?: () => Promise<any>
 }

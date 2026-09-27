@@ -131,6 +131,13 @@
                         </li>
                     </ul>
                 </div>
+                <div v-if="currentQuestion.legal" class="w-full px-12 mt-4 text-left text-[11px] leading-relaxed text-[#666666]">
+                    <p>
+                        {{ currentQuestion.legal.preview }}
+                        <button type="button" class="underline ml-1" @click.prevent="legalOpen = !legalOpen">{{ legalOpen ? 'mniej' : 'więcej' }}</button>
+                    </p>
+                    <p v-show="legalOpen" class="mt-2 whitespace-pre-line">{{ currentQuestion.legal.more }}</p>
+                </div>
                 <div class="flex justify-center w-full my-12" v-if="currentQuestion.type === 'inputs'">
                     <UButton type="button" color="black" size="md" :disabled="selected" @click="saveAndGoNextLazy(currentQuestion)">
                         Dalej
@@ -185,6 +192,7 @@ const data = ref<Record<string, string>>({
 })
 const showQuestions = ref(true);
 const selected = ref(false);
+const legalOpen = ref(false);
 const localKey = ref<string | undefined>();
 const consentsForFilter = ref<string[]>([]);
 const loadedComponent = shallowRef<any>(null);
@@ -201,6 +209,7 @@ const actionId = useActionId();
 
 // Watch for currentQuestion changes and load component if needed
 watch(currentQuestion, async (newQuestion) => {
+    legalOpen.value = false;
     if (newQuestion?.type === 'component' && newQuestion.component) {
         const componentModule = await newQuestion.component();
         loadedComponent.value = componentModule.default;

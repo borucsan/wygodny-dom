@@ -189,6 +189,10 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
         prop: 'prop86',
         filter: (consents, user, data) => true,
         options: ['sprawdzam szczegóły', 'chcę wiedzieć więcej', 'nie potrzebuję pożyczki'],
+        legal: {
+            preview: "Rzeczywista Roczna Stopa Oprocentowania (RRSO) pożyczki gotówkowej wynosi 9,15%; całkowita kwota pożyczki: 41 800 zł; całkowita kwota do zapłaty: 50 262,49 zł; oprocentowanie stałe: 8,79%; całkowity koszt pożyczki: 8462,49 zł, w tym prowizja: 0 zł (0%), odsetki: 8462,49 zł; 51 miesięcznych rat, w tym 50 równych rat w wysokości 985,55 zł, ostatnia rata: 984,99 zł. Kalkulacja została dokonana na 15.03.2026 r. na reprezentatywnym przykładzie.",
+            more: "Okres kredytowania od 3 miesięcy do 10 lat. Z oferty specjalnej mogą skorzystać klienci indywidualni, którzy nie posiadali w Alior Banku pożyczek gotówkowych lub kredytów konsolidacyjnych w żadnym z 36 miesięcy poprzedzających miesiąc złożenia wniosku. Z oferty można skorzystać tylko raz. Ostateczne warunki kredytowania zależą od zdolności kredytowej klienta, kwoty pożyczki, okresu kredytowania, daty wypłaty pożyczki, daty płatności pierwszej raty oraz wymaganych przez bank zabezpieczeń. Taryfa opłat i prowizji Alior Banku SA dla Klientów Indywidualnych jest dostępna w placówkach i na stronie internetowej banku. Wyliczenia kalkulatora mają charakter szacunkowy, opierają się na parametrach z reprezentatywnego przykładu i nie stanowią oferty kredytowej w rozumieniu art. 66 §1 Kodeksu cywilnego.\n\nAlior Bank SA, ul. Chmielna 69, 00-801 Warszawa, Sąd Rejonowy dla m.st. Warszawy w Warszawie, XIII Wydział Gospodarczy, KRS: 0000305178, REGON: 141387142, NIP: 1070010731, kapitał zakładowy: 1 305 539 910 zł (opłacony w całości).",
+        },
       },
   {
     type: "radio",
