@@ -492,6 +492,47 @@ async function onSubmit2() {
     } else if (warningShown.value) {
         warningShown.value = false;
     }
+
+    loading.value = true;
+    const postData = new FormData();
+    postData.append('mtd', 'ret');
+    postData.append('email', state.value.email);
+    postData.append('firstName', state.value.firstName);
+    postData.append('lastName', state.value.lastName);
+    postData.append('prop10', actionId.value);
+    try {
+        const response = await $fetch<{
+            status: 'success' | 'error';
+            scenario?: 'new_user' | 'known_user';
+            key?: string;
+            present?: Record<string, boolean>;
+            hlr?: string;
+            recordStatus?: string;
+            nameMatch?: boolean | null;
+        }>('/inc/api.php', {
+            method: 'POST',
+            body: postData,
+            ...options,
+        });
+        if (response?.status === 'success' && response.scenario === 'known_user') {
+            state.value.scenario = 'known_user';
+            state.value.profile = response.present ?? {};
+            state.value.hlr = response.hlr ?? '';
+            state.value.recordStatus = response.recordStatus ?? '';
+            state.value.nameMatch = response.nameMatch ?? null;
+            if (response.key) {
+                state.value.mkey = response.key;
+            }
+        } else {
+            state.value.scenario = 'new_user';
+        }
+    } catch (e) {
+        console.debug('ret', e);
+        state.value.scenario = 'new_user';
+    } finally {
+        loading.value = false;
+    }
+
     show.value = false;
     setTimeout(() => {
         show.value = true;

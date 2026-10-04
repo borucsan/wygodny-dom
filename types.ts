@@ -40,6 +40,11 @@ export interface UserData {
     consents: UserConsents;
     time: string | null;
     partners: string[];
+    scenario?: 'new_user' | 'known_user';
+    profile?: Record<string, boolean>;
+    hlr?: string;
+    recordStatus?: string;
+    nameMatch?: boolean | null;
 }
 
 export interface UserConsents {

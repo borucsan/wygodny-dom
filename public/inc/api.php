@@ -89,6 +89,10 @@ try {
                 $response['status'] = 'success';
                 echo json_encode($response);
                 break;
+        case "ret":
+            $response = ret();
+            echo json_encode(array_merge(array('status' => 'success'), $response));
+            break;
         default:
             throw new Exception("Method not found");
             break;
@@ -247,4 +251,214 @@ function upd()
         CURLOPT_POSTFIELDS => $data
     ));
     return curl_exec($curl);
+}
+
+function ret()
+{
+    $email = trim(strip_tags($_POST['email'] ?? ''));
+    $firstName = trim(strip_tags($_POST['firstName'] ?? ''));
+    $lastName = trim(strip_tags($_POST['lastName'] ?? ''));
+    $prop10 = trim(strip_tags($_POST['prop10'] ?? ''));
+
+    if ($email === '') {
+        throw new Exception('Email required');
+    }
+
+    $retUid = getenv('RET_UID');
+    $retKey = getenv('RET_RKEY');
+    if ($retUid === false || $retKey === false || $retUid === '' || $retKey === '') {
+        throw new Exception('RET is not configured');
+    }
+
+    $prefs = 'email,status,c1,c2,c3,c4,c5,c6,c7,c8,c9,c11,c13,c20,c22,c23,c24,c25,c26,c27,c28,c35,c39,c40,c49,c56,c65,c66,c68,c70,c77,c83,c86,c89,c92';
+    $url = 'https://system.inis.pl/ret.php?' . http_build_query(array(
+        's_uid' => $retUid,
+        's_rkey' => $retKey,
+        's_email' => $email,
+        's_prefs' => $prefs,
+    ));
+
+    $record = parseInisBody(inisRequest($url));
+    if (!retRecordFound($record)) {
+        return array(
+            'scenario' => 'new_user',
+        );
+    }
+
+    $key = importKnownProfile($email, $record, $prop10);
+
+    return array(
+        'scenario' => 'known_user',
+        'key' => $key,
+        'present' => retPresence($record),
+        'hlr' => trim((string) ($record['c13'] ?? '')),
+        'recordStatus' => trim((string) ($record['status'] ?? '')),
+        'nameMatch' => retNameMatch($firstName, $lastName, $record),
+    );
+}
+
+function importKnownProfile($email, $record, $prop10)
+{
+    $ip = isset($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['HTTP_CLIENT_IP'] : (isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR']);
+    $data = array(
+        's_key' => getenv('S_KEY'),
+        's_uid' => getenv('UID'),
+        's_email' => $email,
+        's_rv' => true,
+        's_no_send' => true,
+        's_property14' => date('Y-m-d H:i:s'),
+        's_property15' => $ip,
+        's_property17' => 'wygodny-dom.pl',
+    );
+
+    if ($prop10 !== '') {
+        $data['s_property10'] = $prop10;
+    }
+
+    foreach (array(1, 2, 4, 5, 6, 7, 8, 9, 20, 35, 40, 49, 65, 66, 68, 70, 89, 92) as $n) {
+        $value = trim(strip_tags((string) ($record['c' . $n] ?? '')));
+        if ($value !== '') {
+            $data['s_property' . $n] = $value;
+        }
+    }
+
+    $phone = trim(strip_tags((string) ($record['c11'] ?? '')));
+    if ($phone !== '' && trim((string) ($record['c13'] ?? '')) === '1') {
+        $data['s_property11'] = $phone;
+        $data['s_property13'] = '1';
+    }
+
+    $hasMarketingConsent = false;
+    foreach (array(23, 24, 25, 26, 27, 28) as $n) {
+        if (inisFlag($record['c' . $n] ?? '')) {
+            $data['s_property' . $n] = 1;
+            $hasMarketingConsent = true;
+        }
+    }
+    if ($hasMarketingConsent) {
+        $data['s_group_1'] = 1;
+    }
+
+    $response = inisRequest('https://system.inis.pl/acq.php', $data);
+    if (trim((string) $response) === '-1') {
+        throw new Exception('Destination import failed');
+    }
+
+    return getKey();
+}
+
+function retPresence($record)
+{
+    $present = array();
+    foreach (array(3, 4, 5, 6, 7, 8, 9, 11, 20, 35, 40, 49, 65, 66, 68, 70, 89, 92) as $n) {
+        $present['c' . $n] = trim((string) ($record['c' . $n] ?? '')) !== '';
+    }
+    $present['c13'] = trim((string) ($record['c13'] ?? '')) === '1';
+    foreach (array(22, 23, 24, 25, 26, 27, 28) as $n) {
+        $present['c' . $n] = inisFlag($record['c' . $n] ?? '');
+    }
+    return $present;
+}
+
+function retNameMatch($firstName, $lastName, $record)
+{
+    $first = samePersonName($firstName, $record['c1'] ?? '');
+    $last = samePersonName($lastName, $record['c2'] ?? '');
+    if ($first === false || $last === false) {
+        return false;
+    }
+    if ($first === null || $last === null) {
+        return null;
+    }
+    return true;
+}
+
+function retRecordFound($record)
+{
+    if (!is_array($record) || count($record) === 0) {
+        return false;
+    }
+
+    if (trim((string) ($record['email'] ?? '')) !== '') {
+        return true;
+    }
+
+    foreach ($record as $key => $value) {
+        if (preg_match('/^c\d+$/', (string) $key) && trim((string) $value) !== '') {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function samePersonName($left, $right)
+{
+    $left = mb_strtolower(trim((string) $left), 'UTF-8');
+    $right = mb_strtolower(trim((string) $right), 'UTF-8');
+    if ($left === '' || $right === '') {
+        return null;
+    }
+    return $left === $right;
+}
+
+function inisFlag($value)
+{
+    $value = strtolower(trim((string) $value));
+    return in_array($value, array('1', 'true', 'tak', 'yes'), true);
+}
+
+function parseInisBody($raw)
+{
+    $raw = trim((string) $raw);
+    if ($raw === '') {
+        return array();
+    }
+
+    $json = json_decode($raw, true);
+    if (is_array($json)) {
+        return $json;
+    }
+
+    if (strpos($raw, "\n") !== false && strpos($raw, '&') === false) {
+        $out = array();
+        foreach (preg_split('/\r\n|\n|\r/', $raw) as $line) {
+            if (strpos($line, '=') === false) {
+                continue;
+            }
+            list($key, $value) = explode('=', $line, 2);
+            $out[trim($key)] = trim(urldecode($value));
+        }
+        return $out;
+    }
+
+    $out = array();
+    parse_str($raw, $out);
+    return $out;
+}
+
+function inisRequest($url, $postFields = null)
+{
+    $curl = curl_init();
+    $options = array(
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 15,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    );
+    if ($postFields !== null) {
+        $options[CURLOPT_POST] = 1;
+        $options[CURLOPT_POSTFIELDS] = $postFields;
+    }
+    curl_setopt_array($curl, $options);
+    $response = curl_exec($curl);
+    $errno = curl_errno($curl);
+    curl_close($curl);
+    if ($response === false || $errno) {
+        throw new Exception('INIS request failed');
+    }
+    return $response;
 }
