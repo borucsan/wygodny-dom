@@ -123,7 +123,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question:
       'Lekarze bez Granic to niezależna medyczna organizacja humanitarna niosąca pomoc przy konfliktach zbrojnych, epidemiach, katastrofach naturalnych.<br>Które działania Lekarzy bez Granic chcesz wesprzeć?:',
     prop: "prop70",
-    filter: () => false,
+    filter: () => true,
     class: "in-row-images-3",
     options: [
       { label: "leczenie niedożywienia", img: "/img/image39.jpg" },
@@ -140,7 +140,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question:
       'UNICEF od 79 lat ratuje życie dzieciom w ponad 190 krajach.<br>Które z działań UNICEF chce Pani/Pan wesprzeć?',
     prop: "prop92",
-    filter: () => true,
+    filter: () => false,
     class: "in-row-images-3",
     options: [
       { label: "walka z niedożywieniem", img: "/img/image46.jpg" },
