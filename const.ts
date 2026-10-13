@@ -71,7 +71,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question: "Umawiamy jazdy testowe topowych marek, która z nich trafia w Twój gust?",
     prop: "prop49",
     filter: (consents) => true,
-    options: ["Hyundai", "Nissan", "Mitsubishi", "BMW", "Toyota", "Skoda", "inna", "samochód elektryczny", "marki chińskie", "nie jestem zainteresowany/a"], 
+    options: ["Hyundai", "Nissan", "Mitsubishi", "BMW", "Toyota", "Mazda", "Ford", "inna", "samochód elektryczny", "marki chińskie", "nie jestem zainteresowany/a"], 
 },
   {
     type: "radio",
@@ -206,7 +206,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
         type: "radio",
         question: 'Mamy dla Ciebie bonus: darmowe miesiące telewizji w Polsat Box! Chcesz poznać szczegóły?',
         prop: 'prop90',
-        filter: (consents, user, data) => false,
+        filter: (consents, user, data) => true,
         options: ['tak, poproszę o ofertę', 'nie, nie potrzebuję telewizji'],
         inisTrack: 'cpl_polsatbox'
     },
