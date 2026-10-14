@@ -178,6 +178,13 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     },
    {
     type: "radio",
+    question: "Czy posiadasz lub spłacałeś/aś w przeszłości jeden z poniższych kredytów?",
+    prop: "prop40",
+    filter: (consents) => true,
+    options: ["tak, we frankach szwajcarskich", "tak, w euro", "tak, w złotówkach", "nie posiadam takich kredytów"],
+  },
+   {
+    type: "radio",
     question: "📱Abonament już od 25 zł miesięcznie i 3 miesiące ZA DARMO - brzmi dobrze?",
     prop: "prop87",
     filter: (consents) => false,
@@ -198,7 +205,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     type: "radio",
     question: "Czy wiesz, że już od 1,30 zł dziennie możesz zabezpieczyć swoją przyszłość?",
     prop: "prop83",
-    filter: () => true,
+    filter: () => false,
     options: ["brzmi świetnie - poproszę o więcej informacji", "nie interesuje mnie to"],
     inisTrack: "cpl_ubezpieczenie",
   },  
@@ -468,8 +475,8 @@ export const partners = [
     },
     {
         id: 11,
-        name: "Stowarzyszenie PKN UNICEF",
-        label: "Stowarzyszenie PKN UNICEF ul. Powązkowska 44C, 01-797 Warszawa",
+        name: "Fundacja Lekarze bez Granic",
+        label: "Fundacja 'Lekarze bez Granic' ul. Sapieżyńska 10A, 00-215 Warszawa",
         enabled: true
     },
     {
