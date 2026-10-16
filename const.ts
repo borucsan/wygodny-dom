@@ -213,7 +213,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
         type: "radio",
         question: 'Mamy dla Ciebie bonus: darmowe miesiące telewizji w Polsat Box! Chcesz poznać szczegóły?',
         prop: 'prop90',
-        filter: (consents, user, data) => true,
+        filter: (consents, user, data) => false,
         options: ['tak, poproszę o ofertę', 'nie, nie potrzebuję telewizji'],
         inisTrack: 'cpl_polsatbox'
     },
