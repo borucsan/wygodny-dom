@@ -181,7 +181,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question: "Czy posiadasz lub spłacałeś/aś w przeszłości jeden z poniższych kredytów?",
     prop: "prop40",
     filter: (consents) => true,
-    options: ["tak, we frankach szwajcarskich", "tak, w euro", "tak, w złotówkach", "nie posiadam takich kredytów"],
+    options: ["tak, we frankach szwajcarskich", "tak, w euro", "tak, kredyt hipoteczny w złotówkach", "tak, pożyczkę / kredyt gotówkowy w złotówkach", "nie posiadam takich kredytów"],
   },
    {
     type: "radio",
