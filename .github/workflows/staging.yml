@@ -50,6 +50,17 @@ jobs:
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
       - name: Deploy to Coolify
+        env:
+          COOLIFY_WEBHOOK: ${{ secrets.COOLIFY_WEBHOOK }}
+          COOLIFY_TOKEN: ${{ secrets.COOLIFY_TOKEN }}
         run: |
-          curl --request GET '${{ secrets.COOLIFY_WEBHOOK }}' \
-            --header 'Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}'
+          webhook=$(printf '%s' "$COOLIFY_WEBHOOK" | tr -d '[:space:]')
+          token=$(printf '%s' "$COOLIFY_TOKEN" | tr -d '[:space:]')
+          token=${token#Bearer}
+          token=${token#bearer}
+          if [ -z "$webhook" ] || [ -z "$token" ]; then
+            echo "Brakuje secretu COOLIFY_WEBHOOK albo COOLIFY_TOKEN."
+            exit 1
+          fi
+          curl --fail-with-body --silent --show-error --request POST "$webhook" \
+            --header "Authorization: Bearer ${token}"
