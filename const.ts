@@ -168,6 +168,63 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
       { label: "nie jestem zainteresowana/y", img: "/img/image45.jpg" },
     ],
   },
+   {
+    type: "radio",
+    question: "Czy wiesz, że możesz dostać gotówkę za samochód i nadal nim jeździć bez żadnych ograniczeń?",
+    filter: (consents) => true,
+    class: "in-row1",
+    prop: "prop95",
+    options: [
+      "chętnie sprawdzę ile gotówki mogę otrzymać za moje auto",
+      "nie interesuje mnie ten temat"
+    ]
+  },
+    {
+    type: "radio",
+    question: "Czy Twoje auto ma mniej niż 15 lat?",
+    prop: "prop96",
+    filter: (consents, user, answers) => answers?.prop95 === "chętnie sprawdzę ile gotówki mogę otrzymać za moje auto",
+    class: "in-row1",
+    options: [
+      "tak",
+      "nie",
+      "nie pamiętam"
+    ]
+  },
+    {
+    type: "radio",
+    question: "Czy Twój samochód ma przebieg poniżej 300 tysięcy kilometrów?",
+    prop: "prop97",
+    filter: (consents, user, answers) => answers?.prop96 === "tak" || answers?.prop96 === "nie pamiętam",
+    class: "in-row1",
+    options: [
+      "tak",
+      "nie",
+      "nie wiem"
+    ]
+  },
+  {
+    type: "radio",
+    question: "Szukasz oszczędności? Która z aktualnych okazji interesuje Cię najbardziej?",
+    prop: "prop81",
+    class: "grid-cols-1",
+    filter: () => false,
+    options: [
+            {
+        value: 'chcę abonament za 0 zł przez 5 miesięcy od Orange',
+        label: 'chcę abonament za 0 zł przez 5 miesięcy od <span style="color:#FF7900"> Orange</span>',
+      },
+      {
+        value: 'chcę smartfona 400 zł taniej od T-Mobile',
+        label: 'chcę smartfona 400 zł taniej od <span style="color:#E20074"> T-Mobile</span>',
+      },
+	{
+        value: 'chcę płacić mniej za abonament',
+        label: 'chcę płacić mniej za abonament',
+      },
+      { value: 'dziękuję, nie chcę oszczędzać', label: 'dziękuję, nie chcę oszczędzać' },
+    ],
+  },
   {
         type: "radio",
         question: 'Chcesz bezpłatnie sprawdzić swój poziom angielskiego i poznać ofertę Tutlo? 🗽🌍💂',
