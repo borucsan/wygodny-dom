@@ -71,7 +71,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question: "Umawiamy jazdy testowe topowych marek, która z nich trafia w Twój gust?",
     prop: "prop49",
     filter: (consents) => true,
-    options: ["Hyundai", "Nissan", "Mitsubishi", "BMW", "Toyota", "Mazda", "Ford", "inna", "samochód elektryczny", "marki chińskie", "nie jestem zainteresowany/a"], 
+    options: ["Hyundai", "Nissan", "Mitsubishi", "BMW", "Toyota", "Mazda", "Ford", "VW", "Renault", "inna", "samochód elektryczny", "marki chińskie", "nie jestem zainteresowany/a"], 
 },
   {
     type: "radio",
@@ -86,19 +86,19 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question: "Szukasz oszczędności? Która z aktualnych okazji telekomunikacyjnych interesuje Cię najbardziej?",
     prop: "prop81",
     class: "grid-cols-1",
-    filter: () => false,
+    filter: () => true,
     options: [
-      {
-        value: 'chcę nowoczesną TV od Play!',
-        label: '📺 chcę nowoczesną TV od <span style="color:#6C43BF">Play</span>!',
+            {
+        value: 'chcę abonament za 0 zł przez 5 miesięcy od Orange',
+        label: 'chcę abonament za 0 zł przez 5 miesięcy od <span style="color:#FF7900"> Orange</span>',
       },
       {
-        value: 'szukam smartfona z abonamentem już od 59 zł/mies od Orange',
-        label: 'szukam smartfona📱z abonamentem już od 59 zł/mies od <span style="color:#FF7900">Orange</span>',
+        value: 'chcę smartfona 400 zł taniej od T-Mobile',
+        label: 'chcę smartfona 400 zł taniej od <span style="color:#E20074"> T-Mobile</span>',
       },
-      {
-        value: 'poproszę niski abonament Nju Mobile - 3 miesiące za 0 zł',
-        label: '💵 poproszę niski abonament <span style="color:#00B1CC">Nju Mobile</span> - 3 miesiące za 0 zł',
+	{
+        value: 'chcę płacić mniej za abonament',
+        label: 'chcę płacić mniej za abonament',
       },
       { value: 'dziękuję, nie chcę oszczędzać', label: 'dziękuję, nie chcę oszczędzać' },
     ],
@@ -107,7 +107,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     type: "radio",
     question: "Szukasz rozrywki bez ograniczeń? 🎬 Odkryj pakiety nowoczesnej TV od Play 📺",
     prop: "prop77",
-    filter: (consents) => true,
+    filter: (consents) => false,
     options: ["odkryj teraz", "nie, dziękuję"], 
 },
     {
@@ -203,28 +203,21 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
       "nie wiem"
     ]
   },
-  {
+	  {
     type: "radio",
-    question: "Szukasz oszczędności? Która z aktualnych okazji interesuje Cię najbardziej?",
-    prop: "prop81",
-    class: "grid-cols-1",
-    filter: () => false,
-    options: [
-            {
-        value: 'chcę abonament za 0 zł przez 5 miesięcy od Orange',
-        label: 'chcę abonament za 0 zł przez 5 miesięcy od <span style="color:#FF7900"> Orange</span>',
-      },
-      {
-        value: 'chcę smartfona 400 zł taniej od T-Mobile',
-        label: 'chcę smartfona 400 zł taniej od <span style="color:#E20074"> T-Mobile</span>',
-      },
-	{
-        value: 'chcę płacić mniej za abonament',
-        label: 'chcę płacić mniej za abonament',
-      },
-      { value: 'dziękuję, nie chcę oszczędzać', label: 'dziękuję, nie chcę oszczędzać' },
-    ],
+    question: "Czy posiadasz lub spłacałeś/aś w przeszłości jeden z poniższych kredytów?",
+    prop: "prop40",
+    filter: (consents) => true,
+    options: ["tak, we frankach szwajcarskich", "tak, w euro", "tak, kredyt hipoteczny w złotówkach", "tak, pożyczkę / kredyt gotówkowy w złotówkach", "nie posiadam takich kredytów"],
   },
+	 {
+        type: "radio",
+        question: 'Co daje Ci największe poczucie spokoju o przyszłość swoją i Twoich bliskich?',
+        prop: 'prop72',
+        filter: (consents, user, data) => true,
+        options: ['aktywna polisa na życie, którą już posiadam', 'dopiero szukam dobrego zabezpieczenia', 'chcę dowiedzieć się, ile kosztuje taka ochrona', 'nie zastanawiam się nad tym teraz'],
+        inisTrack: 'cpl_polsatbox'
+    },
   {
         type: "radio",
         question: 'Chcesz bezpłatnie sprawdzić swój poziom angielskiego i poznać ofertę Tutlo? 🗽🌍💂',
@@ -233,13 +226,6 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
         options: ['tak, chcę sprawdzić swój angielski', 'chcę otrzymać informację o aktualnych promocjach', 'nie jestem zainteresowany'],
         inisTrack: 'cpl_profilowe_5_jezyk'
     },
-   {
-    type: "radio",
-    question: "Czy posiadasz lub spłacałeś/aś w przeszłości jeden z poniższych kredytów?",
-    prop: "prop40",
-    filter: (consents) => true,
-    options: ["tak, we frankach szwajcarskich", "tak, w euro", "tak, kredyt hipoteczny w złotówkach", "tak, pożyczkę / kredyt gotówkowy w złotówkach", "nie posiadam takich kredytów"],
-  },
    {
     type: "radio",
     question: "📱Abonament już od 25 zł miesięcznie i 3 miesiące ZA DARMO - brzmi dobrze?",
@@ -287,25 +273,25 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question:
       "Fundacja Dr Clown od 26 lat niesie pomoc dzieciom w 170 szpitalach i placówkach specjalnych w Polsce. Który z obszarów chce Pani wesprzeć?",
     prop: "prop89",
-    filter: (consents, user) => {
-      const today = new Date();
-      const minDate = sub(today, { years: 69 });
-      const maxDate = sub(today, { years: 35 });
-      const date = parse(user.dob as string, "dd-MM-yyyy", new Date());
-      return (
-        date.toString() !== "Invalid Date" &&
-        (isAfter(date, minDate) || isEqual(date, minDate)) &&
-        (isBefore(date, maxDate) || isEqual(date, maxDate))
+    filter: (consents, user) => false // {
+     // const today = new Date();
+     // const minDate = sub(today, { years: 69 });
+     // const maxDate = sub(today, { years: 35 });
+     // const date = parse(user.dob as string, "dd-MM-yyyy", new Date());
+    //  return (
+    //    date.toString() !== "Invalid Date" &&
+      //  (isAfter(date, minDate) || isEqual(date, minDate)) &&
+     //  (isBefore(date, maxDate) || isEqual(date, maxDate))
       );
     },
-    class: "in-row-images-3",
-    options: [
-      { label: "terapia śmiechem i zabawą dla dzieci", img: "/img/image40.jpg" },
-      { label: "mobilny gabinet Dr Clowna (oswajanie dzieci ze szpitalem)", img: "/img/image41.jpg" },
-      { label: "dogoterapia (terapia przez zajęcia z psami)", img: "/img/image42.jpg" },
-      { label: "wsparcie dla seniorów i dorosłych", img: "/img/image43.jpg" },
-      { label: "tworzenie kącików zabaw", img: "/img/image44.jpg" },
-      { label: "nie jestem zainteresowada", img: "/img/image45.jpg" },
+   // class: "in-row-images-3",
+//    options: [
+  //    { label: "terapia śmiechem i zabawą dla dzieci", img: "/img/image40.jpg" },
+  //    { label: "mobilny gabinet Dr Clowna (oswajanie dzieci ze szpitalem)", img: "/img/image41.jpg" },
+  //    { label: "dogoterapia (terapia przez zajęcia z psami)", img: "/img/image42.jpg" },
+  //    { label: "wsparcie dla seniorów i dorosłych", img: "/img/image43.jpg" },
+ //     { label: "tworzenie kącików zabaw", img: "/img/image44.jpg" },
+   //   { label: "nie jestem zainteresowada", img: "/img/image45.jpg" },
     ],
   },
   {
@@ -558,6 +544,30 @@ export const partners = [
         id: 15,
         name: "CC POINT Sp. z o.o.",
         label: "CC POINT Sp. z o.o. ul. Aleja T. Kościuszki nr 80/82, 90-437 Łódź",
+        enabled: true
+    },
+	{
+        id: 16,
+        name: "Prooperate sp. z o.o.",
+        label: "Prooperate sp. z o.o., ul. Poloneza 93, 02-826 Warszawa",
+        enabled: true
+    },
+ {
+        id: 17,
+        name: "Alpha Sp. z o.o.",
+        label: "Alpha Sp. z o.o.,ul. Juliusza Słowackiego 24/67, 35-060 Rzeszów",
+        enabled: true
+    },
+ {
+        id: 18,
+        name: "Franki Kancelaria Sp. z o.o.",
+        label: "Franki Kancelaria Sp. z o.o., ul. Izaaka 7, 31-057 Kraków",
+        enabled: true
+    },
+ {
+        id: 19,
+        name: "Sławomir Glinkau",
+        label: "Sławomir Glinkau, ul, Ptasia 5/19, 93-571 - w celu prezentacji oferty Phinance S.A.",
         enabled: true
     },
 ];
