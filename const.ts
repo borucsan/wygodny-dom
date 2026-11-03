@@ -273,7 +273,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question:
       "Fundacja Dr Clown od 26 lat niesie pomoc dzieciom w 170 szpitalach i placówkach specjalnych w Polsce. Który z obszarów chce Pani wesprzeć?",
     prop: "prop89",
-    filter: (consents, user) => false  {
+    filter: (consents, user) => false  
      // const today = new Date();
      // const minDate = sub(today, { years: 69 });
      // const maxDate = sub(today, { years: 35 });
@@ -282,18 +282,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     //    date.toString() !== "Invalid Date" &&
       //  (isAfter(date, minDate) || isEqual(date, minDate)) &&
      //  (isBefore(date, maxDate) || isEqual(date, maxDate))
-      );
     },
-   // class: "in-row-images-3",
-//    options: [
-  //    { label: "terapia śmiechem i zabawą dla dzieci", img: "/img/image40.jpg" },
-  //    { label: "mobilny gabinet Dr Clowna (oswajanie dzieci ze szpitalem)", img: "/img/image41.jpg" },
-  //    { label: "dogoterapia (terapia przez zajęcia z psami)", img: "/img/image42.jpg" },
-  //    { label: "wsparcie dla seniorów i dorosłych", img: "/img/image43.jpg" },
- //     { label: "tworzenie kącików zabaw", img: "/img/image44.jpg" },
-   //   { label: "nie jestem zainteresowada", img: "/img/image45.jpg" },
-    ],
-  },
   {
     type: "radio",
     question: "Czy kiedykolwiek brałeś/aś chwilówkę lub pożyczkę w banku?",
