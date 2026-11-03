@@ -273,7 +273,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question:
       "Fundacja Dr Clown od 26 lat niesie pomoc dzieciom w 170 szpitalach i placówkach specjalnych w Polsce. Który z obszarów chce Pani wesprzeć?",
     prop: "prop89",
-    filter: (consents, user) => false // {
+    filter: (consents, user) => false  {
      // const today = new Date();
      // const minDate = sub(today, { years: 69 });
      // const maxDate = sub(today, { years: 35 });
