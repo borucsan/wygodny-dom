@@ -26,7 +26,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: process.env.ENV === "prod" ? "https://www.quiz-to-pieniadz.pl/" : process.env.ENV === "staging" ? "https://qtp.dkarwot.me/" : 'http://localhost:3050/',
+    baseURL: process.env.ENV === "prod" ? "https://wygodny-dom.pl/" : process.env.ENV === "staging" ? "https://wygodny-dom.dkarwot.me/" : 'http://localhost:3050/',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
