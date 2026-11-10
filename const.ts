@@ -71,7 +71,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     question: "Umawiamy jazdy testowe topowych marek, która z nich trafia w Twój gust?",
     prop: "prop49",
     filter: (consents) => true,
-    options: ["Hyundai", "Nissan", "Mitsubishi", "BMW", "Toyota", "Mazda", "Ford", "VW", "Renault", "inna", "samochód elektryczny", "marki chińskie", "nie jestem zainteresowany/a"], 
+    options: ["Hyundai", "Nissan", "Audi", "BMW", "Toyota", "Mazda", "Ford", "VW", "Renault", "inna", "samochód elektryczny", "marki chińskie", "nie jestem zainteresowany/a"], 
 },
   {
     type: "radio",
@@ -225,6 +225,14 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
         filter: (consents, user, data) => true,
         options: ['tak, chcę sprawdzić swój angielski', 'chcę otrzymać informację o aktualnych promocjach', 'nie jestem zainteresowany'],
         inisTrack: 'cpl_profilowe_5_jezyk'
+    },
+	{
+        type: "radio",
+        question: 'Chcesz bezpłatnie sprawdzić, ile zaoszczędzisz na ubezpieczeniu swojego domu lub mieszkania w Generali?',
+        prop: 'prop98',
+        filter: (consents, user, data) => true,
+        options: ['tak, chcę porozmawiać ze specjalistą i poznać ofertę dla mojej nieruchomości', 'nie, dziękuję – mam już odpowiednie ubezpieczenie'],
+       
     },
    {
     type: "radio",
