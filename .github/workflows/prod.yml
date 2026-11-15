@@ -48,6 +48,12 @@ jobs:
         install -m 700 -d ~/.ssh
         printf '%s\n' "${{ secrets.SFTP_VHOSTING_KEY }}" > ~/.ssh/sftp_vhosting_key
         chmod 600 ~/.ssh/sftp_vhosting_key
+    - name: setup ssh agent
+      run: |
+        eval "$(ssh-agent -s)"
+        ssh-add ~/.ssh/sftp_vhosting_key
+        echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> "$GITHUB_ENV"
+        echo "SSH_AGENT_PID=$SSH_AGENT_PID" >> "$GITHUB_ENV"
     - name: sftp deploy
       run: |
         DELETE_FLAG=""
@@ -59,9 +65,10 @@ jobs:
           DRY_RUN_FLAG="--dry-run"
         fi
         lftp -e "
-          set sftp:connect-program 'ssh -a -x -i ~/.ssh/sftp_vhosting_key -o StrictHostKeyChecking=no';
+          set sftp:auto-confirm yes;
           set net:max-retries 2;
           set net:timeout 20;
+          open -u ${{ env.USER }} sftp://${{ env.REMOTE_HOST }}:${{ env.REMOTE_PORT }};
           mirror --reverse --verbose $DELETE_FLAG $DRY_RUN_FLAG ./.output/public/ ${{ env.TARGET }};
           bye
-        " sftp://${{ env.USER }}@${{ env.REMOTE_HOST }}:${{ env.REMOTE_PORT }}
+        "
