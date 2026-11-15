@@ -66,10 +66,9 @@ jobs:
         fi
         lftp -e "
           set sftp:auto-confirm yes;
-          set sftp:connect-program \"ssh -a -x -i /home/runner/.ssh/sftp_vhosting_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null\";
           set net:max-retries 2;
           set net:timeout 20;
-          open sftp://${{ env.USER }}@${{ env.REMOTE_HOST }}:${{ env.REMOTE_PORT }};
+          open -u ${{ env.USER }}, sftp://${{ env.REMOTE_HOST }}:${{ env.REMOTE_PORT }};
           mirror --reverse --verbose $DELETE_FLAG $DRY_RUN_FLAG ./.output/public/ ${{ env.TARGET }};
           bye
         "
