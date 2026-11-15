@@ -41,24 +41,27 @@ jobs:
       run: printf "NUXT_PUBLIC_ENVIRONMENT=${{ env.ENV }}\nNUXT_PUBLIC_SENTRYDSN=${{ secrets.SENTRY_DSN }}" >> .env
     - name: build
       run: yarn run generate
-    - name: prepare rsync args
+    - name: install lftp
+      run: sudo apt-get update && sudo apt-get install -y lftp
+    - name: setup sftp key
       run: |
-        ARGS="-avzogO"
+        install -m 700 -d ~/.ssh
+        printf '%s\n' "${{ secrets.SFTP_VHOSTING_KEY }}" > ~/.ssh/sftp_vhosting_key
+        chmod 600 ~/.ssh/sftp_vhosting_key
+    - name: sftp deploy
+      run: |
+        DELETE_FLAG=""
+        DRY_RUN_FLAG=""
         if [ "${{ inputs.cleanup }}" = "true" ]; then
-          ARGS="$ARGS --delete"
+          DELETE_FLAG="--delete"
         fi
         if [ "${{ inputs.dry_run }}" = "true" ]; then
-          ARGS="$ARGS --dry-run"
+          DRY_RUN_FLAG="--dry-run"
         fi
-        echo "RSYNC_ARGS=$ARGS" >> "$GITHUB_ENV"
-    - name: rsync production
-      uses: up9cloud/action-rsync@master
-      env:
-        HOST: ${{ env.REMOTE_HOST }}
-        PORT: ${{ env.REMOTE_PORT }}
-        KEY: ${{ secrets.SFTP_VHOSTING_KEY }}
-        USER: ${{ env.USER }}
-        VERBOSE: true
-        TARGET: "${{ env.TARGET }}"
-        ARGS: "${{ env.RSYNC_ARGS }}"
-        SOURCE: ./.output/public/
+        lftp -e "
+          set sftp:connect-program 'ssh -a -x -i ~/.ssh/sftp_vhosting_key -o StrictHostKeyChecking=no';
+          set net:max-retries 2;
+          set net:timeout 20;
+          mirror --reverse --verbose $DELETE_FLAG $DRY_RUN_FLAG ./.output/public/ ${{ env.TARGET }};
+          bye
+        " sftp://${{ env.USER }}@${{ env.REMOTE_HOST }}:${{ env.REMOTE_PORT }}
