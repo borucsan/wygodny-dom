@@ -27,15 +27,10 @@
                             
                             <span class="text-sm">PS. Jeżeli nie masz emaila w&nbsp;skrzynce głównej, sprawdź inne foldery i&nbsp;spam.</span>
                             <div class="mx-auto mt-4 flex justify-center">
-                                <a href="https://tracking.affiliate44.com/aff_c?offer_id=1557&aff_id=2796&url_id=1147&aff_sub=LG"
-                                   target="_blank"
-                                   rel="noopener noreferrer">
-                                    <img src="assets/images/AliorBank_Partnerzy_300x250.jpg" alt="Alior Bank" class="max-w-full h-auto">
+                                <a href="https://rejestracja.bo-panel.pl/?s=SL" target="_blank" rel="noopener noreferrer">
+                                    <img src="assets/images/bo-banner-2.png" alt="Baner BO" class="max-w-full h-auto">
                                 </a>
-                            </div><br><br>
-                            <!-- <a target="_blank" href="https://zrabatowani.pl/#oferty" class="flex justify-center">
-                                <img src="assets/images/banner2.png" alt="" class="max-w-[410px] w-full">
-                            </a> -->
+                            </div>
                         </div>
 
                     </TransitionFade>
