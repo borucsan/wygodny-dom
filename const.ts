@@ -237,7 +237,7 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
         type: "radio",
         question: 'Chcesz bezpłatnie sprawdzić, ile zaoszczędzisz na ubezpieczeniu swojego domu lub mieszkania w Generali?',
         prop: 'prop98',
-        filter: (consents, user, data) => true,
+        filter: (consents, user, data) => false,
         options: ['tak, chcę porozmawiać ze specjalistą i poznać ofertę dla mojej nieruchomości', 'nie, dziękuję – mam już odpowiednie ubezpieczenie'],
        
     },
@@ -248,6 +248,14 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     filter: (consents) => false,
     options: ["tak, chcę dowiedzieć się więcej", "nie, nie interesuje mnie to"],
   },
+	  {
+        type: "radio",
+        question: 'Mamy dla Ciebie bonus: darmowe miesiące telewizji w Polsat Box! Chcesz poznać szczegóły?',
+        prop: 'prop90',
+        filter: (consents, user, data) => true,
+        options: ['tak, poproszę o ofertę', 'nie, nie potrzebuję telewizji'],
+        inisTrack: 'cpl_polsatbox'
+    },
   {
         type: "radio",
         question: 'Potrzeba dodatkowej gotówki? Weź nawet 250 000 zł w Alior Banku, RRSO 9,15%',
@@ -267,14 +275,6 @@ export const coRegistrationQuestions: RegistrationQuestion[] = [
     options: ["brzmi świetnie - poproszę o więcej informacji", "nie interesuje mnie to"],
     inisTrack: "cpl_ubezpieczenie",
   },  
-  {
-        type: "radio",
-        question: 'Mamy dla Ciebie bonus: darmowe miesiące telewizji w Polsat Box! Chcesz poznać szczegóły?',
-        prop: 'prop90',
-        filter: (consents, user, data) => true,
-        options: ['tak, poproszę o ofertę', 'nie, nie potrzebuję telewizji'],
-        inisTrack: 'cpl_polsatbox'
-    },
   {
         type: "radio",
         question: 'Szybki Internet za mniej niż 40 zł/mies. z gwarancją ceny na 2 lata - brzmi dobrze?',
